@@ -1,0 +1,13 @@
+{
+  "ideaDirPath": "C:/Users/Administrator/Desktop/github-intellidea/Tale-of-Kingdoms/.idea",
+  "modulesMap": {
+    "Tale-of-Kingdoms": "C:/Users/Administrator/Desktop/github-intellidea/Tale-of-Kingdoms/.idea/modules/Tale-of-Kingdoms.iml",
+    "Tale-of-Kingdoms:api": "C:/Users/Administrator/Desktop/github-intellidea/Tale-of-Kingdoms/.idea/modules/Tale-of-Kingdoms.api.iml",
+    "Tale-of-Kingdoms:ideVirtualMain": "C:/Users/Administrator/Desktop/github-intellidea/Tale-of-Kingdoms/.idea/modules/Tale-of-Kingdoms.ideVirtualMain.iml",
+    "Tale-of-Kingdoms:injectedTags": "C:/Users/Administrator/Desktop/github-intellidea/Tale-of-Kingdoms/.idea/modules/Tale-of-Kingdoms.injectedTags.iml",
+    "Tale-of-Kingdoms:main": "C:/Users/Administrator/Desktop/github-intellidea/Tale-of-Kingdoms/.idea/modules/Tale-of-Kingdoms.main.iml",
+    "Tale-of-Kingdoms:mcLauncher": "C:/Users/Administrator/Desktop/github-intellidea/Tale-of-Kingdoms/.idea/modules/Tale-of-Kingdoms.mcLauncher.iml",
+    "Tale-of-Kingdoms:patchedMc": "C:/Users/Administrator/Desktop/github-intellidea/Tale-of-Kingdoms/.idea/modules/Tale-of-Kingdoms.patchedMc.iml",
+    "Tale-of-Kingdoms:test": "C:/Users/Administrator/Desktop/github-intellidea/Tale-of-Kingdoms/.idea/modules/Tale-of-Kingdoms.test.iml"
+  }
+}
