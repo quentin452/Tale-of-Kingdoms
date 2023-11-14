@@ -23,13 +23,15 @@ public final class GuiShopList extends GuiScreen {
    public EntityPlayer entityplayer;
    public GoldKeeper gold;
    public StringTranslate st = new StringTranslate();
-   private int checkBounty = 0, currentGui = 0, price, shopcounter = 20;
-   private int[] item = new int[200];
-   private Integer[] itemget = new Integer[200];
+    private int currentGui = 0;
+    private int price;
+    private int shopcounter = 20;
+   private final int[] item = new int[200];
+   private final Integer[] itemget;
    boolean reachedend = false;
    public Integer itemSelected;
    private boolean goldchecker = false;
-   private String stringGet = "", stringoutput = "";
+    private String stringoutput = "";
    public static TaleOfKingdoms taleofkingdoms;
    public EntityForgeKeeper forgekeeper;
 
@@ -42,26 +44,27 @@ public final class GuiShopList extends GuiScreen {
       this.itemSelected = this.itemget[0];
    }
 
-   public void setItemList() {
-      byte i = 0;
-      int var3 = i + this.currentGui * 16;
+    public void setItemList() {
+        byte i = 0;
+        int var3 = i + this.currentGui * 16;
+        if (this.itemget == null) {
+            return;
+        }
+        for (int j = 0; j < 16 && (var3 + j) < this.itemget.length; ++j) {
+            if (this.itemget[var3 + j] != null && this.itemget[var3 + j] != 0) {
+                this.item[j + 1] = this.itemget[var3 + j];
+            } else {
+                this.item[j + 1] = 0;
+            }
+        }
+        if (var3 + 17 < this.itemget.length) {
+            this.reachedend = this.itemget[var3 + 17] == null || this.itemget[var3 + 17] == 0;
+        } else {
+            this.reachedend = false;
+        }
+        this.initGui();
+    }
 
-      for(int j = 0; j <= 16; ++j) {
-         if(this.itemget[var3 + j] != 0) {
-            this.item[j + 1] = this.itemget[var3 + j];
-         } else {
-            this.item[j + 1] = 0;
-         }
-      }
-
-      if(this.itemget[var3 + 17] == 0) {
-         this.reachedend = true;
-      } else {
-         this.reachedend = false;
-      }
-
-      this.initGui();
-   }
 
    public void initGui() {
       this.buttonList.clear();
@@ -69,112 +72,128 @@ public final class GuiShopList extends GuiScreen {
       String s15;
       if(this.item[1] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[1]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[1], this, 0, this.width / 2 - 90, 40, 90, 20, s15));
       }
 
       if(this.item[2] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[2]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[2], this, 1, this.width / 2 - 90, 60, 90, 20, s15));
       }
 
       if(this.item[3] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[3]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[3], this, 2, this.width / 2 - 90, 80, 90, 20, s15));
       }
 
       if(this.item[4] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[4]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[4], this, 3, this.width / 2 - 90, 100, 90, 20, s15));
       }
 
       if(this.item[5] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[5]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[5], this, 4, this.width / 2 - 90, 120, 90, 20, s15));
       }
 
       if(this.item[6] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[6]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[6], this, 5, this.width / 2 - 90, 140, 90, 20, s15));
       }
 
       if(this.item[7] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[7]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[7], this, 6, this.width / 2 - 90, 160, 90, 20, s15));
       }
 
       if(this.item[8] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[8]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[8], this, 7, this.width / 2 - 90, 180, 90, 20, s15));
       }
 
       if(this.item[9] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[9]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[9], this, 8, this.width / 2 + 20, 40, 90, 20, s15));
       }
 
       if(this.item[10] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[10]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[10], this, 9, this.width / 2 + 20, 60, 90, 20, s15));
       }
 
       if(this.item[11] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[11]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[11], this, 10, this.width / 2 + 20, 80, 90, 20, s15));
       }
 
       if(this.item[12] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[12]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[12], this, 11, this.width / 2 + 20, 100, 90, 20, s15));
       }
 
       if(this.item[13] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[13]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[13], this, 12, this.width / 2 + 20, 120, 90, 20, s15));
       }
 
       if(this.item[14] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[14]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[14], this, 13, this.width / 2 + 20, 140, 90, 20, s15));
       }
 
       if(this.item[15] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[15]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[15], this, 14, this.width / 2 + 20, 160, 90, 20, s15));
       }
 
       if(this.item[16] != 0) {
          item16 = (new ItemStack(Item.getItemById(this.item[16]), 1, 0)).getItem();
-         s15 = item16.getUnlocalizedName() + ".name";
+          assert item16 != null;
+          s15 = item16.getUnlocalizedName() + ".name";
          s15 = this.st.translateKey(s15);
          this.buttonList.add(new GuiButtonShop(this.item[16], this, 15, this.width / 2 + 20, 180, 90, 20, s15));
       }
@@ -200,292 +219,245 @@ public final class GuiShopList extends GuiScreen {
 
    protected void actionPerformed(GuiButton guibutton) {
       Item itemstack1;
-      if(guibutton.id == 0) {
+       String stringGet;
+       if(guibutton.id == 0) {
          this.itemSelected = this.item[1];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+           itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+           assert itemstack1 != null;
+           stringGet = itemstack1.getUnlocalizedName() + ".name";
+           this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
-      }
+           this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+           this.price = (int)(this.price + this.price * 0.8D);
+           if(itemstack1 instanceof ItemFood) {
+              this.price = (int)(this.price + this.price * 0.2D);
+           }
+       }
 
       if(guibutton.id == 1) {
          this.itemSelected = this.item[2];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 2) {
          this.itemSelected = this.item[3];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 3) {
          this.itemSelected = this.item[4];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 4) {
          this.itemSelected = this.item[5];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 5) {
          this.itemSelected = this.item[6];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 6) {
          this.itemSelected = this.item[7];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 7) {
          this.itemSelected = this.item[8];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 8) {
          this.itemSelected = this.item[9];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 9) {
          this.itemSelected = this.item[10];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 10) {
          this.itemSelected = this.item[11];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 11) {
          this.itemSelected = this.item[12];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 12) {
          this.itemSelected = this.item[13];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 13) {
          this.itemSelected = this.item[14];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 14) {
          this.itemSelected = this.item[15];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 15) {
          this.itemSelected = this.item[16];
          this.goldchecker = false;
-         if(this.itemSelected != null) {
-            itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+          itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
+          assert itemstack1 != null;
+          stringGet = itemstack1.getUnlocalizedName() + ".name";
+          this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
-            if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
-            }
-         }
+          this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+          this.price = (int)(this.price + this.price * 0.8D);
+          if(itemstack1 instanceof ItemFood) {
+             this.price = (int)(this.price + this.price * 0.2D);
+          }
       }
 
       if(guibutton.id == 16) {
@@ -497,15 +469,14 @@ public final class GuiShopList extends GuiScreen {
          this.goldchecker = false;
          if(this.itemSelected != null) {
             itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+             assert itemstack1 != null;
+             stringGet = itemstack1.getUnlocalizedName() + ".name";
+             this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
+             this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+            this.price = (int)(this.price + this.price * 0.8D);
             if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
+               this.price = (int)(this.price + this.price * 0.2D);
             }
          }
       }
@@ -519,15 +490,14 @@ public final class GuiShopList extends GuiScreen {
          this.goldchecker = false;
          if(this.itemSelected != null) {
             itemstack1 = (new ItemStack(Item.getItemById(this.itemSelected), 1, 0)).getItem();
-            this.stringGet = itemstack1.getUnlocalizedName() + ".name";
-            if(this.stringGet != null) {
-               this.stringoutput = this.st.translateKey(this.stringGet);
-            }
+             assert itemstack1 != null;
+             stringGet = itemstack1.getUnlocalizedName() + ".name";
+             this.stringoutput = this.st.translateKey(stringGet);
 
-            this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
-            this.price = (int)((double)this.price + (double)this.price * 0.8D);
+             this.price = GoldKeeper.priceItem(String.valueOf(itemstack1.getUnlocalizedName()));
+            this.price = (int)(this.price + this.price * 0.8D);
             if(itemstack1 instanceof ItemFood) {
-               this.price = (int)((double)this.price + (double)this.price * 0.2D);
+               this.price = (int)(this.price + this.price * 0.2D);
             }
          }
       }
@@ -536,41 +506,45 @@ public final class GuiShopList extends GuiScreen {
       String s1;
       int j;
       ItemStack var7;
-      if(guibutton.id == 18) {
-         var7 = new ItemStack(Item.getItemById(this.itemSelected), 1, 0);
-         item20 = var7.getItem();
-         s1 = item20.getUnlocalizedName();
-         j = GoldKeeper.priceItem(s1);
-         j = (int)((double)j + (double)j * 0.8D);
-         if(item20 instanceof ItemFood) {
-            j = (int)((double)j + (double)j * 0.2D);
-         }
+       if (guibutton.id == 18 && (this.itemSelected != null)) {
+               var7 = new ItemStack(Item.getItemById(this.itemSelected), 1, 0);
+               item20 = var7.getItem();
+               if (item20 != null) {
+                   s1 = item20.getUnlocalizedName();
+                   j = GoldKeeper.priceItem(s1);
+                   j = (int)(j + j * 0.8D);
+                   if (item20 instanceof ItemFood) {
+                       j = (int)(j + j * 0.2D);
+                   }
 
-         if(j <= GoldKeeper.getGoldTotal()) {
-            EntityItem entityitem = new EntityItem(this.worldObj, this.entityplayer.posX, this.entityplayer.posY, this.entityplayer.posZ, var7);
-            this.worldObj.spawnEntityInWorld(entityitem);
-            GoldKeeper.decreaseGold(j);
-         } else {
-            this.goldchecker = true;
-         }
-      }
+                   if (j <= GoldKeeper.getGoldTotal()) {
+                       EntityItem entityitem = new EntityItem(this.worldObj, this.entityplayer.posX, this.entityplayer.posY, this.entityplayer.posZ, var7);
+                       this.worldObj.spawnEntityInWorld(entityitem);
+                       GoldKeeper.decreaseGold(j);
+                   } else {
+                       this.goldchecker = true;
+                   }
+               }
 
-      if(guibutton.id == 21 && this.shopcounter >= 16) {
-         var7 = new ItemStack(Item.getItemById(this.itemSelected), 1, 0);
-         item20 = var7.getItem();
-         s1 = item20.getUnlocalizedName();
-         j = GoldKeeper.priceItem(s1);
-         j = (int)((double)j + (double)j * 0.8D);
-         if(item20 instanceof ItemFood) {
-            j = (int)((double)j + (double)j * 0.2D);
-         }
+       }
+       if (guibutton.id == 21 && this.shopcounter >= 16 && (this.itemSelected != null)) {
+               var7 = new ItemStack(Item.getItemById(this.itemSelected), 1, 0);
+               item20 = var7.getItem();
+               assert item20 != null;
+               s1 = item20.getUnlocalizedName();
+               j = GoldKeeper.priceItem(s1);
+               j = (int)(j + j * 0.8D);
+               if (item20 instanceof ItemFood) {
+                   j = (int)(j + j * 0.2D);
+               }
 
-         if(j * 16 <= GoldKeeper.getGoldTotal()) {
-            this.shopcounter = 0;
-         } else {
-            this.goldchecker = true;
-         }
-      }
+               if (j * 16 <= GoldKeeper.getGoldTotal()) {
+                   this.shopcounter = 0;
+               } else {
+                   this.goldchecker = true;
+               }
+
+       }
 
       if(guibutton.id == 19) {
          this.mc.displayGuiScreen(null);
@@ -590,11 +564,12 @@ public final class GuiShopList extends GuiScreen {
       if(this.shopcounter < 16) {
          ItemStack l = new ItemStack(Item.getItemById(this.itemSelected), 1, 0);
          Item guibutton = l.getItem();
-         String resource = guibutton.getUnlocalizedName();
+          assert guibutton != null;
+          String resource = guibutton.getUnlocalizedName();
          j1 = GoldKeeper.priceItem(resource);
-         j1 = (int)((double)j1 + (double)j1 * 0.8D);
+         j1 = (int)(j1 + j1 * 0.8D);
          if(guibutton instanceof ItemFood) {
-            j1 = (int)((double)j1 + (double)j1 * 0.2D);
+            j1 = (int)(j1 + j1 * 0.2D);
          }
 
          if(j1 <= GoldKeeper.getGoldTotal()) {
@@ -615,17 +590,17 @@ public final class GuiShopList extends GuiScreen {
       j1 = (this.width - var9) / 2;
       this.drawTexturedModalRect(j1, 0, 0, 0, var9, var11);
 
-      for(int var10 = 0; var10 < this.buttonList.size(); ++var10) {
-         if(this.buttonList.get(var10) instanceof GuiButtonShop) {
-            GuiButtonShop var12 = (GuiButtonShop)this.buttonList.get(var10);
-            var12.drawButton(this.mc, i, j);
-         }
+       for (Object o : this.buttonList) {
+           if (o instanceof GuiButtonShop) {
+               GuiButtonShop var12 = (GuiButtonShop) o;
+               var12.drawButton(this.mc, i, j);
+           }
 
-         if(this.buttonList.get(var10) instanceof GuiButton) {
-            GuiButton var13 = (GuiButton)this.buttonList.get(var10);
-            var13.drawButton(this.mc, i, j);
-         }
-      }
+           if (o instanceof GuiButton) {
+               GuiButton var13 = (GuiButton) o;
+               var13.drawButton(this.mc, i, j);
+           }
+       }
 
       this.drawString(this.fontRendererObj, "Shop Menu - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 16763904);
       if(this.goldchecker) {
