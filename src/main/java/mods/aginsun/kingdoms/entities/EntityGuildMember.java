@@ -41,6 +41,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityGuildMember
 extends EntityNPC {
@@ -74,17 +75,17 @@ extends EntityNPC {
                     defaultHeldItem = new ItemStack(Item.swordWood, 1);
                     entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, null);
                     if (!this.worldObj.isRemote) {
-                        entityplayer.addChatMessage("Guild Member: Get Ready.");
+                        ChatMessage.add(entityplayer,"Guild Member: Get Ready.");
                     }
                     this.fight = true;
                 } else if (!this.worldObj.isRemote) {
-                    entityplayer.addChatMessage("Guild Member: Greetings. You seem like a tough fighter. Give me a wooden sword and lets have a sparing match!");
+                    ChatMessage.add(entityplayer,"Guild Member: Greetings. You seem like a tough fighter. Give me a wooden sword and lets have a sparing match!");
                 }
             } else if (!this.worldObj.isRemote) {
-                entityplayer.addChatMessage("Guild Member: Greetings. You seem like a tough fighter. Give me a wooden sword and lets have a sparing match!");
+                ChatMessage.add(entityplayer,"Guild Member: Greetings. You seem like a tough fighter. Give me a wooden sword and lets have a sparing match!");
             }
         } else if (!this.worldObj.isRemote) {
-            entityplayer.addChatMessage("Guild Member: Damn this Reficules");
+            ChatMessage.add(entityplayer,"Guild Member: Damn this Reficules");
         }
         return true;
     }
@@ -93,7 +94,7 @@ extends EntityNPC {
         if (this.fight) {
             WorthyKeeper.getInstance().addWorthy(50.0f);
             if (this.player != null && !this.worldObj.isRemote) {
-                this.player.addChatMessage("Guild Member: Your a good fighter my friend, I will let the guild master know of your strength.");
+                ChatMessage.add(this.player,"Guild Member: Your a good fighter my friend, I will let the guild master know of your strength.");
             }
         }
     }
@@ -104,16 +105,16 @@ extends EntityNPC {
         if (this.fight) {
             ++this.counter;
             if (this.counter == 10 && !this.worldObj.isRemote) {
-                this.player.addChatMessage("Guild Member: 3");
+                ChatMessage.add(this.player,"Guild Member: 3");
             }
             if (this.counter == 20 && !this.worldObj.isRemote) {
-                this.player.addChatMessage("Guild Member: 2");
+                ChatMessage.add(this.player,"Guild Member: 2");
             }
             if (this.counter == 30 && !this.worldObj.isRemote) {
-                this.player.addChatMessage("Guild Member: 1");
+                ChatMessage.add(this.player,"Guild Member: 1");
             }
             if (this.counter == 40 && !this.worldObj.isRemote) {
-                this.player.addChatMessage("Guild Member: Begin!");
+                ChatMessage.add(this.player,"Guild Member: Begin!");
                 this.entityToAttack = this.player;
             }
         }

@@ -46,6 +46,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityHired
 extends EntityNPC {
@@ -74,12 +75,12 @@ extends EntityNPC {
         if (EntityHired.defaultHeldItem.itemID == 267) {
             defaultHeldItem = new ItemStack((Item)Item.bow, 1);
             if (!this.worldObj.isRemote) {
-                this.player.addChatMessage("Hunter: I shall use my bow.");
+                ChatMessage.add(this.player,"Hunter: I shall use my bow.");
             }
         } else {
             defaultHeldItem = new ItemStack(Item.swordIron, 1);
             if (!this.worldObj.isRemote) {
-                this.player.addChatMessage("Hunter: I shall use my sword.");
+                ChatMessage.add(this.player,"Hunter: I shall use my sword.");
             }
         }
         return true;

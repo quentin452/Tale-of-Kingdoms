@@ -12,6 +12,7 @@ import mods.aginsun.kingdoms.client.guis.GuiScreenToK;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiInnMenu
 extends GuiScreenToK {
@@ -79,7 +80,7 @@ extends GuiScreenToK {
 
     public void onGuiClosed() {
         if (!this.worldObj.isRemote) {
-            this.player.addChatMessage("House Keeper: Have a nice day.");
+            ChatMessage.add(this.player,"House Keeper: Have a nice day.");
         }
     }
 

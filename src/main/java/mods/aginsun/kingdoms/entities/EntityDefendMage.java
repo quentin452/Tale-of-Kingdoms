@@ -50,6 +50,7 @@ import net.minecraft.src.ModLoader;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityDefendMage
 extends EntityNPC {
@@ -90,12 +91,12 @@ extends EntityNPC {
         if (!this.follow) {
             this.follow = true;
             if (!this.worldObj.isRemote) {
-                entityplayer.addChatMessage("Mage: I will follow you.");
+                ChatMessage.add(entityplayer,"Mage: I will follow you.");
             }
         } else {
             this.follow = false;
             if (!this.worldObj.isRemote) {
-                entityplayer.addChatMessage("Mage: I will guard this area.");
+                ChatMessage.add(entityplayer,"Mage: I will guard this area.");
             }
         }
         return true;

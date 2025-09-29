@@ -57,6 +57,7 @@ import net.minecraft.src.ModLoader;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityHeadCommander
 extends EntityNPC {
@@ -112,7 +113,7 @@ extends EntityNPC {
     public boolean interact(EntityPlayer entityplayer) {
         Minecraft minecraft = ModLoader.getMinecraftInstance();
         if (!this.worldObj.isRemote) {
-            entityplayer.addChatMessage("Knight Commander: I will lead your troops to battle!");
+            ChatMessage.add(entityplayer,"Knight Commander: I will lead your troops to battle!");
         }
         minecraft.displayGuiScreen((GuiScreen)new GuiReinforcementPool(entityplayer, this.worldObj, this));
         return true;

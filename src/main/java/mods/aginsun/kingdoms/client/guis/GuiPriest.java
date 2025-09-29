@@ -21,6 +21,7 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiPriest
 extends GuiScreenToK {
@@ -64,14 +65,14 @@ extends GuiScreenToK {
             this.entityplayer.getFoodStats().setFoodLevel(20);
             this.entityplayer.heal(20.0f);
             if (!this.worldObj.isRemote) {
-                this.entityplayer.addChatMessage("Head Priest: You are now rejuvinated.");
+                ChatMessage.add(this.entityplayer,"Head Priest: You are now rejuvinated.");
             }
         }
     }
 
     public void onGuiClosed() {
         if (!this.worldObj.isRemote) {
-            this.entityplayer.addChatMessage("Head Priest: May the light be with you.");
+            ChatMessage.add(this.entityplayer,"Head Priest: May the light be with you.");
         }
     }
 

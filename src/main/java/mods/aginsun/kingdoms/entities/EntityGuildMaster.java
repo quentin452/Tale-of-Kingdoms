@@ -42,6 +42,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityGuildMaster
 extends EntityNPC {
@@ -99,15 +100,15 @@ extends EntityNPC {
                 if (flag && !UtilToK.guildFightEnded) {
                     if (this.talk == 0) {
                         if (!this.worldObj.isRemote) {
-                            this.player.addChatMessage("Guild Master: My apprentice! The guild is under attack, and I came here to ask for your help. Please let us hurry back to the guild!");
+                            ChatMessage.add(this.player,"Guild Master: My apprentice! The guild is under attack, and I came here to ask for your help. Please let us hurry back to the guild!");
                         }
                         ItemStack itemstack = new ItemStack(267, 1, 0);
                         EntityItem entityitem = new EntityItem(this.worldObj, this.player.posX, this.player.posY, this.player.posZ, itemstack);
                         this.player.joinEntityItemWithWorld(entityitem);
                     } else if (this.talk > 2 && this.talk < 5 && !this.worldObj.isRemote) {
-                        this.player.addChatMessage("Master: Keep close and I will heal you.");
+                        ChatMessage.add(this.player,"Master: Keep close and I will heal you.");
                     } else if (!this.worldObj.isRemote) {
-                        this.player.addChatMessage("Master: Lets take this bastards down. There are still some left.");
+                        ChatMessage.add(this.player,"Master: Lets take this bastards down. There are still some left.");
                     }
                     ++this.talk;
                 } else {
@@ -122,17 +123,17 @@ extends EntityNPC {
                         }
                     }
                     if (!this.get && !this.worldObj.isRemote) {
-                        this.player.addChatMessage("Master: We have now supplies to build the guild. Talk to me again if you want to repair the guild.");
+                        ChatMessage.add(this.player,"Master: We have now supplies to build the guild. Talk to me again if you want to repair the guild.");
                     } else if (!this.worldObj.isRemote) {
-                        this.player.addChatMessage("Master: We did the best we could. Now, we should rebuild the guild and gather 64 wood while the rest do some cleanup and construction.");
+                        ChatMessage.add(this.player,"Master: We did the best we could. Now, we should rebuild the guild and gather 64 wood while the rest do some cleanup and construction.");
                     }
                 }
             } else if (!this.worldObj.isRemote) {
-                this.player.addChatMessage("Master: We are too far from the guild!");
+                ChatMessage.add(this.player,"Master: We are too far from the guild!");
             }
         } else {
             if (!this.worldObj.isRemote) {
-                this.player.addChatMessage("Master: Thank you hero, you have proven yourself a worthy leader but your quest for kingship is not over. I will be back at the guild and may you continue this good progress.");
+                ChatMessage.add(this.player,"Master: Thank you hero, you have proven yourself a worthy leader but your quest for kingship is not over. I will be back at the guild and may you continue this good progress.");
             }
             UtilToK.guildFightEnded = true;
             this.setDead();
@@ -161,7 +162,7 @@ extends EntityNPC {
             if (!(entity instanceof EntityPlayer)) continue;
             this.player = (EntityPlayer)entity;
             if (!(this.counterHeal != 5 || UtilToK.guildFightEnded || this.said || this.worldObj.isRemote)) {
-                this.player.addChatMessage("Guild Master: My apprentice! The guild is under attack and I came here to ask for your help. Please let us hurry back to the guild!");
+                ChatMessage.add(this.player,"Guild Master: My apprentice! The guild is under attack and I came here to ask for your help. Please let us hurry back to the guild!");
                 this.said = true;
             }
             if (this.counterHeal > 30) {

@@ -16,6 +16,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiWardenMenu
 extends GuiScreenToK {
@@ -61,7 +62,7 @@ extends GuiScreenToK {
     }
 
     public void onGuiClosed() {
-        this.player.addChatMessage("Warden: Good Day.");
+        ChatMessage.add(this.player,"Warden: Good Day.");
     }
 
     public void drawScreen(int i, int j, float f) {

@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiWorker
 extends GuiScreenToK {
@@ -36,14 +37,14 @@ extends GuiScreenToK {
 
     protected void actionPerformed(GuiButton guibutton) {
         if (guibutton.id == 1) {
-            this.entityplayer.addChatMessage("Worker: Let us go woodcutting!");
+            ChatMessage.add(this.entityplayer,"Worker: Let us go woodcutting!");
             EntityWorkerMember.defaultHeldItem = new ItemStack(Item.axeIron, 1);
             this.member.worktype = 1;
             this.member.follow = true;
             this.mc.displayGuiScreen(null);
         }
         if (guibutton.id == 2) {
-            this.entityplayer.addChatMessage("Worker: Let us go mine stone!");
+            ChatMessage.add(this.entityplayer,"Worker: Let us go mine stone!");
             EntityWorkerMember.defaultHeldItem = new ItemStack(Item.pickaxeIron, 1);
             this.member.worktype = 2;
             this.member.follow = true;

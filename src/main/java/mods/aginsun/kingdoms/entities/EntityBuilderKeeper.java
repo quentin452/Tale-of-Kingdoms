@@ -27,6 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityBuilderKeeper
 extends EntityNPC {
@@ -53,14 +54,14 @@ extends EntityNPC {
 
     public boolean interact(EntityPlayer entityplayer) {
         if (this.canInteractWith(entityplayer) && WorthyKeeper.getInstance().getWorthy() < 10000.0f && !Buildings.kingdomCreated && !this.world.isRemote) {
-            entityplayer.addChatMessage("City Builder: My king! You are still not worthy of creating a kingdom. The Guild Master will prepare you.");
+            ChatMessage.add(entityplayer,"City Builder: My king! You are still not worthy of creating a kingdom. The Guild Master will prepare you.");
         }
         if (!this.follow || WorthyKeeper.getInstance().getWorthy() >= 10000.0f && Buildings.kingdomCreated && !this.world.isRemote) {
-            entityplayer.addChatMessage("City Builder: Lets start building!");
+            ChatMessage.add(entityplayer,"City Builder: Lets start building!");
             FMLCommonHandler.instance().showGuiScreen((Object)new GuiBuildScreen(entityplayer, this.world));
         }
         if (this.canInteractWith(entityplayer) && WorthyKeeper.getInstance().getWorthy() >= 10000.0f && this.follow && !Buildings.kingdomCreated && !this.world.isRemote) {
-            entityplayer.addChatMessage("City Builder: Let us build your city my liege! Lead the way!");
+            ChatMessage.add(entityplayer,"City Builder: Let us build your city my liege! Lead the way!");
             this.follow = false;
         }
         return true;

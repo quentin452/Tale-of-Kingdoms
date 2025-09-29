@@ -19,6 +19,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiLibrary
 extends GuiScreenToK {
@@ -46,11 +47,11 @@ extends GuiScreenToK {
             if (this.get.studied) {
                 this.worldObj.spawnEntityInWorld((Entity)new EntityXPOrb(this.worldObj, this.entityplayer.posX, this.entityplayer.posY, this.entityplayer.posZ, 150));
                 if (!this.worldObj.isRemote) {
-                    this.entityplayer.addChatMessage("You have gained experience.");
+                    ChatMessage.add(this.entityplayer,"You have gained experience.");
                 }
                 this.get.studied = false;
             } else if (!this.worldObj.isRemote) {
-                this.entityplayer.addChatMessage("You have already studied for a while, go back in a few moments");
+                ChatMessage.add(this.entityplayer,"You have already studied for a while, go back in a few moments");
             }
             this.goldchecker = false;
         }
@@ -58,7 +59,7 @@ extends GuiScreenToK {
             if (500 + UtilToK.libraryInvestment * 2 <= GoldKeeper.getGoldTotal()) {
                 UtilToK.libraryInvestment += 5;
                 if (!this.worldObj.isRemote) {
-                    this.entityplayer.addChatMessage("Tax is now increased by " + UtilToK.libraryInvestment + " gold per house.");
+                    ChatMessage.add(this.entityplayer,"Tax is now increased by " + UtilToK.libraryInvestment + " gold per house.");
                 }
                 GoldKeeper.decreaseGold(500 + UtilToK.libraryInvestment * 2);
             } else {
@@ -76,7 +77,7 @@ extends GuiScreenToK {
 
     public void onGuiClosed() {
         if (!this.worldObj.isRemote) {
-            this.entityplayer.addChatMessage("Librarian: I will see you again hero.");
+            ChatMessage.add(this.entityplayer,"Librarian: I will see you again hero.");
         }
     }
 

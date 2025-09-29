@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiBank
 extends GuiScreenToK {
@@ -157,7 +158,7 @@ extends GuiScreenToK {
         }
         if (guibutton.id == 13) {
             if (!this.worldObj.isRemote) {
-                this.entityplayer.addChatMessage("Banker: I promise I won't spend this!");
+                ChatMessage.add(this.entityplayer,"Banker: I promise I won't spend this!");
             }
             this.mc.displayGuiScreen(null);
         }

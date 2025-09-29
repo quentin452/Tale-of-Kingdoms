@@ -53,6 +53,7 @@ import net.minecraft.src.ModLoader;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityDefendPaladin
 extends EntityNPC {
@@ -110,14 +111,14 @@ extends EntityNPC {
         if (!this.follow) {
             this.follow = true;
             if (!this.worldObj.isRemote) {
-                entityplayer.addChatMessage("Paladin: I will follow you.");
+                ChatMessage.add(entityplayer,"Paladin: I will follow you.");
             }
             this.defend.setDead();
             this.createdMarker = false;
         } else {
             this.follow = false;
             if (!this.worldObj.isRemote) {
-                entityplayer.addChatMessage("Paladin:I will guard this area.");
+                ChatMessage.add(entityplayer,"Paladin:I will guard this area.");
             }
         }
         return true;

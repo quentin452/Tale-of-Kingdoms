@@ -26,6 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityVillageMember
 extends EntityNPC {
@@ -54,16 +55,16 @@ extends EntityNPC {
             this.hasPick = true;
         }
         if (!(this.hasPick || this.hasAxe || this.world.isRemote)) {
-            entityplayer.addChatMessage("Villager: My king! Do you need a worker? Give me an axe and a pickaxe and I will work for you.");
+            ChatMessage.add(entityplayer,"Villager: My king! Do you need a worker? Give me an axe and a pickaxe and I will work for you.");
         }
         if (!this.hasPick && this.hasAxe && !this.world.isRemote) {
-            entityplayer.addChatMessage("Villager: I still need a pickaxe sir.");
+            ChatMessage.add(entityplayer,"Villager: I still need a pickaxe sir.");
         }
         if (this.hasPick && !this.hasAxe && !this.world.isRemote) {
-            entityplayer.addChatMessage("Villager: I still need an axe sir.");
+            ChatMessage.add(entityplayer,"Villager: I still need an axe sir.");
         }
         if (this.hasPick && this.hasAxe && !this.world.isRemote) {
-            entityplayer.addChatMessage("Worker: I am now a worker sir! Lead the way!");
+            ChatMessage.add(entityplayer,"Worker: I am now a worker sir! Lead the way!");
             EntityLiving entityliving = (EntityLiving)EntityList.createEntityByName((String)"WorkerMember", (World)this.worldObj);
             entityliving.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0f, 0.0f);
             this.worldObj.spawnEntityInWorld((Entity)entityliving);

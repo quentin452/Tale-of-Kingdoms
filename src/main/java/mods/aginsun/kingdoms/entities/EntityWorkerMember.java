@@ -37,6 +37,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityWorkerMember
 extends EntityNPC {
@@ -127,20 +128,20 @@ extends EntityNPC {
                 }
             }
             if (this.follow && flag && this.worktype == 1 && !this.worldObj.isRemote) {
-                this.player.addChatMessage("Worker: Chopping it down sir!");
+                ChatMessage.add(this.player,"Worker: Chopping it down sir!");
             }
             if (this.follow && !flag && this.worktype == 1 && !this.worldObj.isRemote) {
-                this.player.addChatMessage("Worker: Direct me to a tree and I will start cutting!");
+                ChatMessage.add(this.player,"Worker: Direct me to a tree and I will start cutting!");
             }
             this.player = entityplayer;
         }
         if (this.worktype == 2 && !this.isMining) {
             if (this.posY < 50.0 && !this.worldObj.isRemote) {
-                this.player.addChatMessage("Worker: Mining the stone sir!");
+                ChatMessage.add(this.player,"Worker: Mining the stone sir!");
                 this.createMine();
                 this.isMining = true;
             } else if (!this.worldObj.isRemote) {
-                this.player.addChatMessage("Worker: We must go further underground sir!");
+                ChatMessage.add(this.player,"Worker: We must go further underground sir!");
             }
         }
         this.player = entityplayer;

@@ -29,6 +29,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringTranslate;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiStockList
 extends GuiScreenToK {
@@ -132,7 +133,7 @@ extends GuiScreenToK {
 
     public void onGuiClosed() {
         if (this.worldObj.isRemote) {
-            this.entityplayer.addChatMessage("Stock Keeper: Keep a look out on your stock supplies!");
+            ChatMessage.add(this.entityplayer,"Stock Keeper: Keep a look out on your stock supplies!");
         }
     }
 

@@ -22,6 +22,7 @@ import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.src.ModLoader;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityLostVillager
 extends EntityNPC {
@@ -42,7 +43,7 @@ extends EntityNPC {
     public boolean interact(EntityPlayer entityplayer) {
         this.follow = false;
         if (!this.worldObj.isRemote) {
-            entityplayer.addChatMessage("Lost Villager: Thank the heavens! Our village is attacked by the reficuls! Please lead me back to the guild.");
+            ChatMessage.add(entityplayer,"Lost Villager: Thank the heavens! Our village is attacked by the reficuls! Please lead me back to the guild.");
         }
         return true;
     }

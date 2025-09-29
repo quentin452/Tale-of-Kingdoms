@@ -35,6 +35,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringTranslate;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiShopList
 extends GuiScreen {
@@ -186,7 +187,7 @@ extends GuiScreen {
 
     public void onGuiClosed() {
         if (!this.worldObj.isRemote) {
-            this.entityplayer.addChatMessage("Shop Keeper: Thank you! Come back again!");
+            ChatMessage.add(this.entityplayer,"Shop Keeper: Thank you! Come back again!");
         }
     }
 

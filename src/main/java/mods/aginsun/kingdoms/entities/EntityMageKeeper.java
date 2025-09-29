@@ -25,6 +25,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityMageKeeper
 extends EntityNPC {
@@ -68,7 +69,7 @@ extends EntityNPC {
             this.heal(100.0f);
             Minecraft minecraft = ModLoader.getMinecraftInstance();
             if (!this.worldObj.isRemote) {
-                entityplayer.addChatMessage("Head Mage: Welcome to the mage hall, hero.");
+                ChatMessage.add(entityplayer,"Head Mage: Welcome to the mage hall, hero.");
             }
             minecraft.displayGuiScreen((GuiScreen)new GuiMageHall(entityplayer, this.worldObj));
         }

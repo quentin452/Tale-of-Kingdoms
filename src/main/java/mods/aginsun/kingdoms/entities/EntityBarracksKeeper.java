@@ -19,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityBarracksKeeper
 extends EntityNPC {
@@ -35,7 +36,7 @@ extends EntityNPC {
 
     public boolean interact(EntityPlayer entityplayer) {
         if (!this.worldObj.isRemote) {
-            entityplayer.addChatMessage("Warden: The guild's warden at your service.");
+            ChatMessage.add(entityplayer,"Warden: The guild's warden at your service.");
         }
         if (this.canInteractWith(entityplayer)) {
             Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiWardenMenu(entityplayer, this.worldObj));

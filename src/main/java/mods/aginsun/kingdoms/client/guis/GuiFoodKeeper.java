@@ -21,6 +21,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiFoodKeeper
 extends GuiScreenToK {
@@ -48,14 +49,14 @@ extends GuiScreenToK {
         if (guibutton.id == 2) {
             if (this.freebread) {
                 if (!this.worldObj.isRemote) {
-                    this.entityplayer.addChatMessage("Farmer: Here, take a bread!");
+                    ChatMessage.add(this.entityplayer, "Farmer: Here, take a bread!");
                 }
                 ItemStack itemstack = new ItemStack(297, 1, 0);
                 EntityItem entityitem = new EntityItem(this.worldObj, this.entityplayer.posX, this.entityplayer.posY, this.entityplayer.posZ, itemstack);
                 this.worldObj.spawnEntityInWorld((Entity)entityitem);
                 this.freebread = false;
             } else if (!this.worldObj.isRemote) {
-                this.entityplayer.addChatMessage("Farmer: You got your bread for now!");
+                ChatMessage.add(this.entityplayer, "Farmer: You got your bread for now!");
             }
         }
         if (guibutton.id == 3) {

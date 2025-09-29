@@ -22,6 +22,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldServer;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class TileEntitySell
 implements IInventory {
@@ -113,7 +114,7 @@ implements IInventory {
         WorldServer world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
         EntityClientPlayerMP entityplayer = FMLClientHandler.instance().getClient().thePlayer;
         if (!world.isRemote) {
-            entityplayer.addChatMessage("Shop Keeper: Thank you for selling your stuff here!");
+            ChatMessage.add(entityplayer,"Shop Keeper: Thank you for selling your stuff here!");
         }
     }
 

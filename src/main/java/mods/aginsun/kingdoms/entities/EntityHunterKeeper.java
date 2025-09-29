@@ -17,6 +17,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityHunterKeeper
 extends EntityNPC {
@@ -43,7 +44,7 @@ extends EntityNPC {
             this.heal(100.0f);
             Minecraft minecraft = ModLoader.getMinecraftInstance();
             if (!this.worldObj.isRemote) {
-                entityplayer.addChatMessage("Guild Master: Welcome to the order, hero.");
+                ChatMessage.add(entityplayer,"Guild Master: Welcome to the order, hero.");
             }
             minecraft.displayGuiScreen((GuiScreen)new GuiHunter(entityplayer, this.worldObj));
         }

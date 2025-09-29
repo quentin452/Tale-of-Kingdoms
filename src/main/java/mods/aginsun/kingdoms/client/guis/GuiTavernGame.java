@@ -18,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiTavernGame
 extends GuiScreenToK {
@@ -141,7 +142,7 @@ extends GuiScreenToK {
     }
 
     public void onGuiClosed() {
-        this.entityplayer.addChatMessage("One-Eyed Gambler: Just come by if your feeling a bit... lucky.");
+        ChatMessage.add(this.entityplayer,"One-Eyed Gambler: Just come by if your feeling a bit... lucky.");
     }
 
     protected void actionPerformed(GuiButton guibutton) {

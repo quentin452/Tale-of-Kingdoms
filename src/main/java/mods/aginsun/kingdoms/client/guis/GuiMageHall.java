@@ -29,6 +29,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiMageHall
 extends GuiScreenToK {
@@ -82,7 +83,7 @@ extends GuiScreenToK {
                     }
                     GoldKeeper.decreaseGold(500);
                 } else if (!this.worldObj.isRemote) {
-                    this.entityplayer.addChatMessage("Head Mage: I can't enchant this item.");
+                    ChatMessage.add(this.entityplayer,"Head Mage: I can't enchant this item.");
                 }
             }
         } else {
@@ -92,7 +93,7 @@ extends GuiScreenToK {
 
     public void onGuiClosed() {
         if (!this.worldObj.isRemote) {
-            this.entityplayer.addChatMessage("Head Mage: Magic dwells in you.");
+            ChatMessage.add(this.entityplayer,"Head Mage: Magic dwells in you.");
         }
     }
 

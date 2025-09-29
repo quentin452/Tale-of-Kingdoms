@@ -17,6 +17,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityTavernKeeper
 extends EntityNPC {
@@ -40,7 +41,7 @@ extends EntityNPC {
 
     public boolean interact(EntityPlayer entityplayer) {
         if (!this.worldObj.isRemote) {
-            entityplayer.addChatMessage("One-Eyed Gambler: Feeling a bit lucky eh?");
+            ChatMessage.add(entityplayer,"One-Eyed Gambler: Feeling a bit lucky eh?");
         }
         if (this.canInteractWith(entityplayer)) {
             Minecraft minecraft = ModLoader.getMinecraftInstance();

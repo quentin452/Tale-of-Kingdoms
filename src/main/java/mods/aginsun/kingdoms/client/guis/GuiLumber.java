@@ -23,6 +23,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiLumber
 extends GuiScreenToK {
@@ -53,7 +54,7 @@ extends GuiScreenToK {
             this.goldchecker = false;
             ResourceHandler.getInstance().decreaseWoodPool(64);
         } else if (!this.worldObj.isRemote) {
-            this.player.addChatMessage("Foreman: Come back again later when we have the resources.");
+            ChatMessage.add(this.player,"Foreman: Come back again later when we have the resources.");
         }
         if (guibutton.id == 2) {
             if (GoldKeeper.getGoldTotal() >= 1500) {
@@ -61,10 +62,10 @@ extends GuiScreenToK {
                     WorkerHandler.getInstance().addLumberMember();
                     GoldKeeper.decreaseGold(1500);
                     if (!this.worldObj.isRemote) {
-                        this.player.addChatMessage("Foreman: He will begin to work immediately.");
+                        ChatMessage.add(this.player,"Foreman: He will begin to work immediately.");
                     }
                 } else if (!this.worldObj.isRemote) {
-                    this.player.addChatMessage("Foreman: We have reached the capacity of men. Hire civilian workers instead.");
+                    ChatMessage.add(this.player,"Foreman: We have reached the capacity of men. Hire civilian workers instead.");
                 }
             } else {
                 this.goldchecker = true;

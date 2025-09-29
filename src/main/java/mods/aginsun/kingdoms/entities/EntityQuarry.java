@@ -22,6 +22,7 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityQuarry
 extends EntityCreature {
@@ -57,7 +58,7 @@ extends EntityCreature {
             this.heal(100.0f);
             Minecraft minecraft = ModLoader.getMinecraftInstance();
             if (!this.worldObj.isRemote) {
-                entityplayer.addChatMessage("Foreman: Do you need resources sir?");
+                ChatMessage.add(entityplayer,"Foreman: Do you need resources sir?");
             }
             minecraft.displayGuiScreen((GuiScreen)new GuiQuarry(entityplayer, this.worldObj));
         }

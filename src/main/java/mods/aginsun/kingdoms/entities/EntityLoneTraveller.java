@@ -26,6 +26,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityLoneTraveller
 extends EntityNPC {
@@ -56,10 +57,10 @@ extends EntityNPC {
             }
         }
         if (flag1 && !this.worldObj.isRemote) {
-            entityplayer.addChatMessage("Survivor: My king! Thank you for saving them! I will let the guild master know your efforts");
+            ChatMessage.add(entityplayer,"Survivor: My king! Thank you for saving them! I will let the guild master know your efforts");
         } else if (!this.worldObj.isRemote) {
-            entityplayer.addChatMessage("Survivor: I am gravely lost, my king. I survived the attack but many of our villages burned down. There are still survivors left, hurry and rescue them!");
-            entityplayer.addChatMessage("Guild Master: Your quest has started, find the village and save them!");
+            ChatMessage.add(entityplayer,"Survivor: I am gravely lost, my king. I survived the attack but many of our villages burned down. There are still survivors left, hurry and rescue them!");
+            ChatMessage.add(entityplayer,"Guild Master: Your quest has started, find the village and save them!");
         }
         UtilToK.burningVillages = 1;
         return true;

@@ -17,6 +17,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityStockKeeper
 extends EntityNPC {
@@ -43,7 +44,7 @@ extends EntityNPC {
             this.heal(100.0f);
             Minecraft minecraft = ModLoader.getMinecraftInstance();
             if (!this.worldObj.isRemote) {
-                entityplayer.addChatMessage("Stock Keeper: Here is my stock for today!");
+                ChatMessage.add(entityplayer,"Stock Keeper: Here is my stock for today!");
             }
             minecraft.displayGuiScreen((GuiScreen)new GuiStockList(entityplayer, this.worldObj));
         }

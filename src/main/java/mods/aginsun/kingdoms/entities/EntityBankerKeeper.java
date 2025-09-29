@@ -17,6 +17,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityBankerKeeper
 extends EntityNPC {
@@ -39,7 +40,7 @@ extends EntityNPC {
             this.heal(100.0f);
             Minecraft minecraft = ModLoader.getMinecraftInstance();
             if (!this.worldObj.isRemote) {
-                entityplayer.addChatMessage("Banker: I will keep your gold safe.");
+                ChatMessage.add(entityplayer,"Banker: I will keep your gold safe.");
             }
             minecraft.displayGuiScreen((GuiScreen)new GuiBank(entityplayer, this.world));
         }

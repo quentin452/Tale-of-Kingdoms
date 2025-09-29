@@ -25,6 +25,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiHunter
 extends GuiScreenToK {
@@ -58,14 +59,14 @@ extends GuiScreenToK {
     protected void actionPerformed(GuiButton guibutton) {
         if (guibutton.id == 1) {
             if (!HunterKeeper.getInstance().getHunter()) {
-                this.player.addChatMessage("Guild Master: You are now one of us my friend. Kill monsters and you will soon be worthy of your title.");
+                ChatMessage.add(this.player,"Guild Master: You are now one of us my friend. Kill monsters and you will soon be worthy of your title.");
             } else {
-                this.player.addChatMessage("Why does one wanna do this :P");
+                ChatMessage.add(this.player,"Why does one wanna do this :P");
             }
             this.initGui();
         } else if (guibutton.id == 1) {
             if (!this.worldObj.isRemote) {
-                this.player.addChatMessage("Guild Master: We will await your participation, hero.");
+                ChatMessage.add(this.player,"Guild Master: We will await your participation, hero.");
             }
             this.initGui();
         }
@@ -98,10 +99,10 @@ extends GuiScreenToK {
             }
             if (!flag) {
                 if (!this.worldObj.isRemote) {
-                    this.player.addChatMessage("Guild Master: We need more resources.");
+                    ChatMessage.add(this.player,"Guild Master: We need more resources.");
                 }
             } else if (!this.worldObj.isRemote) {
-                this.player.addChatMessage("Guild Master: The guild has been fixed. Thank you.");
+                ChatMessage.add(this.player,"Guild Master: The guild has been fixed. Thank you.");
             }
         }
         if (guibutton.id == 5 && !this.worldObj.loadedEntityList.isEmpty()) {
@@ -117,7 +118,7 @@ extends GuiScreenToK {
 
     public void onGuiClosed() {
         if (!this.worldObj.isRemote) {
-            this.player.addChatMessage("Guild Master: Good Hunting.");
+            ChatMessage.add(this.player,"Guild Master: Good Hunting.");
         }
     }
 

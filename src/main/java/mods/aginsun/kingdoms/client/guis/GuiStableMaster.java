@@ -19,6 +19,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiStableMaster
 extends GuiScreen {
@@ -37,7 +38,7 @@ extends GuiScreen {
                 this.mc.thePlayer.dropItem(Item.wheat.itemID, 15);
                 this.mc.thePlayer.dropItem(Item.nameTag.itemID, 1);
             } else {
-                this.mc.thePlayer.addChatMessage("You don't have enough money!");
+                ChatMessage.add(this.mc.thePlayer,"You don't have enough money!");
             }
         } else if (guibutton.id == 2) {
             if (GoldKeeper.getGoldTotal() >= 7500) {
@@ -47,7 +48,7 @@ extends GuiScreen {
                 entity.setHorseType(0);
                 this.mc.theWorld.spawnEntityInWorld((Entity)entity);
             } else {
-                this.mc.thePlayer.addChatMessage("You don't have enough money!");
+                ChatMessage.add(this.mc.thePlayer,"You don't have enough money!");
             }
         } else if (guibutton.id == 3) {
             this.mc.setIngameFocus();

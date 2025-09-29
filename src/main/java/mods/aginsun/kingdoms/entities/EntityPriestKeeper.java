@@ -22,6 +22,7 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityPriestKeeper
 extends EntityCreature {
@@ -61,7 +62,7 @@ extends EntityCreature {
             this.heal(100.0f);
             Minecraft minecraft = ModLoader.getMinecraftInstance();
             if (!this.worldObj.isRemote) {
-                entityplayer.addChatMessage("Head Priest: The light order gives blessing to you.");
+                ChatMessage.add(entityplayer,"Head Priest: The light order gives blessing to you.");
             }
             minecraft.displayGuiScreen((GuiScreen)new GuiPriest(entityplayer, this.worldObj));
         }

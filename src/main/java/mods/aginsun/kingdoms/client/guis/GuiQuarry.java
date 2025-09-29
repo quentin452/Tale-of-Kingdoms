@@ -25,6 +25,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiQuarry
 extends GuiScreenToK {
@@ -54,7 +55,7 @@ extends GuiScreenToK {
             this.goldchecker = false;
             ResourceHandler.getInstance().decreaseCobblePool(64);
         } else if (guibutton.id == 1 && ResourceHandler.getInstance().getCobblePool() < 64 && !this.worldObj.isRemote) {
-            this.entityplayer.addChatMessage("Foreman: Come back again later when we have the resources.");
+            ChatMessage.add(this.entityplayer,"Foreman: Come back again later when we have the resources.");
         }
         if (guibutton.id == 2) {
             if (GoldKeeper.getGoldTotal() >= 1500) {
@@ -62,10 +63,10 @@ extends GuiScreenToK {
                     WorkerHandler.getInstance().addQuarryMember();
                     GoldKeeper.decreaseGold(1500);
                     if (!this.worldObj.isRemote) {
-                        this.entityplayer.addChatMessage("Foreman: He will begin to work immediately.");
+                        ChatMessage.add(this.entityplayer,"Foreman: He will begin to work immediately.");
                     }
                 } else if (!this.worldObj.isRemote) {
-                    this.entityplayer.addChatMessage("Foreman: We have reached the capacity of men. Hire civilian workers instead.");
+                    ChatMessage.add(this.entityplayer,"Foreman: We have reached the capacity of men. Hire civilian workers instead.");
                 }
             } else {
                 this.goldchecker = true;
