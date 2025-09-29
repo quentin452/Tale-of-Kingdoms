@@ -1,42 +1,46 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.gui.GuiScreen
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.item.Item
+ *  net.minecraft.item.ItemStack
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.entities;
 
 import mods.aginsun.kingdoms.client.guis.GuiWardenMenu;
-import mods.aginsun.kingdoms.entities.api.EntityNPC;
+import mods.aginsun.kingdoms.entities.EntityNPC;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
-public final class EntityBarracksKeeper extends EntityNPC
-{
-    private static ItemStack defaultHeldItem = new ItemStack(Items.iron_sword, 1);
+public class EntityBarracksKeeper
+extends EntityNPC {
+    private static ItemStack defaultHeldItem = new ItemStack(Item.swordIron, 1);
 
-    public EntityBarracksKeeper(World world)
-    {
-        super(world, defaultHeldItem, 20.0F);
+    public EntityBarracksKeeper(World world) {
+        super(world, defaultHeldItem, 20.0f);
     }
 
     @Override
-    public boolean canBePushed()
-    {
+    public boolean canBePushed() {
         return false;
     }
 
-    @Override
-    public boolean interact(EntityPlayer entityplayer)
-    {
-        if(!this.world.isRemote)
-        {
-            entityplayer.addChatMessage(new ChatComponentText(I18n.format("npc.warden.dialog")));
+    public boolean interact(EntityPlayer entityplayer) {
+        if (!this.worldObj.isRemote) {
+            entityplayer.addChatMessage("Warden: The guild's warden at your service.");
         }
-
-        if(this.canInteractWith(entityplayer))
-        {
-            Minecraft.getMinecraft().displayGuiScreen(new GuiWardenMenu(entityplayer, this.worldObj));
+        if (this.canInteractWith(entityplayer)) {
+            Minecraft.getMinecraft().displayGuiScreen((GuiScreen)new GuiWardenMenu(entityplayer, this.worldObj));
         }
         return true;
     }
 }
+

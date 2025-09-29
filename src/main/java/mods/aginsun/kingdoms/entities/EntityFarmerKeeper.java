@@ -1,43 +1,54 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.gui.GuiScreen
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.item.Item
+ *  net.minecraft.item.ItemStack
+ *  net.minecraft.src.ModLoader
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.entities;
 
 import mods.aginsun.kingdoms.client.guis.GuiFoodKeeper;
-import mods.aginsun.kingdoms.entities.api.EntityNPC;
+import mods.aginsun.kingdoms.entities.EntityNPC;
 import mods.aginsun.kingdoms.handlers.GoldKeeper;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
 
-public final class EntityFarmerKeeper extends EntityNPC
-{
-    private static ItemStack defaultHeldItem = new ItemStack(Items.iron_hoe, 1);
+public class EntityFarmerKeeper
+extends EntityNPC {
+    private static ItemStack defaultHeldItem = new ItemStack(Item.hoeIron, 1);
     public static GoldKeeper gold;
 
-    public EntityFarmerKeeper(World world)
-    {
-        super(world, defaultHeldItem, 100.0F);
+    public EntityFarmerKeeper(World world) {
+        super(world, defaultHeldItem, 100.0f);
         this.isImmuneToFire = false;
     }
 
-    public boolean canBePushed()
-    {
+    @Override
+    public boolean canBePushed() {
         return false;
     }
 
-    protected boolean isMovementCeased()
-    {
+    @Override
+    protected boolean isMovementCeased() {
         return true;
     }
 
-    public boolean interact(EntityPlayer entityplayer)
-    {
-        final Minecraft mc = Minecraft.getMinecraft();
-
-        if(this.canInteractWith(entityplayer))
-        {
-            mc.displayGuiScreen(new GuiFoodKeeper(entityplayer, this.worldObj));
+    public boolean interact(EntityPlayer entityplayer) {
+        Minecraft minecraft = ModLoader.getMinecraftInstance();
+        if (this.canInteractWith(entityplayer)) {
+            minecraft.displayGuiScreen((GuiScreen)new GuiFoodKeeper(entityplayer, this.worldObj));
         }
         return true;
     }
 }
+

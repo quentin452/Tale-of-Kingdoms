@@ -1,3 +1,13 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.gui.inventory.GuiContainer
+ *  net.minecraft.entity.player.InventoryPlayer
+ *  net.minecraft.inventory.Container
+ *  net.minecraft.util.ResourceLocation
+ *  org.lwjgl.opengl.GL11
+ */
 package mods.aginsun.kingdoms.client.guis;
 
 import mods.aginsun.kingdoms.entities.TileEntitySell;
@@ -5,29 +15,25 @@ import mods.aginsun.kingdoms.handlers.GoldKeeper;
 import mods.aginsun.kingdoms.inventory.ContainerSell;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-public final class GuiSell extends GuiContainer
-{
-    public GuiSell(InventoryPlayer player_inventory, TileEntitySell sell)
-    {
-        super(new ContainerSell(sell, player_inventory));
+public class GuiSell
+extends GuiContainer {
+    public GuiSell(InventoryPlayer player_inventory, TileEntitySell tileentitysell) {
+        super((Container)new ContainerSell(tileentitysell, player_inventory));
     }
 
-    @Override
-    public void drawScreen(int w, int h, float partial)
-    {
-        this.fontRendererObj.drawString("Total Money: ", 25, 40, 4210752);
-        this.fontRendererObj.drawString(GoldKeeper.getGoldTotal() + " Gold Coins", 30, 50, 4210752);
-        this.fontRendererObj.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
-        this.fontRendererObj.drawString("Sell Menu", 25, 20, 4210752);
+    protected void drawGuiContainerForegroundLayer(int i, int j) {
+        this.fontRenderer.drawString("Total Money: ", 25, 40, 0x404040);
+        this.fontRenderer.drawString(GoldKeeper.getGoldTotal() + " Gold Coins", 30, 50, 0x404040);
+        this.fontRenderer.drawString("Inventory", 8, this.ySize - 96 + 2, 0x404040);
+        this.fontRenderer.drawString("Sell Menu", 25, 20, 0x404040);
     }
 
-    @Override
-    protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_)
-    {
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+    protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
+        GL11.glColor4f((float)1.0f, (float)1.0f, (float)1.0f, (float)1.0f);
         ResourceLocation resource = new ResourceLocation("taleofkingdoms", "textures/guis/guisell.png");
         this.mc.renderEngine.bindTexture(resource);
         int l = (this.width - this.xSize) / 2;
@@ -35,12 +41,10 @@ public final class GuiSell extends GuiContainer
         this.drawTexturedModalRect(l, i1, 0, 0, this.xSize, this.ySize);
     }
 
-    @Override
-    protected void keyTyped(char p_73869_1_, int p_73869_2_)
-    {
-        if(p_73869_2_ == 1 || p_73869_2_ == this.mc.gameSettings.keyBindInventory.getKeyCode())
-        {
+    protected void keyTyped(char par1, int par2) {
+        if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode) {
             this.mc.thePlayer.closeScreen();
         }
     }
 }
+

@@ -1,48 +1,49 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.gui.GuiScreen
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.src.ModLoader
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.entities;
 
 import mods.aginsun.kingdoms.client.guis.GuiBank;
-import mods.aginsun.kingdoms.entities.api.EntityNPC;
+import mods.aginsun.kingdoms.entities.EntityNPC;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
 
-public final class EntityBankerKeeper extends EntityNPC
-{
-    public EntityBankerKeeper(World world)
-    {
-        super(world, new ItemStack(Items.book), 40.0F);
+public class EntityBankerKeeper
+extends EntityNPC {
+    public EntityBankerKeeper(World world) {
+        super(world, null, 40.0f);
     }
 
     @Override
-    public boolean canBePushed()
-    {
+    public boolean canBePushed() {
         return false;
     }
 
     @Override
-    protected boolean isMovementCeased()
-    {
+    protected boolean isMovementCeased() {
         return true;
     }
 
-    @Override
-    public boolean interact(EntityPlayer entityplayer)
-    {
-        if(this.canInteractWith(entityplayer))
-        {
-            this.heal(100.0F);
-
-            if(!this.world.isRemote)
-            {
-                entityplayer.addChatMessage(new ChatComponentText(I18n.format("npc.banker.dialog.welcome")));
+    public boolean interact(EntityPlayer entityplayer) {
+        if (this.canInteractWith(entityplayer)) {
+            this.heal(100.0f);
+            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            if (!this.worldObj.isRemote) {
+                entityplayer.addChatMessage("Banker: I will keep your gold safe.");
             }
-
-            Minecraft.getMinecraft().displayGuiScreen(new GuiBank(entityplayer, super.world));
+            minecraft.displayGuiScreen((GuiScreen)new GuiBank(entityplayer, this.world));
         }
         return true;
     }
 }
+

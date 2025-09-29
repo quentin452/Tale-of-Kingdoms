@@ -1,42 +1,53 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.gui.GuiScreen
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.src.ModLoader
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.entities;
 
 import mods.aginsun.kingdoms.client.guis.GuiStockList;
-import mods.aginsun.kingdoms.entities.api.EntityNPC;
+import mods.aginsun.kingdoms.entities.EntityNPC;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
 
-public final class EntityStockKeeper extends EntityNPC {
+public class EntityStockKeeper
+extends EntityNPC {
+    private World worldObj;
 
-   private World world;
+    public EntityStockKeeper(World world) {
+        super(world, null, 100.0f);
+        this.worldObj = world;
+        this.isImmuneToFire = false;
+    }
 
+    @Override
+    public boolean canBePushed() {
+        return false;
+    }
 
-   public EntityStockKeeper(World world) {
-      super(world, null, 100.0F);
-      this.world = world;
-      this.isImmuneToFire = false;
-   }
+    @Override
+    protected boolean isMovementCeased() {
+        return true;
+    }
 
-   public boolean canBePushed() {
-      return false;
-   }
-
-   protected boolean isMovementCeased() {
-      return true;
-   }
-
-   public boolean interact(EntityPlayer entityplayer) {
-      if(this.canInteractWith(entityplayer)) {
-         this.heal(100.0F);
-         Minecraft minecraft = Minecraft.getMinecraft();
-         if(!this.world.isRemote) {
-            entityplayer.addChatMessage(new ChatComponentText("Stock Keeper: Here is my stock for today!"));
-         }
-
-         minecraft.displayGuiScreen(new GuiStockList(entityplayer, this.world));
-      }
-
-      return true;
-   }
+    public boolean interact(EntityPlayer entityplayer) {
+        if (this.canInteractWith(entityplayer)) {
+            this.heal(100.0f);
+            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            if (!this.worldObj.isRemote) {
+                entityplayer.addChatMessage("Stock Keeper: Here is my stock for today!");
+            }
+            minecraft.displayGuiScreen((GuiScreen)new GuiStockList(entityplayer, this.worldObj));
+        }
+        return true;
+    }
 }
+

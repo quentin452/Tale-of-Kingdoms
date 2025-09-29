@@ -1,93 +1,113 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.entity.Entity
+ *  net.minecraft.entity.EntityLiving
+ *  net.minecraft.entity.EntityLivingBase
+ *  net.minecraft.entity.monster.EntityBlaze
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.nbt.NBTTagCompound
+ *  net.minecraft.util.AxisAlignedBB
+ *  net.minecraft.util.DamageSource
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.entities;
 
+import java.util.List;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-import java.util.List;
+public class EntitySlash
+extends EntityBlaze {
+    public int counter = 0;
+    public int speed = 200;
+    public EntityPlayer entityplayer;
+    public World worldObj;
+    public boolean explode = false;
+    public boolean surround = false;
+    public double range = 0.0;
 
-public final class EntitySlash extends EntityBlaze {
+    public EntitySlash(World world) {
+        super(world);
+        this.worldObj = world;
+    }
 
-   public int counter = 0;
-   public int speed = 200;
-   public EntityPlayer entityplayer;
-   public World field_70170_p;
-   public boolean explode = false;
-   public boolean surround = false;
-   public double range = 0.0D;
+    public boolean attackEntityFrom(DamageSource damagesource, int i) {
+        return false;
+    }
 
+    public void onDeath(DamageSource damagesource) {
+    }
 
-   public EntitySlash(World world) {
-      super(world);
-      this.field_70170_p = world;
-   }
+    public int getEntityBrightnessForRender(float f) {
+        return 0xF000F0;
+    }
 
-   public boolean attackEntityFrom(DamageSource damagesource, int i) {
-      return false;
-   }
+    public float getEntityBrightness(float f) {
+        return 1.0f;
+    }
 
-   public void func_70645_a(DamageSource damagesource) {}
-
-   public int getEntityBrightnessForRender(float f) {
-      return 15728880;
-   }
-
-   public float getEntityBrightness(float f) {
-      return 1.0F;
-   }
-
-   public void onUpdate() {
-      this.counter += this.speed;
-      if(this.counter > 200) {
-         this.setDead();
-      }
-
-      if(this.counter % 2 == 0 && this.explode && this.speed != 200) {
-         this.field_70170_p.newExplosion((Entity)null, this.posX, this.posY + 1.0D, this.posZ, 2.0F, true, false);
-      }
-
-      if(this.counter % 2 == 0 && this.surround) {
-         List list = this.field_70170_p.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox(this.posX, this.posY, this.posZ, this.posX + 1.0D, this.posY + 1.0D, this.posZ + 1.0D).expand(this.range, this.range, this.range));
-         if(!list.isEmpty()) {
+    public void onUpdate() {
+        List list;
+        this.counter += this.speed;
+        if (this.counter > 200) {
+            this.setDead();
+        }
+        if (this.counter % 2 == 0 && this.explode && this.speed != 200) {
+            this.worldObj.newExplosion(null, this.posX, this.posY + 1.0, this.posZ, 2.0f, true, false);
+        }
+        if (this.counter % 2 == 0 && this.surround && !(list = this.worldObj.getEntitiesWithinAABB(EntityLiving.class, AxisAlignedBB.getBoundingBox((double)this.posX, (double)this.posY, (double)this.posZ, (double)(this.posX + 1.0), (double)(this.posY + 1.0), (double)(this.posZ + 1.0)).expand(this.range, this.range, this.range))).isEmpty()) {
             boolean flag = true;
-            EntityLivingBase entityliving = (EntityLivingBase)list.get(this.field_70170_p.rand.nextInt(list.size()));
-            if(entityliving instanceof EntityPlayer || entityliving instanceof EntitySlash) {
-               flag = false;
+            EntityLivingBase entityliving = (EntityLivingBase)list.get(this.worldObj.rand.nextInt(list.size()));
+            if (entityliving instanceof EntityPlayer || entityliving instanceof EntitySlash) {
+                flag = false;
             }
-
-            if(this.entityplayer != null && flag) {
-               this.field_70170_p.newExplosion(this.entityplayer, entityliving.posX, entityliving.posY + 1.0D, entityliving.posZ, 1.0F, true, false);
+            if (this.entityplayer != null && flag) {
+                this.worldObj.newExplosion((Entity)this.entityplayer, entityliving.posX, entityliving.posY + 1.0, entityliving.posZ, 1.0f, true, false);
             }
-         }
-      }
+        }
+    }
 
-   }
+    protected void attackEntity(Entity entity, float f) {
+    }
 
-   protected void attackEntity(Entity entity, float f) {}
+    protected void fall(float f) {
+    }
 
-   protected void fall(float f) {}
+    public void writeEntityToNBT(NBTTagCompound nbttagcompound) {
+    }
 
-   public void writeEntityToNBT(NBTTagCompound nbttagcompound) {}
+    public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
+    }
 
-   public void readEntityFromNBT(NBTTagCompound nbttagcompound) {}
+    protected int getDropItemId() {
+        return 0;
+    }
 
-   @Override
-   protected Item getDropItem()
-   {
-      return Item.getItemFromBlock(Blocks.air);
-   }
+    public boolean isBurning() {
+        return false;
+    }
 
-   public boolean isBurning() {
-      return false;
-   }
+    protected void dropFewItems(boolean flag, int i) {
+    }
 
-   protected void dropFewItems(boolean flag, int i) {}
+    public boolean func_40151_ac() {
+        return false;
+    }
+
+    public void func_40150_a(boolean flag) {
+    }
+
+    protected boolean func_40147_Y() {
+        return true;
+    }
 }
+

@@ -1,16 +1,24 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraftforge.event.ForgeSubscribe
+ *  net.minecraftforge.event.entity.living.LivingDeathEvent
+ */
 package mods.aginsun.kingdoms.handlers;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import mods.aginsun.kingdoms.handlers.ItemDropHelper;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
-public final class EntityLivingHandler
-{
-    @SubscribeEvent
-    public void onEntityLivingDeath(LivingDeathEvent e)
-    {
-        if(e.source.getDamageType().equals("player"))
-        {
-            ItemDropHelper.dropCoins(e.entityLiving);
+public class EntityLivingHandler {
+    @ForgeSubscribe
+    public void onEntityLivingDeath(LivingDeathEvent event) {
+        if (event.source.getDamageType().equals("player")) {
+            ItemDropHelper.dropCoins((EntityPlayer)event.source.getSourceOfDamage(), event.entityLiving);
         }
     }
 }
+

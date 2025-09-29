@@ -1,93 +1,87 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.gui.GuiScreen
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.item.Item
+ *  net.minecraft.item.ItemFood
+ *  net.minecraft.item.ItemStack
+ *  net.minecraft.src.ModLoader
+ *  net.minecraft.util.StringTranslate
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.entities;
 
 import mods.aginsun.kingdoms.client.guis.GuiShopList;
-import mods.aginsun.kingdoms.entities.api.EntityNPC;
+import mods.aginsun.kingdoms.entities.EntityNPC;
 import mods.aginsun.kingdoms.handlers.GoldKeeper;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.src.ModLoader;
 import net.minecraft.util.StringTranslate;
 import net.minecraft.world.World;
 
-public final class EntityFoodKeeper extends EntityNPC {
+public class EntityFoodKeeper
+extends EntityNPC {
+    private World worldObj;
+    private Integer[] itemget = new Integer[200];
+    private GoldKeeper gold;
+    private StringTranslate st = new StringTranslate();
 
-   private World field_70170_p;
-   private Integer[] itemget = new Integer[200];
-   private GoldKeeper gold;
-   private StringTranslate st = new StringTranslate();
+    public EntityFoodKeeper(World world) {
+        super(world, null, 100.0f);
+        this.worldObj = world;
+        this.isImmuneToFire = false;
+    }
 
+    @Override
+    public boolean canBePushed() {
+        return false;
+    }
 
-   public EntityFoodKeeper(World world) {
-      super(world, null, 100.0F);
-      this.field_70170_p = world;
-      this.isImmuneToFire = false;
-   }
-
-   public boolean canBePushed() {
-      return false;
-   }
-
-   public boolean interact(EntityPlayer entityplayer) {
-      if(this.canInteractWith(entityplayer)) {
-         this.heal(100.0F);
-         Minecraft minecraft = Minecraft.getMinecraft();
-         int i = 0;
-         int j = 0;
-         String s = "";
-
-         for(int k = 256; k < 32000; ++k) {
-            boolean flag1 = false;
-            if(Item.getItemById(k) != null) {
-               ItemStack itemstack = new ItemStack(Item.getItemById(k), 1, 0);
-               Item item = itemstack.getItem();
-               if(item instanceof ItemFood) {
-                  flag1 = true;
-               }
-
-               if(item != null) {
-                  s = item.getUnlocalizedName();
-               }
-
-               if(item == Item.getItemById(354)) {
-                  flag1 = true;
-               }
-
-               if(s != null) {
-                  GoldKeeper var10000 = this.gold;
-                  j = GoldKeeper.priceItem(s);
-               }
-
-               String s1 = item.getUnlocalizedName() + ".name";
-               String s2 = this.st.translateKey(s1);
-               Item l = itemstack.getItem();
-
-               if(l == Item.getItemById(26) || l == Item.getItemById(34) || l == Item.getItemById(36) ||
-                       l == Item.getItemById(43) || l == Item.getItemById(51) || l == Item.getItemById(52) ||
-                       l == Item.getItemById(55) || l == Item.getItemById(59) || l == Item.getItemById(60) ||
-                       l == Item.getItemById(62) || l == Item.getItemById(63) || l == Item.getItemById(64) ||
-                       l == Item.getItemById(68) || l == Item.getItemById(71) || l == Item.getItemById(74) ||
-                       l == Item.getItemById(75) || l == Item.getItemById(78) || l == Item.getItemById(90) ||
-                       l == Item.getItemById(93) || l == Item.getItemById(94) || l == Item.getItemById(97) ||
-                       l == Item.getItemById(99) || l == Item.getItemById(100) || l == Item.getItemById(104) ||
-                       l == Item.getItemById(105) || l == Item.getItemById(110) || l == Items.clay_ball ||
-                       l == Items.iron_ingot || l == Items.diamond || l == Items.fish || l == Items.apple || l == Items.string ||
-                       l == Items.feather || !flag1) {
-                  j = 0;
-               }
-
-               if(j > 0 && !s1.equals("null.name") && !s1.equals(s2)) {
-                  //this.itemget[i] = itemstack.getItem();
-                  ++i;
-               }
+    public boolean interact(EntityPlayer entityplayer) {
+        if (this.canInteractWith(entityplayer)) {
+            this.heal(100.0f);
+            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            int i = 0;
+            int j = 0;
+            String s = "";
+            for (int k = 256; k < 32000; ++k) {
+                boolean flag1 = false;
+                if (Item.itemsList[k] == null) continue;
+                ItemStack itemstack = new ItemStack(Item.itemsList[k].itemID, 1, 0);
+                Item item = itemstack.getItem();
+                if (item instanceof ItemFood) {
+                    flag1 = true;
+                }
+                if (item != null) {
+                    s = item.getUnlocalizedName();
+                }
+                if (item.itemID == 354) {
+                    flag1 = true;
+                }
+                if (s != null) {
+                    j = GoldKeeper.priceItem(s);
+                }
+                String s1 = String.valueOf(item.getUnlocalizedName()) + ".name";
+                String s2 = this.st.translateKey(s1);
+                int l = itemstack.itemID;
+                if (l == 26 || l == 34 || l == 36 || l == 43 || l == 51 || l == 52 || l == 55 || l == 59 || l == 60 || l == 62 || l == 63 || l == 64 || l == 68 || l == 71 || l == 74 || l == 75 || l == 78 || l == 90 || l == 93 || l == 94 || l == 97 || l == 99 || l == 100 || l == 104 || l == 105 || l == 110 || !flag1 || l == Item.clay.itemID || l == Item.ingotIron.itemID || l == Item.diamond.itemID || l == Item.fishRaw.itemID || l == Item.appleRed.itemID || l == Item.silk.itemID || l == Item.feather.itemID) {
+                    j = 0;
+                }
+                if (j <= 0 || s1.equals("null.name") || s1.equals(s2)) continue;
+                this.itemget[i] = itemstack.itemID;
+                ++i;
             }
-         }
-
-         minecraft.displayGuiScreen(new GuiShopList(entityplayer, this.field_70170_p, this.itemget));
-      }
-
-      return true;
-   }
+            minecraft.displayGuiScreen((GuiScreen)new GuiShopList(entityplayer, this.worldObj, this.itemget));
+        }
+        return true;
+    }
 }
+

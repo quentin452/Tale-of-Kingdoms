@@ -1,37 +1,47 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.gui.GuiScreen
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.src.ModLoader
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.entities;
 
 import mods.aginsun.kingdoms.client.guis.GuiInnMenu;
-import mods.aginsun.kingdoms.entities.api.EntityNPC;
+import mods.aginsun.kingdoms.entities.EntityNPC;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
 
-public class EntityInnKeeper extends EntityNPC {
+public class EntityInnKeeper
+extends EntityNPC {
+    private World worldObj;
 
-   private World field_70170_p;
+    public EntityInnKeeper(World world) {
+        super(world, null, 100.0f);
+        this.worldObj = world;
+        this.isImmuneToFire = false;
+    }
 
+    @Override
+    public boolean canBePushed() {
+        return false;
+    }
 
-   public EntityInnKeeper(World world) {
-      super(world, null, 100.0F);
-      this.field_70170_p = world;
-      this.isImmuneToFire = false;
-   }
-
-   public boolean canBePushed() {
-      return false;
-   }
-
-   public boolean interact(EntityPlayer entityplayer) {
-      if(!this.field_70170_p.isRemote) {
-         entityplayer.addChatMessage(new ChatComponentText("House Keeper: Would you like to take a rest sir?"));
-      }
-
-      if(this.canInteractWith(entityplayer)) {
-         Minecraft minecraft = Minecraft.getMinecraft();
-         minecraft.displayGuiScreen(new GuiInnMenu(entityplayer, this.field_70170_p));
-      }
-
-      return true;
-   }
+    public boolean interact(EntityPlayer entityplayer) {
+        if (!this.worldObj.isRemote) {
+            entityplayer.addChatMessage("House Keeper: Would you like to take a rest sir?");
+        }
+        if (this.canInteractWith(entityplayer)) {
+            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            minecraft.displayGuiScreen((GuiScreen)new GuiInnMenu(entityplayer, this.worldObj));
+        }
+        return true;
+    }
 }
+

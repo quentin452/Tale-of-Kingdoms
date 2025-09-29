@@ -1,41 +1,52 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.gui.GuiScreen
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.src.ModLoader
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.entities;
 
 import mods.aginsun.kingdoms.client.guis.GuiTavernGame;
-import mods.aginsun.kingdoms.entities.api.EntityNPC;
+import mods.aginsun.kingdoms.entities.EntityNPC;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
 
-public final class EntityTavernKeeper extends EntityNPC {
+public class EntityTavernKeeper
+extends EntityNPC {
+    private World worldObj;
 
-   private World worldObj;
+    public EntityTavernKeeper(World world) {
+        super(world, null, 100.0f);
+        this.worldObj = world;
+        this.isImmuneToFire = false;
+    }
 
+    @Override
+    public boolean canBePushed() {
+        return false;
+    }
 
-   public EntityTavernKeeper(World world) {
-      super(world, null, 100.0F);
-      this.worldObj = world;
-      this.isImmuneToFire = false;
-   }
+    @Override
+    protected boolean isMovementCeased() {
+        return true;
+    }
 
-   public boolean canBePushed() {
-      return false;
-   }
-
-   protected boolean isMovementCeased() {
-      return true;
-   }
-
-   public boolean interact(EntityPlayer entityplayer) {
-      if(!this.world.isRemote) {
-         entityplayer.addChatMessage(new ChatComponentText("One-Eyed Gambler: Feeling a bit lucky eh?"));
-      }
-
-      if(this.canInteractWith(entityplayer)) {
-         Minecraft minecraft = Minecraft.getMinecraft();
-         minecraft.displayGuiScreen(new GuiTavernGame(entityplayer, this.worldObj));
-      }
-
-      return true;
-   }
+    public boolean interact(EntityPlayer entityplayer) {
+        if (!this.worldObj.isRemote) {
+            entityplayer.addChatMessage("One-Eyed Gambler: Feeling a bit lucky eh?");
+        }
+        if (this.canInteractWith(entityplayer)) {
+            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            minecraft.displayGuiScreen((GuiScreen)new GuiTavernGame(entityplayer, this.worldObj));
+        }
+        return true;
+    }
 }
+

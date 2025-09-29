@@ -1,45 +1,54 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  cpw.mods.fml.client.FMLClientHandler
+ *  cpw.mods.fml.common.FMLCommonHandler
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.command.CommandBase
+ *  net.minecraft.command.ICommandSender
+ *  net.minecraft.util.ChatMessageComponent
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.util;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.aginsun.kingdoms.handlers.GoldKeeper;
 import mods.aginsun.kingdoms.handlers.ResourceHandler;
 import mods.aginsun.kingdoms.handlers.WorthyKeeper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.world.World;
 
-public final class CommandGoldTaleOfKingdoms extends CommandBase
-{
-    public String i;
+public class CommandGoldTaleOfKingdoms
+extends CommandBase {
     public GoldKeeper gold;
+    public Minecraft mc = FMLClientHandler.instance().getClient();
     public World world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
+    public String i;
 
-    public String getCommandName()
-    {
+    public String getCommandName() {
         return "tok";
     }
 
-    public void processCommand(ICommandSender sender, String[] args)
-    {
-        if(args[0].equals("worthy"))
-        {
-            WorthyKeeper.getInstance().addWorthy(10000.0F);
-            sender.addChatMessage(new ChatComponentText(I18n.format("command.tok.worthy")));
-        }
-        else
-        {
+    public void processCommand(ICommandSender sender, String[] args) {
+        if (args[0].equals("worthy")) {
+            WorthyKeeper.getInstance().addWorthy(10000.0f);
+        } else {
             ResourceHandler.getInstance().addcobbleResource(2400);
             ResourceHandler.getInstance().addwoodResource(2400);
         }
     }
 
-    public String getCommandUsage(ICommandSender icommandsender)
-    {
+    public void sendMessage(ICommandSender sender, String message) {
+        sender.sendChatToPlayer(new ChatMessageComponent().addText(message));
+    }
+
+    public String getCommandUsage(ICommandSender icommandsender) {
         return null;
     }
 }
+

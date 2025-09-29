@@ -1,52 +1,47 @@
+/*
+ * Decompiled with CFR 0.152.
+ */
 package mods.aginsun.kingdoms.handlers;
 
-public final class WorkerHandler
-{
-    private int lumberMembers, quarryMembers;
+public class WorkerHandler {
+    private int lumberMembers;
+    private int quarryMembers;
     private static WorkerHandler instance = new WorkerHandler();
 
-    public static WorkerHandler getInstance()
-    {
+    public static WorkerHandler getInstance() {
         return instance;
     }
 
-    public int getLumberMembers()
-    {
+    public int getLumberMembers() {
         return this.lumberMembers;
     }
 
-    public void addLumberMember()
-    {
+    public void addLumberMember() {
         ++this.lumberMembers;
     }
 
-    public void removeLumberMember()
-    {
+    public void removeLumberMember() {
         --this.lumberMembers;
     }
 
-    public void setLumberMembers(int i)
-    {
+    public void setLumberMembers(int i) {
         this.lumberMembers = i;
     }
 
-    public int getQuarryMembers()
-    {
+    public int getQuarryMembers() {
         return this.quarryMembers;
     }
 
-    public void addQuarryMember()
-    {
+    public void addQuarryMember() {
         ++this.quarryMembers;
     }
 
-    public void removeQuarryMember()
-    {
+    public void removeQuarryMember() {
         --this.quarryMembers;
     }
 
-    public void setQuarryMembers(int i)
-    {
+    public void setQuarryMembers(int i) {
         this.quarryMembers = i;
     }
 }
+

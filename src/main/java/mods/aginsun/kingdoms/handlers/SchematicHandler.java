@@ -1,98 +1,96 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.block.Block
+ *  net.minecraft.entity.Entity
+ *  net.minecraft.entity.EntityList
+ *  net.minecraft.entity.EntityLiving
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.handlers;
 
+import java.util.ArrayList;
+import mods.aginsun.kingdoms.handlers.Schematic;
 import mods.aginsun.kingdoms.util.Buildings;
 import mods.aginsun.kingdoms.util.FakeBlock;
 import mods.aginsun.kingdoms.util.FakeEntity;
 import mods.aginsun.kingdoms.util.UtilToK;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
-public final class SchematicHandler
-{
-    private int index;
-    private ArrayList torchList = new ArrayList();
-    private ArrayList buildingList = new ArrayList();
+public class SchematicHandler {
     private static SchematicHandler instance = new SchematicHandler();
+    private ArrayList<FakeBlock> torchList = new ArrayList();
+    private ArrayList<Schematic> buildingList = new ArrayList();
+    private int index;
 
-    public static SchematicHandler getInstance()
-    {
+    public static SchematicHandler getInstance() {
         return instance;
     }
 
-    public void addBuilding(Schematic schematic)
-    {
+    public void addBuilding(Schematic schematic) {
         this.buildingList.add(schematic);
     }
 
-    public ArrayList getBuildingList()
-    {
+    public ArrayList<Schematic> getBuildingList() {
         return this.buildingList;
     }
 
-    public void update(World world)
-    {
-        if(!this.buildingList.isEmpty()) {
-            Schematic x = (Schematic)this.buildingList.get(0);
-            if(x != null) {
-                ArrayList arrayList = x.getBlockList();
-                ArrayList arrayList1 = x.getEntityList();
-                if(arrayList.isEmpty() && arrayList1.isEmpty()) {
-                    System.out.println("EMPTY LISTS");
-                } else {
-                    for(int i = 0; i < x.speed; ++i) {
-                        if(this.index < arrayList.size()) {
-                            FakeBlock i$ = (FakeBlock)arrayList.get(this.index);
-                            if(i$ != null && world.getBlock(x.x + i$.posX, x.y + i$.posY, x.z + i$.posZ) != i$.block) {
-                                if(i$.block == Blocks.air) {
-                                    world.setBlockToAir(x.x + i$.posX, x.y + i$.posY, x.z + i$.posZ);
+    public void update(World world) {
+        if (!this.buildingList.isEmpty()) {
+            Schematic x = this.buildingList.get(0);
+            if (x != null) {
+                ArrayList<FakeBlock> arrayList = x.getBlockList();
+                ArrayList<FakeEntity> arrayList1 = x.getEntityList();
+                if (!arrayList.isEmpty() || !arrayList1.isEmpty()) {
+                    for (int i = 0; i < x.speed; ++i) {
+                        if (this.index < arrayList.size()) {
+                            FakeBlock block = arrayList.get(this.index);
+                            if (block != null && world.getBlockId(x.x + block.posX, x.y + block.posY, x.z + block.posZ) != block.blockID) {
+                                if (block.blockID == 0) {
+                                    world.setBlockToAir(x.x + block.posX, x.y + block.posY, x.z + block.posZ);
                                 }
-
-                                if(i$.block != Blocks.torch && i$.block != Blocks.wooden_door && i$.block != Blocks.ladder && i$.block != Blocks.trapdoor) {
-                                    world.setBlock(x.x + i$.posX, x.y + i$.posY, x.z + i$.posZ, i$.block, i$.metadata, 3);
+                                if (block.blockID == Block.torchWood.blockID || block.blockID == Block.doorWood.blockID || block.blockID == Block.ladder.blockID || block.blockID == Block.trapdoor.blockID) {
+                                    this.torchList.add(block);
                                 } else {
-                                    this.torchList.add(i$);
+                                    world.setBlock(x.x + block.posX, x.y + block.posY, x.z + block.posZ, block.blockID, block.metadata, 3);
                                 }
                             }
-
                             ++this.index;
-                        } else if(this.index < arrayList.size() + arrayList1.size()) {
-                            FakeEntity var8 = (FakeEntity)arrayList1.get(this.index - arrayList.size());
-                            EntityLiving block = (EntityLiving)EntityList.createEntityByName(var8.entityName, world);
-                            if(block != null) {
-                                if(Buildings.getBuilding(1)) {
-                                    block.setPosition((double)UtilToK.townX + var8.posX, (double)UtilToK.townY + var8.posY, (double)UtilToK.townZ + var8.posZ);
-                                } else {
-                                    block.setPosition((double)x.x + var8.posX, (double)x.y + var8.posY + 1.5D, (double)x.z + var8.posZ);
-                                }
-
-                                world.spawnEntityInWorld(block);
-                            } else {
-                                System.out.println("ERROR " + var8.entityName);
-                            }
-
-                            ++this.index;
-                        } else {
-
-                            for (Object aTorchList : this.torchList) {
-                                FakeBlock var10 = (FakeBlock) aTorchList;
-                                world.setBlock(x.x + var10.posX, x.y + var10.posY, x.z + var10.posZ, var10.block, var10.metadata, 3);
-                            }
-
-                            this.index = 0;
-                            if(!this.buildingList.isEmpty()) {
-                                this.buildingList.remove(0);
-                            }
-
-                            this.torchList.clear();
-                            System.out.println("REMOVED BUILDING");
+                            continue;
                         }
+                        if (this.index < arrayList.size() + arrayList1.size()) {
+                            FakeEntity entity = arrayList1.get(this.index - arrayList.size());
+                            EntityLiving entity1 = (EntityLiving)EntityList.createEntityByName((String)entity.entityName, (World)world);
+                            if (entity1 != null) {
+                                if (Buildings.getBuilding(1)) {
+                                    entity1.setPosition((double)UtilToK.townX + entity.posX, (double)UtilToK.townY + entity.posY, (double)UtilToK.townZ + entity.posZ);
+                                } else {
+                                    entity1.setPosition((double)x.x + entity.posX, (double)x.y + entity.posY + 1.5, (double)x.z + entity.posZ);
+                                }
+                                world.spawnEntityInWorld((Entity)entity1);
+                            } else {
+                                System.out.println("ERRRROR " + entity.entityName);
+                            }
+                            ++this.index;
+                            continue;
+                        }
+                        for (FakeBlock block : this.torchList) {
+                            world.setBlock(x.x + block.posX, x.y + block.posY, x.z + block.posZ, block.blockID, block.metadata, 3);
+                        }
+                        this.index = 0;
+                        if (!this.buildingList.isEmpty()) {
+                            this.buildingList.remove(0);
+                        }
+                        this.torchList.clear();
+                        System.out.println("REMOVED BUILDING");
                     }
+                } else {
+                    System.out.println("EMPTY LISTS");
                 }
             } else {
                 System.out.println("CANNOT FIND SCHEMATIC");
@@ -100,18 +98,14 @@ public final class SchematicHandler
         }
     }
 
-    public float getProgressCurrentBuilding()
-    {
-        if(this.buildingList.isEmpty())
-        {
-            return 0.0F;
+    public float getProgressCurrentBuilding() {
+        if (this.buildingList.isEmpty()) {
+            return 0.0f;
         }
-        else
-        {
-            ArrayList arrayList = ((Schematic)this.buildingList.get(0)).getBlockList();
-            float index = (float)this.index;
-            float f = index / (float)arrayList.size() * 100.0F;
-            return f;
-        }
+        ArrayList<FakeBlock> arrayList = this.buildingList.get(0).getBlockList();
+        float index = this.index;
+        float f = index / (float)arrayList.size() * 100.0f;
+        return f;
     }
 }
+

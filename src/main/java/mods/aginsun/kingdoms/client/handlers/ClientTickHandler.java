@@ -1,32 +1,64 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  cpw.mods.fml.common.ITickHandler
+ *  cpw.mods.fml.common.TickType
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.gui.GuiScreen
+ *  net.minecraft.client.gui.ScaledResolution
+ *  net.minecraft.client.gui.inventory.GuiInventory
+ */
 package mods.aginsun.kingdoms.client.handlers;
 
+import cpw.mods.fml.common.ITickHandler;
+import cpw.mods.fml.common.TickType;
+import java.awt.Color;
+import java.util.EnumSet;
 import mods.aginsun.kingdoms.handlers.GoldKeeper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiInventory;
 
-import java.awt.*;
-import java.util.EnumSet;
+public class ClientTickHandler
+implements ITickHandler {
+    public void tickStart(EnumSet<TickType> type, Object ... tickData) {
+    }
 
-public final class ClientTickHandler {
+    public void tickEnd(EnumSet<TickType> type, Object ... tickData) {
+        if (type.equals(EnumSet.of(TickType.RENDER))) {
+            this.onRenderTick();
+        } else if (type.equals(EnumSet.of(TickType.CLIENT))) {
+            GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
+            if (guiscreen != null) {
+                this.onTickInGUI(guiscreen);
+            } else {
+                this.onTickInGame();
+            }
+        }
+    }
 
-   public void tickStart(EnumSet type, Object ... tickData) {}
+    public EnumSet<TickType> ticks() {
+        return EnumSet.of(TickType.RENDER, TickType.CLIENT);
+    }
 
-   public String getLabel() {
-      return "TaleofKingdomsClientTick";
-   }
+    public String getLabel() {
+        return "TaleofKingdomsClientTick";
+    }
 
-   public void onRenderTick() {
-      Minecraft mc = Minecraft.getMinecraft();
-      ScaledResolution scaled = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight);
-      if(mc.currentScreen instanceof GuiInventory && !mc.playerController.isInCreativeMode()) {
-         mc.fontRenderer.drawString("Gold Total: " + GoldKeeper.getGoldTotal(), scaled.getScaledWidth() / 2 - 7, scaled.getScaledHeight() / 2 - 15, Color.RED.getRGB());
-      }
+    public void onRenderTick() {
+        Minecraft mc = Minecraft.getMinecraft();
+        ScaledResolution scaled = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight);
+        if (mc.currentScreen instanceof GuiInventory && !mc.playerController.isInCreativeMode()) {
+            mc.fontRenderer.drawString("Gold Total: " + GoldKeeper.getGoldTotal(), scaled.getScaledWidth() / 2 - 7, scaled.getScaledHeight() / 2 - 15, Color.RED.getRGB());
+        }
+    }
 
-   }
+    public void onTickInGUI(GuiScreen guiscreen) {
+    }
 
-   public void onTickInGUI(GuiScreen guiscreen) {}
-
-   public void onTickInGame() {}
+    public void onTickInGame() {
+    }
 }
+

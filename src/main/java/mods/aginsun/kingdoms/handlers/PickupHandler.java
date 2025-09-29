@@ -1,26 +1,31 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  cpw.mods.fml.common.IPickupNotifier
+ *  net.minecraft.entity.item.EntityItem
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.item.ItemStack
+ */
 package mods.aginsun.kingdoms.handlers;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.IPickupNotifier;
 import mods.aginsun.kingdoms.TaleOfKingdoms;
+import mods.aginsun.kingdoms.handlers.GoldKeeper;
+import mods.aginsun.kingdoms.handlers.WorthyKeeper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
 
-public final class PickupHandler
-{
-    @SubscribeEvent
-    public void onPickUp(PlayerEvent.ItemPickupEvent e)
-    {
-        Item item = e.pickedUp.getEntityItem().getItem();
-
-        if (item == TaleOfKingdoms.coins)
-        {
-            e.player.inventory.consumeInventoryItem(item);
+public class PickupHandler
+implements IPickupNotifier {
+    public void notifyPickup(EntityItem item, EntityPlayer player) {
+        ItemStack itemstack = item.getEntityItem();
+        if (itemstack.itemID == TaleOfKingdoms.coins.itemID) {
+            player.inventory.consumeInventoryItem(itemstack.itemID);
             GoldKeeper.addGold(2);
-            WorthyKeeper.getInstance().addWorthy(1.0F);
+            WorthyKeeper.getInstance().addWorthy(1.0f);
         }
     }
 }
+

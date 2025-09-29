@@ -1,20 +1,27 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.renderer.texture.IconRegister
+ *  net.minecraft.creativetab.CreativeTabs
+ *  net.minecraft.item.Item
+ */
 package mods.aginsun.kingdoms.items;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public final class Itemcoins extends Item
-{
-    public Itemcoins()
-    {
-        this.setCreativeTab(CreativeTabs.tabMaterials);
+public class Itemcoins
+extends Item {
+    public Itemcoins(int i) {
+        super(i);
         this.maxStackSize = 1;
+        this.setCreativeTab(CreativeTabs.tabMaterials);
     }
 
-    @Override
-    public void registerIcons(IIconRegister iconRegister)
-    {
-        this.itemIcon = iconRegister.registerIcon("taleofkingdoms:coins");
+    public void registerIcons(IconRegister par1IconRegister) {
+        this.itemIcon = par1IconRegister.registerIcon("taleofkingdoms:coins");
     }
 }
+

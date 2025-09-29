@@ -1,81 +1,118 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  cpw.mods.fml.client.registry.KeyBindingRegistry
+ *  cpw.mods.fml.client.registry.KeyBindingRegistry$KeyHandler
+ *  cpw.mods.fml.client.registry.RenderingRegistry
+ *  cpw.mods.fml.common.ITickHandler
+ *  cpw.mods.fml.common.registry.TickRegistry
+ *  cpw.mods.fml.relauncher.Side
+ *  net.minecraft.client.model.ModelBiped
+ *  net.minecraft.client.renderer.entity.Render
+ */
 package mods.aginsun.kingdoms.client;
 
+import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import mods.aginsun.kingdoms.client.guis.GuiSell;
+import cpw.mods.fml.common.ITickHandler;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 import mods.aginsun.kingdoms.client.handlers.ClientTickHandler;
 import mods.aginsun.kingdoms.client.handlers.KeyBindingHandler;
 import mods.aginsun.kingdoms.client.render.RenderBipedToK;
 import mods.aginsun.kingdoms.core.CommonProxy;
-import mods.aginsun.kingdoms.entities.*;
+import mods.aginsun.kingdoms.entities.EntityBankerKeeper;
+import mods.aginsun.kingdoms.entities.EntityBarracksKeeper;
+import mods.aginsun.kingdoms.entities.EntityBuilderKeeper;
+import mods.aginsun.kingdoms.entities.EntityDefendArcher;
+import mods.aginsun.kingdoms.entities.EntityDefendBandit;
+import mods.aginsun.kingdoms.entities.EntityDefendKnight;
+import mods.aginsun.kingdoms.entities.EntityDefendMage;
+import mods.aginsun.kingdoms.entities.EntityDefendMarker;
+import mods.aginsun.kingdoms.entities.EntityDefendPaladin;
+import mods.aginsun.kingdoms.entities.EntityDefendPriest;
+import mods.aginsun.kingdoms.entities.EntityDefendWarrior;
+import mods.aginsun.kingdoms.entities.EntityFarmerKeeper;
+import mods.aginsun.kingdoms.entities.EntityFisher;
+import mods.aginsun.kingdoms.entities.EntityFoodKeeper;
+import mods.aginsun.kingdoms.entities.EntityForgeKeeper;
+import mods.aginsun.kingdoms.entities.EntityGuildMaster;
+import mods.aginsun.kingdoms.entities.EntityGuildMember;
+import mods.aginsun.kingdoms.entities.EntityHeadCommander;
+import mods.aginsun.kingdoms.entities.EntityHired;
+import mods.aginsun.kingdoms.entities.EntityHunterKeeper;
+import mods.aginsun.kingdoms.entities.EntityInnKeeper;
+import mods.aginsun.kingdoms.entities.EntityKingdomWorker;
+import mods.aginsun.kingdoms.entities.EntityLibraryKeeper;
+import mods.aginsun.kingdoms.entities.EntityLoneTraveller;
+import mods.aginsun.kingdoms.entities.EntityLostVillager;
+import mods.aginsun.kingdoms.entities.EntityLumber;
+import mods.aginsun.kingdoms.entities.EntityMageKeeper;
+import mods.aginsun.kingdoms.entities.EntityMarker2Keeper;
+import mods.aginsun.kingdoms.entities.EntityMarkerKeeper;
+import mods.aginsun.kingdoms.entities.EntityPriestKeeper;
+import mods.aginsun.kingdoms.entities.EntityQuarry;
+import mods.aginsun.kingdoms.entities.EntityReficulGuardian;
+import mods.aginsun.kingdoms.entities.EntityReficulMage;
+import mods.aginsun.kingdoms.entities.EntityReficulSoldier;
+import mods.aginsun.kingdoms.entities.EntityShopKeeper;
+import mods.aginsun.kingdoms.entities.EntityStableMaster;
+import mods.aginsun.kingdoms.entities.EntityStockKeeper;
+import mods.aginsun.kingdoms.entities.EntityTavernKeeper;
+import mods.aginsun.kingdoms.entities.EntityVillageMember;
+import mods.aginsun.kingdoms.entities.EntityWeaponKeeper;
+import mods.aginsun.kingdoms.entities.EntityWorkerMember;
 import net.minecraft.client.model.ModelBiped;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraft.client.renderer.entity.Render;
 
-public final class ClientProxy extends CommonProxy
-{
-    public void registerRenderers()
-    {
-        MinecraftForge.EVENT_BUS.register(new ClientTickHandler());
-        FMLCommonHandler.instance().bus().register(new ClientTickHandler());
-        FMLCommonHandler.instance().bus().register(new KeyBindingHandler());
-        setRender(EntityGuildMaster.class, "head");
-        setRender(EntityInnKeeper.class, "inn");
-        setRender(EntityBuilderKeeper.class, "builder");
-        setRender(EntityHunterKeeper.class, "head");
-        setRender(EntityBankerKeeper.class, "banker");
-        setRender(EntityBarracksKeeper.class, "guardelite");
-        setRender(EntityDefendArcher.class, "hunter");
-        setRender(EntityDefendBandit.class, "bandit");
-        setRender(EntityDefendKnight.class, "knight");
-        setRender(EntityDefendMage.class, "wizard");
-        setRender(EntityDefendMarker.class, "");
-        setRender(EntityDefendPaladin.class, "paladin");
-        setRender(EntityDefendPriest.class, "priest");
-        setRender(EntityDefendWarrior.class, "warrior");
-        setRender(EntityFarmerKeeper.class, "inn");
-        setRender(EntityFoodKeeper.class, "food");
-        setRender(EntityLumber.class, "foremanlumber");
-        setRender(EntityWeaponKeeper.class, "smith");
-        setRender(EntityGuildMember.class, "member");
-        setRender(EntityHired.class, "guild");
-        setRender(EntityForgeKeeper.class, "forge");
-        setRender(EntityHeadCommander.class, "headcommander");
-        setRender(EntityKingdomWorker.class, "worker");
-        setRender(EntityLibraryKeeper.class, "librarian");
-        setRender(EntityLoneTraveller.class, "lone");
-        setRender(EntityLostVillager.class, "ac");
-        setRender(EntityMarkerKeeper.class, "");
-        setRender(EntityMarker2Keeper.class, "");
-        setRender(EntityPriestKeeper.class, "headpriest");
-        setRender(EntityReficulGuardian.class, "reficulGuardian");
-        setRender(EntityReficulMage.class, "reficulMage");
-        setRender(EntityReficulSoldier.class, "reficulSoldier");
-        setRender(EntityShopKeeper.class, "forge");
-        setRender(EntityStockKeeper.class, "stock");
-        setRender(EntityTavernKeeper.class, "tavern");
-        setRender(EntityVillageMember.class, "man1");
-        setRender(EntityWorkerMember.class, "worker");
-        setRender(EntityMageKeeper.class, "headmage");
-        setRender(EntityQuarry.class, "foremanquarry");
-        setRender(EntityStableMaster.class, "");
-        setRender(EntityFisher.class, "fisher");
-    }
-
+public class ClientProxy
+extends CommonProxy {
     @Override
-    public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
-    {
-        if (id == 1)
-        {
-            return new GuiSell(player.inventory, new TileEntitySell());
-        }
-        return super.getClientGuiElement(id, player, world, x, y, z);
-    }
-
-    private void setRender(Class<? extends Entity> entity, String location)
-    {
-        RenderingRegistry.registerEntityRenderingHandler(entity, new RenderBipedToK(new ModelBiped(), 0.4F, location));
+    public void registerRenderers() {
+        TickRegistry.registerTickHandler((ITickHandler)new ClientTickHandler(), (Side)Side.CLIENT);
+        KeyBindingRegistry.registerKeyBinding((KeyBindingRegistry.KeyHandler)new KeyBindingHandler());
+        RenderingRegistry.registerEntityRenderingHandler(EntityGuildMaster.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "head"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityInnKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "inn"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBuilderKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "builder"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityHunterKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "head"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBankerKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "banker"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityBarracksKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "guardelite"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDefendArcher.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "hunter"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDefendBandit.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "bandit"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDefendKnight.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "knight"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDefendMage.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "wizard"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDefendMarker.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, ""));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDefendPaladin.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "paladin"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDefendPriest.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "priest"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDefendWarrior.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "warrior"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFarmerKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "inn"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFoodKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "food"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityLumber.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "foremanlumber"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityWeaponKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "smith"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityGuildMember.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "member"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityHired.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "guild"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityForgeKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "forge"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityHeadCommander.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "headcommander"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityKingdomWorker.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "worker"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityLibraryKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "librarian"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityLoneTraveller.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "lone"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityLostVillager.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "ac"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMarkerKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, ""));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMarker2Keeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, ""));
+        RenderingRegistry.registerEntityRenderingHandler(EntityPriestKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "headpriest"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityReficulGuardian.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "reficulGuardian"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityReficulMage.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "reficulMage"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityReficulSoldier.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "reficulSoldier"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityShopKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "forge"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityStockKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "stock"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityTavernKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "tavern"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityVillageMember.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "man1"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityWorkerMember.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "worker"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityMageKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "headmage"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityQuarry.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "foremanquarry"));
+        RenderingRegistry.registerEntityRenderingHandler(EntityStableMaster.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, ""));
+        RenderingRegistry.registerEntityRenderingHandler(EntityFisher.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "fisher"));
     }
 }
+

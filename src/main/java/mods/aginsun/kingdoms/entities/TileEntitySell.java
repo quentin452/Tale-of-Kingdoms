@@ -1,3 +1,16 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  cpw.mods.fml.client.FMLClientHandler
+ *  cpw.mods.fml.common.FMLCommonHandler
+ *  net.minecraft.client.entity.EntityClientPlayerMP
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.inventory.IInventory
+ *  net.minecraft.item.Item
+ *  net.minecraft.item.ItemStack
+ *  net.minecraft.world.WorldServer
+ */
 package mods.aginsun.kingdoms.entities;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -5,154 +18,122 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import mods.aginsun.kingdoms.handlers.GoldKeeper;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.WorldServer;
 
-public final class TileEntitySell implements IInventory {
+public class TileEntitySell
+implements IInventory {
+    private ItemStack[] inventory = new ItemStack[1];
+    public GoldKeeper gold;
 
-   private ItemStack[] inventory = new ItemStack[1];
-   public GoldKeeper gold;
+    public int getSizeInventory() {
+        return this.inventory.length;
+    }
 
-
-   public int getSizeInventory() {
-      return this.inventory.length;
-   }
-
-   public ItemStack getStackInSlot(int i) {
-      int j = 0;
-      if(this.inventory[i] != null) {
-         for(int k = 0; k < this.inventory[i].stackSize; ++k) {
-            Item item = this.inventory[i].getItem();
-            String s = item.getUnlocalizedName();
-            GoldKeeper var10000 = this.gold;
-            j = GoldKeeper.priceItem(s);
-            float f = 0.0F;
-            if(item == Items.flint) {
-               var10000 = this.gold;
-               f = GoldKeeper.flint;
+    public ItemStack getStackInSlot(int i) {
+        int j = 0;
+        if (this.inventory[i] != null) {
+            for (int k = 0; k < this.inventory[i].stackSize; ++k) {
+                Item item = this.inventory[i].getItem();
+                String s = item.getUnlocalizedName();
+                j = GoldKeeper.priceItem(s);
+                float f = 0.0f;
+                if (item.itemID == Item.flint.itemID) {
+                    f = GoldKeeper.flint;
+                }
+                if (item.itemID == Item.clay.itemID) {
+                    f = GoldKeeper.clay;
+                }
+                if (item.itemID == Item.ingotIron.itemID) {
+                    f = GoldKeeper.iron;
+                }
+                if (item.itemID == Item.diamond.itemID) {
+                    f = GoldKeeper.diamond;
+                }
+                if (item.itemID == Item.fishRaw.itemID) {
+                    f = GoldKeeper.fish;
+                }
+                if (item.itemID == Item.appleRed.itemID) {
+                    f = GoldKeeper.apple;
+                }
+                if (item.itemID == Item.silk.itemID) {
+                    f = GoldKeeper.string;
+                }
+                if (item.itemID == Item.feather.itemID) {
+                    f = GoldKeeper.feather;
+                }
+                j = (int)((float)j + (float)j * (f /= 100.0f));
+                if (!FMLCommonHandler.instance().getEffectiveSide().isServer()) continue;
+                GoldKeeper.addGold(j);
             }
-
-            if(item == Items.clay_ball) {
-               var10000 = this.gold;
-               f = GoldKeeper.clay;
+            if (j != 0) {
+                this.inventory[i] = null;
             }
+        }
+        return this.inventory[i];
+    }
 
-            if(item == Items.iron_ingot) {
-               var10000 = this.gold;
-               f = GoldKeeper.iron;
+    public void setInventorySlotContents(int i, ItemStack itemstack) {
+        this.inventory[i] = itemstack;
+        if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
+            itemstack.stackSize = this.getInventoryStackLimit();
+        }
+    }
+
+    public ItemStack decrStackSize(int i, int j) {
+        if (this.inventory[i] != null) {
+            if (this.inventory[i].stackSize <= j) {
+                ItemStack itemstack = this.inventory[i];
+                this.inventory[i] = null;
+                return itemstack;
             }
-
-            if(item == Items.diamond) {
-               var10000 = this.gold;
-               f = GoldKeeper.diamond;
+            ItemStack itemstack1 = this.inventory[i].splitStack(j);
+            if (this.inventory[i].stackSize == 0) {
+                this.inventory[i] = null;
             }
-
-            if(item == Items.cooked_fished) {
-               var10000 = this.gold;
-               f = GoldKeeper.fish;
-            }
-
-            if(item == Items.apple) {
-               var10000 = this.gold;
-               f = GoldKeeper.apple;
-            }
-
-            if(item == Items.string) {
-               var10000 = this.gold;
-               f = GoldKeeper.string;
-            }
-
-            if(item == Items.feather) {
-               var10000 = this.gold;
-               f = GoldKeeper.feather;
-            }
-
-            f /= 100.0F;
-            j = (int)((float)j + (float)j * f);
-            if(FMLCommonHandler.instance().getEffectiveSide().isServer()) {
-               var10000 = this.gold;
-               GoldKeeper.addGold(j);
-            }
-         }
-
-         if(j != 0) {
-            this.inventory[i] = null;
-         }
-      }
-
-      return this.inventory[i];
-   }
-
-   public void setInventorySlotContents(int i, ItemStack itemstack) {
-      this.inventory[i] = itemstack;
-      if(itemstack != null && itemstack.stackSize > this.getInventoryStackLimit()) {
-         itemstack.stackSize = this.getInventoryStackLimit();
-      }
-
-   }
-
-   public ItemStack decrStackSize(int i, int j) {
-      if(this.inventory[i] != null) {
-         ItemStack itemstack1;
-         if(this.inventory[i].stackSize <= j) {
-            itemstack1 = this.inventory[i];
-            this.inventory[i] = null;
             return itemstack1;
-         } else {
-            itemstack1 = this.inventory[i].splitStack(j);
-            if(this.inventory[i].stackSize == 0) {
-               this.inventory[i] = null;
-            }
+        }
+        return null;
+    }
 
-            return itemstack1;
-         }
-      } else {
-         return null;
-      }
-   }
+    public ItemStack getStackInSlotOnClosing(int slotIndex) {
+        return null;
+    }
 
-   public ItemStack getStackInSlotOnClosing(int slotIndex) {
-      return null;
-   }
+    public int getInventoryStackLimit() {
+        return 64;
+    }
 
-   public int getInventoryStackLimit() {
-      return 64;
-   }
+    public void openChest() {
+    }
 
-   public void openInventory() {}
+    public void closeChest() {
+        WorldServer world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
+        EntityClientPlayerMP entityplayer = FMLClientHandler.instance().getClient().thePlayer;
+        if (!world.isRemote) {
+            entityplayer.addChatMessage("Shop Keeper: Thank you for selling your stuff here!");
+        }
+    }
 
-   public void closeInventory() {
-      WorldServer world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
-      EntityClientPlayerMP entityplayer = FMLClientHandler.instance().getClient().thePlayer;
-      if(!world.isRemote) {
-         entityplayer.addChatMessage(new ChatComponentText("Shop Keeper: Thank you for selling your stuff here!"));
-      }
+    public String getInvName() {
+        return "TeSell";
+    }
 
-   }
+    public boolean isInvNameLocalized() {
+        return false;
+    }
 
-   @Override
-   public String getInventoryName()
-   {
-      return "TeSell";
-   }
+    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+        return false;
+    }
 
-   @Override
-   public boolean hasCustomInventoryName()
-   {
-      return false;
-   }
+    public void onInventoryChanged() {
+    }
 
-   public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-      return false;
-   }
-
-   public void markDirty() {}
-
-   public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-      return true;
-   }
+    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+        return true;
+    }
 }
+

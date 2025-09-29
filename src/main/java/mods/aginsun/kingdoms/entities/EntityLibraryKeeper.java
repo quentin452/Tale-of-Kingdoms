@@ -1,54 +1,64 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.gui.GuiScreen
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.src.ModLoader
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.entities;
 
 import mods.aginsun.kingdoms.client.guis.GuiLibrary;
-import mods.aginsun.kingdoms.entities.api.EntityNPC;
+import mods.aginsun.kingdoms.entities.EntityNPC;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
 
-public final class EntityLibraryKeeper extends EntityNPC {
+public class EntityLibraryKeeper
+extends EntityNPC {
+    private World worldObj;
+    public boolean studied = true;
+    private int counter = 0;
 
-   private World field_70170_p;
-   public boolean studied = true;
-   private int counter = 0;
+    public EntityLibraryKeeper(World world) {
+        super(world, null, 100.0f);
+        this.worldObj = world;
+        this.isImmuneToFire = false;
+    }
 
+    @Override
+    public boolean canBePushed() {
+        return false;
+    }
 
-   public EntityLibraryKeeper(World world) {
-      super(world, null, 100.0F);
-      this.field_70170_p = world;
-      this.isImmuneToFire = false;
-   }
+    protected void updateEntityActionState() {
+        super.updateEntityActionState();
+        if (this.counter > 10000) {
+            this.studied = true;
+            this.counter = 0;
+        }
+        ++this.counter;
+    }
 
-   public boolean canBePushed() {
-      return false;
-   }
+    @Override
+    protected boolean isMovementCeased() {
+        return true;
+    }
 
-   protected void updateEntityActionState() {
-      super.updateEntityActionState();
-      if(this.counter > 10000) {
-         this.studied = true;
-         this.counter = 0;
-      }
-
-      ++this.counter;
-   }
-
-   protected boolean isMovementCeased() {
-      return true;
-   }
-
-   public boolean interact(EntityPlayer entityplayer) {
-      if(this.canInteractWith(entityplayer)) {
-         this.heal(100.0F);
-         Minecraft minecraft = Minecraft.getMinecraft();
-         if(!this.field_70170_p.isRemote) {
-            entityplayer.addChatMessage(new ChatComponentText("Librarian: You picked a good day to visit the library, young one"));
-         }
-
-         minecraft.displayGuiScreen(new GuiLibrary(entityplayer, this.field_70170_p, this));
-      }
-
-      return true;
-   }
+    public boolean interact(EntityPlayer entityplayer) {
+        if (this.canInteractWith(entityplayer)) {
+            this.heal(100.0f);
+            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            if (!this.worldObj.isRemote) {
+                entityplayer.addChatMessage("Librarian: You picked a good day to visit the library, young one");
+            }
+            minecraft.displayGuiScreen((GuiScreen)new GuiLibrary(entityplayer, this.worldObj, this));
+        }
+        return true;
+    }
 }
+

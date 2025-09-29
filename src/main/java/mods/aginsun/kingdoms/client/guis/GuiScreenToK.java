@@ -1,24 +1,23 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  net.minecraft.client.gui.GuiScreen
+ */
 package mods.aginsun.kingdoms.client.guis;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.gui.GuiScreen;
 
-@SideOnly(Side.CLIENT)
-public class GuiScreenToK extends GuiScreen
-{
-    @Override
-    public boolean doesGuiPauseGame()
-    {
+public class GuiScreenToK
+extends GuiScreen {
+    public boolean doesGuiPauseGame() {
         return false;
     }
 
-    @Override
-    protected void keyTyped(char c, int btn)
-    {
-        if(btn == 1 || btn == this.mc.gameSettings.keyBindInventory.getKeyCode())
-        {
+    protected void keyTyped(char par1, int par2) {
+        if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode) {
             this.mc.thePlayer.closeScreen();
         }
     }
 }
+

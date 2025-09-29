@@ -1,88 +1,82 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  cpw.mods.fml.common.FMLCommonHandler
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.entity.EntityClientPlayerMP
+ *  net.minecraft.entity.Entity
+ *  net.minecraft.entity.player.EntityPlayer
+ *  net.minecraft.item.ItemStack
+ *  net.minecraft.pathfinding.PathEntity
+ *  net.minecraft.src.ModLoader
+ *  net.minecraft.world.World
+ */
 package mods.aginsun.kingdoms.entities;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import mods.aginsun.kingdoms.client.guis.GuiBuildScreen;
-import mods.aginsun.kingdoms.entities.api.EntityNPC;
+import mods.aginsun.kingdoms.entities.EntityNPC;
 import mods.aginsun.kingdoms.handlers.WorthyKeeper;
 import mods.aginsun.kingdoms.util.Buildings;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathEntity;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.src.ModLoader;
 import net.minecraft.world.World;
 
-public final class EntityBuilderKeeper extends EntityNPC
-{
-    private boolean follow = true, setted = false;
+public class EntityBuilderKeeper
+extends EntityNPC {
+    private boolean follow = true;
+    private static ItemStack defaultHeldItem = null;
 
-    public EntityBuilderKeeper(World world)
-    {
-        super(world, new ItemStack(Items.stone_axe), 100.0F);
+    public EntityBuilderKeeper(World world) {
+        super(world, defaultHeldItem, 100.0f);
         this.isImmuneToFire = false;
+        if (Buildings.kingdomCreated) {
+            this.follow = true;
+        }
     }
 
     @Override
-    public boolean canBePushed()
-    {
+    public boolean canBePushed() {
         return false;
     }
 
     @Override
-    protected boolean isMovementCeased()
-    {
+    protected boolean isMovementCeased() {
         return this.follow;
     }
 
-    @Override
-    public boolean interact(EntityPlayer entityplayer)
-    {
-        if (!super.world.isRemote)
-        {
-            if(this.canInteractWith(entityplayer) && WorthyKeeper.getInstance().getWorthy() < 10000.0F && !Buildings.kingdomCreated)
-            {
-                entityplayer.addChatMessage(new ChatComponentText(I18n.format("npc.cityBuilder.dialog_1")));
-            }
-
-            if(!this.follow || setted || WorthyKeeper.getInstance().getWorthy() >= 10000.0F && Buildings.kingdomCreated)
-            {
-                entityplayer.addChatMessage(new ChatComponentText(I18n.format("npc.cityBuilder.dialog_2")));
-                FMLCommonHandler.instance().showGuiScreen(new GuiBuildScreen(entityplayer, super.world));
-                this.follow = true;
-                this.setted = true;
-            }
-            else if(this.canInteractWith(entityplayer) && WorthyKeeper.getInstance().getWorthy() >= 10000.0F && this.follow && !Buildings.kingdomCreated && !setted)
-            {
-                entityplayer.addChatMessage(new ChatComponentText(I18n.format("npc.cityBuilder.dialog_3")));
-                this.follow = false;
-            }
+    public boolean interact(EntityPlayer entityplayer) {
+        if (this.canInteractWith(entityplayer) && WorthyKeeper.getInstance().getWorthy() < 10000.0f && !Buildings.kingdomCreated && !this.world.isRemote) {
+            entityplayer.addChatMessage("City Builder: My king! You are still not worthy of creating a kingdom. The Guild Master will prepare you.");
+        }
+        if (!this.follow || WorthyKeeper.getInstance().getWorthy() >= 10000.0f && Buildings.kingdomCreated && !this.world.isRemote) {
+            entityplayer.addChatMessage("City Builder: Lets start building!");
+            FMLCommonHandler.instance().showGuiScreen((Object)new GuiBuildScreen(entityplayer, this.world));
+        }
+        if (this.canInteractWith(entityplayer) && WorthyKeeper.getInstance().getWorthy() >= 10000.0f && this.follow && !Buildings.kingdomCreated && !this.world.isRemote) {
+            entityplayer.addChatMessage("City Builder: Let us build your city my liege! Lead the way!");
+            this.follow = false;
         }
         return true;
     }
 
-    @Override
-    public void onLivingUpdate()
-    {
+    public void onLivingUpdate() {
         super.onLivingUpdate();
-        if (!this.follow && !Buildings.kingdomCreated)
-        {
-            EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-
-            if (player != null)
-            {
-                PathEntity pathentity;
-                if(player.getDistanceToEntity(this) > 3.5F && player.getDistanceToEntity(this) < 25.0F)
-                {
-                    pathentity = super.world.getPathEntityToEntity(this, player, 16.0F, true, false, false, true);
-                }
-                else
-                {
-                    pathentity = null;
-                }
+        if (!this.follow && !Buildings.kingdomCreated) {
+            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            EntityClientPlayerMP entityplayersp = minecraft.thePlayer;
+            if (entityplayersp != null) {
+                float f = entityplayersp.getDistanceToEntity((Entity)this);
+                PathEntity pathentity = f > 5.0f && f < 18.0f ? this.world.getPathEntityToEntity((Entity)this, (Entity)entityplayersp, 16.0f, true, false, false, true) : null;
                 this.setPathToEntity(pathentity);
             }
         }
     }
 }
+

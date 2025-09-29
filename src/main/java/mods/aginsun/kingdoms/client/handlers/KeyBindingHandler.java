@@ -1,37 +1,51 @@
+/*
+ * Decompiled with CFR 0.152.
+ * 
+ * Could not load the following classes:
+ *  cpw.mods.fml.client.FMLClientHandler
+ *  cpw.mods.fml.client.registry.KeyBindingRegistry$KeyHandler
+ *  cpw.mods.fml.common.FMLCommonHandler
+ *  cpw.mods.fml.common.TickType
+ *  net.minecraft.client.Minecraft
+ *  net.minecraft.client.settings.KeyBinding
+ */
 package mods.aginsun.kingdoms.client.handlers;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.InputEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import cpw.mods.fml.common.TickType;
+import java.util.EnumSet;
 import mods.aginsun.kingdoms.client.guis.GuiStartConquest;
+import mods.aginsun.kingdoms.util.Buildings;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.KeyBinding;
-import org.lwjgl.input.Keyboard;
 
-@SideOnly(Side.CLIENT)
-public final class KeyBindingHandler
-{
-    private static KeyBinding key = new KeyBinding(I18n.format("keyBinding.conquest"), 21, "Tale Of Kingdoms");
+public class KeyBindingHandler
+extends KeyBindingRegistry.KeyHandler {
+    private static KeyBinding key = new KeyBinding("Start Conquest", 21);
+    private static KeyBinding[] keybindings = new KeyBinding[]{key};
+    private static boolean[] booleans = new boolean[]{false};
 
-    public KeyBindingHandler()
-    {
-        ClientRegistry.registerKeyBinding(key);
+    public KeyBindingHandler() {
+        super(keybindings, booleans);
     }
 
-    @SubscribeEvent
-    public void onInput(InputEvent.KeyInputEvent e)
-    {
-        if (Keyboard.isKeyDown(key.getKeyCode()))
-        {
-            if (FMLClientHandler.instance().getClient().currentScreen == null)
-            {
-                FMLCommonHandler.instance().showGuiScreen(new GuiStartConquest(Minecraft.getMinecraft()));
-            }
+    public String getLabel() {
+        return "Start Conquest";
+    }
+
+    public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {
+        if (FMLClientHandler.instance().getClient().currentScreen == null && kb.keyCode == KeyBindingHandler.key.keyCode && !Buildings.getBuilding(0)) {
+            FMLCommonHandler.instance().showGuiScreen((Object)new GuiStartConquest(Minecraft.getMinecraft()));
         }
     }
+
+    public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd) {
+    }
+
+    public EnumSet<TickType> ticks() {
+        return EnumSet.of(TickType.CLIENT);
+    }
 }
+
