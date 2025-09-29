@@ -85,11 +85,11 @@ extends GuiScreenToK {
 
     public void drawScreen(int i, int j, float f) {
         if (!this.isResting) {
-            this.drawCenteredString(this.fontRenderer, "Time flies when you rest..", this.width / 2, 10, 0xFFEE00);
-            this.drawCenteredString(this.fontRenderer, "Note: You could rest even in daylight but you will wake up the next day", this.width / 2, 20, 0xFFEE00);
+            this.drawCenteredString(this.fontRendererObj, "Time flies when you rest..", this.width / 2, 10, 0xFFEE00);
+            this.drawCenteredString(this.fontRendererObj, "Note: You could rest even in daylight but you will wake up the next day", this.width / 2, 20, 0xFFEE00);
         } else {
             this.drawDefaultBackground();
-            this.drawCenteredString(this.fontRenderer, "Resting..", this.width / 2, this.height / 2 - 20, 0xFFEE00);
+            this.drawCenteredString(this.fontRendererObj, "Resting..", this.width / 2, this.height / 2 - 20, 0xFFEE00);
         }
         for (int k = 0; k < this.buttonList.size(); ++k) {
             GuiButton guibutton = (GuiButton)this.buttonList.get(k);

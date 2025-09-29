@@ -175,11 +175,11 @@ extends GuiScreenToK {
             GuiButton guibutton = (GuiButton)this.buttonList.get(l);
             guibutton.drawButton(this.mc, i, j);
         }
-        this.drawCenteredString(this.fontRenderer, "Bank Menu -", this.width / 2, 15, 0xFFFFFF);
-        this.drawCenteredString(this.fontRenderer, "Total Money You Have: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 25, 0xFFFFFF);
-        this.drawCenteredString(this.fontRenderer, "Total Money in the Bank: " + GoldKeeper.getBankGold() + " Gold Coins", this.width / 2, 35, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "Bank Menu -", this.width / 2, 15, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "Total Money You Have: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 25, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "Total Money in the Bank: " + GoldKeeper.getBankGold() + " Gold Coins", this.width / 2, 35, 0xFFFFFF);
         if (this.check) {
-            this.drawCenteredString(this.fontRenderer, "Don't Have Enough Gold", this.width / 2, 45, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Don't Have Enough Gold", this.width / 2, 45, 0xFFFFFF);
         }
     }
 

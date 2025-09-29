@@ -50,13 +50,13 @@ extends GuiScreenToK {
 
     public void drawScreen(int i, int j, float f) {
         this.drawDefaultBackground();
-        this.drawCenteredString(this.fontRenderer, "The Tale of Kingdoms ver 1.5-Pre Release", this.width / 2, this.height / 2 - 50, 0xFFFFFF);
-        this.drawCenteredString(this.fontRenderer, "The Great Tides of Darkness has come.", this.width / 2, this.height / 2 - 40, 0xFFFFFF);
-        this.drawCenteredString(this.fontRenderer, "The Reficules have come and it is up to you to save what is left.", this.width / 2, this.height / 2 - 30, 0xFFFFFF);
-        this.drawCenteredString(this.fontRenderer, "You are the last heir to the throne. The only hope of the overworld.", this.width / 2, this.height / 2 - 20, 0xFFFFFF);
-        this.drawCenteredString(this.fontRenderer, "Your adventure starts here, hero. The Guild will prepare you.", this.width / 2, this.height / 2 - 10, 0xFFFFFF);
-        this.drawCenteredString(this.fontRenderer, "Note: Build outside of the kingdom unless the location is specified for you.", this.width / 2, this.height / 2 + 40, 0xFFFFFF);
-        this.drawCenteredString(this.fontRenderer, "Note: selling is done through a block next to the npcs.", this.width / 2, this.height / 2 + 50, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "The Tale of Kingdoms ver 1.5-Pre Release", this.width / 2, this.height / 2 - 50, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "The Great Tides of Darkness has come.", this.width / 2, this.height / 2 - 40, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "The Reficules have come and it is up to you to save what is left.", this.width / 2, this.height / 2 - 30, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "You are the last heir to the throne. The only hope of the overworld.", this.width / 2, this.height / 2 - 20, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "Your adventure starts here, hero. The Guild will prepare you.", this.width / 2, this.height / 2 - 10, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "Note: Build outside of the kingdom unless the location is specified for you.", this.width / 2, this.height / 2 + 40, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "Note: selling is done through a block next to the npcs.", this.width / 2, this.height / 2 + 50, 0xFFFFFF);
         for (int k = 0; k < this.buttonList.size(); ++k) {
             GuiButton guibutton = (GuiButton)this.buttonList.get(k);
             guibutton.drawButton(this.mc, i, j);

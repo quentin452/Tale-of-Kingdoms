@@ -60,7 +60,7 @@ extends GuiScreenToK {
             GuiButton guibutton = (GuiButton)this.buttonList.get(l);
             guibutton.drawButton(this.mc, i, j);
         }
-        this.drawCenteredString(this.fontRenderer, "Reinforcement Pool", this.width / 2, 15, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "Reinforcement Pool", this.width / 2, 15, 0xFFFFFF);
         this.knightPool.drawBar();
         super.drawScreen(i, j, f);
     }

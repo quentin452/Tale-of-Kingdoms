@@ -562,11 +562,11 @@ extends GuiScreen {
             GuiButton guibutton = (GuiButton)this.buttonList.get(l);
             guibutton.drawButton(this.mc, i, j);
         }
-        this.drawCenteredString(this.fontRenderer, "Shop Menu - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFCC00);
+        this.drawCenteredString(this.fontRendererObj, "Shop Menu - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFCC00);
         if (this.goldchecker) {
-            this.drawCenteredString(this.fontRenderer, "Selected Item Cost: " + this.stringoutput + " - NOT ENOUGH GOLD", this.width / 2, 30, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "Selected Item Cost: " + this.stringoutput + " - NOT ENOUGH GOLD", this.width / 2, 30, 0xFFCC00);
         } else {
-            this.drawCenteredString(this.fontRenderer, "Selected Item Cost: " + this.stringoutput + " - " + this.price + " Gold coins", this.width / 2, 30, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "Selected Item Cost: " + this.stringoutput + " - " + this.price + " Gold coins", this.width / 2, 30, 0xFFCC00);
         }
         super.drawScreen(i, j, f);
     }

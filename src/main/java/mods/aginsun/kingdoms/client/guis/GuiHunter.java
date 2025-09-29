@@ -126,13 +126,13 @@ extends GuiScreenToK {
             GuiButton guibutton = (GuiButton)this.buttonList.get(k);
             guibutton.drawButton(this.mc, i, j);
         }
-        this.drawCenteredString(this.fontRenderer, "Path to Kingship", this.width / 2 + 100, 110, 0xAA44FF);
+        this.drawCenteredString(this.fontRendererObj, "Path to Kingship", this.width / 2 + 100, 110, 0xAA44FF);
         if (this.goldchecker) {
-            this.drawCenteredString(this.fontRenderer, "The Guild Order  Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 20, 0xFFEE00);
+            this.drawCenteredString(this.fontRendererObj, "The Guild Order  Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 20, 0xFFEE00);
         } else {
-            this.drawCenteredString(this.fontRenderer, "The Guild Order  Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 0, 0xFFEE00);
+            this.drawCenteredString(this.fontRendererObj, "The Guild Order  Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 0, 0xFFEE00);
         }
-        this.drawCenteredString(this.fontRenderer, "Note: Hiring Cost 1500 gold, Retiring will Refund 1000. Fixing the Guild need 64 wood.", this.width / 2, 10, 0xFFEE00);
+        this.drawCenteredString(this.fontRendererObj, "Note: Hiring Cost 1500 gold, Retiring will Refund 1000. Fixing the Guild need 64 wood.", this.width / 2, 10, 0xFFEE00);
         this.worthness.drawBar();
     }
 }

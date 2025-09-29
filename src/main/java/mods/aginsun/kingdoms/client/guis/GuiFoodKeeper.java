@@ -69,9 +69,9 @@ extends GuiScreenToK {
             guibutton.drawButton(this.mc, i, j);
         }
         if (this.goldchecker) {
-            this.drawCenteredString(this.fontRenderer, "The Guild Order  Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 20, 0xFFEE00);
+            this.drawCenteredString(this.fontRendererObj, "The Guild Order  Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 20, 0xFFEE00);
         } else {
-            this.drawCenteredString(this.fontRenderer, "Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 0, 0xFFEE00);
+            this.drawCenteredString(this.fontRendererObj, "Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 0, 0xFFEE00);
         }
     }
 

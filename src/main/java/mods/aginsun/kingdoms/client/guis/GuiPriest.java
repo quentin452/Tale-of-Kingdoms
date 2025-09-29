@@ -81,11 +81,11 @@ extends GuiScreenToK {
             guibutton.drawButton(this.mc, i, j);
         }
         if (this.goldchecker) {
-            this.drawCenteredString(this.fontRenderer, "The Chapel Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 20, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "The Chapel Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 20, 0xFFCC00);
         } else {
-            this.drawCenteredString(this.fontRenderer, "The Chapel Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 10, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "The Chapel Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 10, 0xFFCC00);
         }
-        this.drawCenteredString(this.fontRenderer, "Note: Recruiting a priest cost 2000", this.width / 2, 20, 0xFFCC00);
+        this.drawCenteredString(this.fontRendererObj, "Note: Recruiting a priest cost 2000", this.width / 2, 20, 0xFFCC00);
     }
 }
 

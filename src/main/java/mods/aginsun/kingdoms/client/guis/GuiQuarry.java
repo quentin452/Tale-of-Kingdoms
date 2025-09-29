@@ -86,11 +86,11 @@ extends GuiScreenToK {
             guibutton.drawButton(this.mc, i, j);
         }
         if (!this.goldchecker) {
-            this.drawCenteredString(this.fontRenderer, "Foreman Menu - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Foreman Menu - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFFFFF);
         } else {
-            this.drawCenteredString(this.fontRenderer, "Foreman Menu - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 15, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Foreman Menu - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 15, 0xFFFFFF);
         }
-        this.drawString(this.fontRenderer, "-Resources-    Note: Worker cost 1500 gold coins.", this.width / 2 - 87, 55, 0xFFFFFF);
+        this.drawString(this.fontRendererObj, "-Resources-    Note: Worker cost 1500 gold coins.", this.width / 2 - 87, 55, 0xFFFFFF);
         this.bar.drawBar();
     }
 }

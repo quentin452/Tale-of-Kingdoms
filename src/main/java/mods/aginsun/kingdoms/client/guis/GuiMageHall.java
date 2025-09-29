@@ -101,13 +101,13 @@ extends GuiScreenToK {
             GuiButton guibutton = (GuiButton)this.buttonList.get(k);
             guibutton.drawButton(this.mc, i, j);
         }
-        this.drawCenteredString(this.fontRenderer, "The Mage Hall Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 10, 0xFFCC00);
+        this.drawCenteredString(this.fontRendererObj, "The Mage Hall Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 10, 0xFFCC00);
         if (this.goldchecker) {
-            this.drawCenteredString(this.fontRenderer, "Selected Item Cost to enchant: " + this.price + " - NOT ENOUGH GOLD", this.width / 2, 30, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "Selected Item Cost to enchant: " + this.price + " - NOT ENOUGH GOLD", this.width / 2, 30, 0xFFCC00);
         } else {
-            this.drawCenteredString(this.fontRenderer, "Selected Item Cost to enchant: " + this.price, this.width / 2, 20, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "Selected Item Cost to enchant: " + this.price, this.width / 2, 20, 0xFFCC00);
         }
-        this.drawCenteredString(this.fontRenderer, "Note: Recruiting a mage cost 2000", this.width / 2, 30, 0xFFCC00);
+        this.drawCenteredString(this.fontRendererObj, "Note: Recruiting a mage cost 2000", this.width / 2, 30, 0xFFCC00);
     }
 }
 

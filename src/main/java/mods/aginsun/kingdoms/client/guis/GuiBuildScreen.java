@@ -445,13 +445,13 @@ extends GuiScreenToK {
             guibutton.drawButton(this.mc, i, j);
         }
         if (!Buildings.isTier2 && !this.worldObj.isRemote) {
-            this.drawCenteredString(this.fontRenderer, "Build Menu Tier 1 - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "Build Menu Tier 1 - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFCC00);
         }
         if (Buildings.isTier2 && !Buildings.isTier3) {
-            this.drawCenteredString(this.fontRenderer, "Build Menu Tier 2 - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "Build Menu Tier 2 - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFCC00);
         }
         if (Buildings.isTier3) {
-            this.drawCenteredString(this.fontRenderer, "Build Menu Tier 3 - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "Build Menu Tier 3 - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFCC00);
         }
         if (this.woodBar != null) {
             this.woodBar.drawBar();
@@ -459,9 +459,9 @@ extends GuiScreenToK {
         if (this.cobblestoneBar != null) {
             this.cobblestoneBar.drawBar();
         }
-        this.drawString(this.fontRenderer, "0       160      320 ", this.width / 2 - 100, 30, 0xFFFFFF);
-        this.drawString(this.fontRenderer, "logs Resource", this.width / 2, 40, 0xFFCC00);
-        this.drawString(this.fontRenderer, "CobbleStone Resource", this.width / 2, 60, 0xFFCC00);
+        this.drawString(this.fontRendererObj, "0       160      320 ", this.width / 2 - 100, 30, 0xFFFFFF);
+        this.drawString(this.fontRendererObj, "logs Resource", this.width / 2, 40, 0xFFCC00);
+        this.drawString(this.fontRendererObj, "CobbleStone Resource", this.width / 2, 60, 0xFFCC00);
     }
 }
 

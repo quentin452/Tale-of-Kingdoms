@@ -86,11 +86,11 @@ extends GuiScreenToK {
             guibutton.drawButton(this.mc, i, j);
         }
         if (this.goldchecker) {
-            this.drawCenteredString(this.fontRenderer, "The Library Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 20, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "The Library Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 20, 0xFFFFFF);
         } else {
-            this.drawCenteredString(this.fontRenderer, "The Library  Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 20, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "The Library  Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 20, 0xFFFFFF);
         }
-        this.drawCenteredString(this.fontRenderer, "Note: The more you invest, the more knowledge people gain to yield more tax.", this.width / 2, 170, 0xFFFFFF);
+        this.drawCenteredString(this.fontRendererObj, "Note: The more you invest, the more knowledge people gain to yield more tax.", this.width / 2, 170, 0xFFFFFF);
     }
 }
 

@@ -59,7 +59,7 @@ extends GuiScreenToK {
             GuiButton guibutton = (GuiButton)this.buttonList.get(k);
             guibutton.drawButton(this.mc, i, j);
         }
-        this.drawString(this.fontRenderer, "Worker Menu", this.width / 2 - 100, 60, 0xFFFFFF);
+        this.drawString(this.fontRendererObj, "Worker Menu", this.width / 2 - 100, 60, 0xFFFFFF);
     }
 }
 

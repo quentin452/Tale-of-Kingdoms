@@ -70,12 +70,12 @@ extends GuiScreenToK {
             guibutton.drawButton(this.mc, i, j);
         }
         if (this.goldchecker) {
-            this.drawCenteredString(this.fontRenderer, "Barracks Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 20, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "Barracks Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins - NOT ENOUGH GOLD", this.width / 2, 20, 0xFFCC00);
         } else {
-            this.drawCenteredString(this.fontRenderer, "Barracks  Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 10, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "Barracks  Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 10, 0xFFCC00);
         }
-        this.drawCenteredString(this.fontRenderer, "Note: The knights and archers will upgrade if they damage enough monsters!", this.width / 2, 20, 0xFFCC00);
-        this.drawCenteredString(this.fontRenderer, " 1000 gold per hire.", this.width / 2, 30, 0xFFCC00);
+        this.drawCenteredString(this.fontRendererObj, "Note: The knights and archers will upgrade if they damage enough monsters!", this.width / 2, 20, 0xFFCC00);
+        this.drawCenteredString(this.fontRendererObj, " 1000 gold per hire.", this.width / 2, 30, 0xFFCC00);
     }
 }
 

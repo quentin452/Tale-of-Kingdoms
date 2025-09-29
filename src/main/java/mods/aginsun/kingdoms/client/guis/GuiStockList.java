@@ -309,7 +309,7 @@ extends GuiScreenToK {
             GuiButton guibutton = (GuiButton)this.buttonList.get(l);
             guibutton.drawButton(this.mc, i, j);
         }
-        this.drawCenteredString(this.fontRenderer, "Stock Menu - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFCC00);
+        this.drawCenteredString(this.fontRendererObj, "Stock Menu - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFCC00);
         String s = String.valueOf(this.itemSelected.getUnlocalizedName()) + ".name";
         String s1 = this.st.translateKey(s);
         int i1 = GoldKeeper.priceItem(String.valueOf(this.itemSelected.getUnlocalizedName()));
@@ -340,11 +340,11 @@ extends GuiScreenToK {
         }
         i1 = (int)((float)i1 + (float)i1 * (f1 /= 100.0f));
         if (this.goldchecker) {
-            this.drawCenteredString(this.fontRenderer, "Selected Item Cost: " + s1 + " - NOT ENOUGH GOLD", this.width / 2, 30, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "Selected Item Cost: " + s1 + " - NOT ENOUGH GOLD", this.width / 2, 30, 0xFFCC00);
         } else {
-            this.drawCenteredString(this.fontRenderer, "Selected Item Cost: " + s1 + " - " + i1 + " Gold coins", this.width / 2, 30, 0xFFCC00);
+            this.drawCenteredString(this.fontRendererObj, "Selected Item Cost: " + s1 + " - " + i1 + " Gold coins", this.width / 2, 30, 0xFFCC00);
         }
-        this.drawCenteredString(this.fontRenderer, "Note: Full bar means full cost!", this.width / 2, 200, 0xFFCC00);
+        this.drawCenteredString(this.fontRendererObj, "Note: Full bar means full cost!", this.width / 2, 200, 0xFFCC00);
         for (int l1 = 0; l1 < 8; ++l1) {
             this.loadbar[l1].drawBar();
         }

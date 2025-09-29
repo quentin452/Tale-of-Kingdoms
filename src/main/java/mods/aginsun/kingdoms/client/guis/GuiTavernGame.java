@@ -197,43 +197,43 @@ extends GuiScreenToK {
         int i1 = (this.height - c1) / 2;
         this.drawTexturedModalRect(l, i1, 0, 0, c, c1);
         if (this.game) {
-            this.drawCenteredString(this.fontRenderer, "Player: " + this.player, this.width / 2 - 30, i1 + 40, 0xFFFFFF);
-            this.drawCenteredString(this.fontRenderer, "Die one: " + this.fRollp, this.width / 2 - 30, i1 + 60, 0xFFFFFF);
-            this.drawCenteredString(this.fontRenderer, "Die two: " + this.sRollp, this.width / 2 - 30, i1 + 80, 0xFFFFFF);
-            this.drawCenteredString(this.fontRenderer, "Dealer: " + this.dealer, this.width / 2 + 30, i1 + 40, 0xFFFFFF);
-            this.drawCenteredString(this.fontRenderer, "Die one: " + this.fRolld, this.width / 2 + 30, i1 + 60, 0xFFFFFF);
-            this.drawCenteredString(this.fontRenderer, "Die two: " + this.sRolld, this.width / 2 + 30, i1 + 80, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Player: " + this.player, this.width / 2 - 30, i1 + 40, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Die one: " + this.fRollp, this.width / 2 - 30, i1 + 60, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Die two: " + this.sRollp, this.width / 2 - 30, i1 + 80, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Dealer: " + this.dealer, this.width / 2 + 30, i1 + 40, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Die one: " + this.fRolld, this.width / 2 + 30, i1 + 60, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Die two: " + this.sRolld, this.width / 2 + 30, i1 + 80, 0xFFFFFF);
         }
         if (!this.game) {
-            this.drawCenteredString(this.fontRenderer, "Play Round Robin!", this.width / 2, i1 + 50, 0xFFFFFF);
-            this.drawCenteredString(this.fontRenderer, "50 gold coins to play!", this.width / 2, i1 + 70, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Play Round Robin!", this.width / 2, i1 + 50, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "50 gold coins to play!", this.width / 2, i1 + 70, 0xFFFFFF);
         }
         if (this.wintype == 1) {
-            this.drawCenteredString(this.fontRenderer, "You Lose!-Outnumbered the Player", this.width / 2, this.height / 2 - 95, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "You Lose!-Outnumbered the Player", this.width / 2, this.height / 2 - 95, 0xFFFFFF);
         }
         if (this.wintype == 2) {
-            this.drawCenteredString(this.fontRenderer, "You Win!-Outnumbered the Dealer", this.width / 2, this.height / 2 - 95, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "You Win!-Outnumbered the Dealer", this.width / 2, this.height / 2 - 95, 0xFFFFFF);
         }
         if (this.wintype == 3) {
-            this.drawCenteredString(this.fontRenderer, "Draw!-Same number rolled!", this.width / 2, this.height / 2 - 80, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Draw!-Same number rolled!", this.width / 2, this.height / 2 - 80, 0xFFFFFF);
         }
         if (this.wintype == 4) {
-            this.drawCenteredString(this.fontRenderer, "You win!-Player Rolled a Double!", this.width / 2, this.height / 2 - 95, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "You win!-Player Rolled a Double!", this.width / 2, this.height / 2 - 95, 0xFFFFFF);
         }
         if (this.wintype == 5) {
-            this.drawCenteredString(this.fontRenderer, "You Lose!-Dealer Rolled a Double!", this.width / 2, this.height / 2 - 95, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "You Lose!-Dealer Rolled a Double!", this.width / 2, this.height / 2 - 95, 0xFFFFFF);
         }
         if (this.playerR) {
-            this.drawCenteredString(this.fontRenderer, "Player Rerolled!", this.width / 2, this.height / 2 + 10, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Player Rerolled!", this.width / 2, this.height / 2 + 10, 0xFFFFFF);
         }
         if (this.dealerR) {
-            this.drawCenteredString(this.fontRenderer, "Dealer Rerolled!", this.width / 2, this.height / 2 + 20, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Dealer Rerolled!", this.width / 2, this.height / 2 + 20, 0xFFFFFF);
         }
         if (!this.notEnough) {
-            this.drawCenteredString(this.fontRenderer, "Round Robin - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Round Robin - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins", this.width / 2, 15, 0xFFFFFF);
         }
         if (this.notEnough) {
-            this.drawCenteredString(this.fontRenderer, "Round Robin - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins -NOT ENOUGH GOLD", this.width / 2, 15, 0xFFFFFF);
+            this.drawCenteredString(this.fontRendererObj, "Round Robin - Total Money: " + GoldKeeper.getGoldTotal() + " Gold Coins -NOT ENOUGH GOLD", this.width / 2, 15, 0xFFFFFF);
         }
         super.drawScreen(i, j, f);
     }

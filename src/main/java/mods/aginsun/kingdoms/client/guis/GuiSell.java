@@ -26,10 +26,10 @@ extends GuiContainer {
     }
 
     protected void drawGuiContainerForegroundLayer(int i, int j) {
-        this.fontRenderer.drawString("Total Money: ", 25, 40, 0x404040);
-        this.fontRenderer.drawString(GoldKeeper.getGoldTotal() + " Gold Coins", 30, 50, 0x404040);
-        this.fontRenderer.drawString("Inventory", 8, this.ySize - 96 + 2, 0x404040);
-        this.fontRenderer.drawString("Sell Menu", 25, 20, 0x404040);
+        this.fontRendererObj.drawString("Total Money: ", 25, 40, 0x404040);
+        this.fontRendererObj.drawString(GoldKeeper.getGoldTotal() + " Gold Coins", 30, 50, 0x404040);
+        this.fontRendererObj.drawString("Inventory", 8, this.ySize - 96 + 2, 0x404040);
+        this.fontRendererObj.drawString("Sell Menu", 25, 20, 0x404040);
     }
 
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {

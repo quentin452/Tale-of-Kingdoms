@@ -34,9 +34,9 @@ extends GuiScreenToK {
         if (!SchematicHandler.getInstance().getBuildingList().isEmpty()) {
             this.bar.setBar(d / 100.0f);
             this.bar.drawBar();
-            this.drawString(this.fontRenderer, "Building the Guild...", this.width / 2 - this.fontRenderer.getStringWidth("Building the Guild...") / 2, this.height / 2 + 15, Color.pink.getRGB());
+            this.drawString(this.fontRendererObj, "Building the Guild...", this.width / 2 - this.fontRendererObj.getStringWidth("Building the Guild...") / 2, this.height / 2 + 15, Color.pink.getRGB());
         } else {
-            this.drawString(this.fontRenderer, "Press exit to continue...", this.width / 2 - this.fontRenderer.getStringWidth("Press exit to continue...") / 2, this.height / 2 + 15, Color.pink.getRGB());
+            this.drawString(this.fontRendererObj, "Press exit to continue...", this.width / 2 - this.fontRendererObj.getStringWidth("Press exit to continue...") / 2, this.height / 2 + 15, Color.pink.getRGB());
         }
         super.drawScreen(i, j, f);
     }
