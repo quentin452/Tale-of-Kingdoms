@@ -9,16 +9,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraft.init.Items;
+import net.minecraft.init.Blocks;
 
 public class EntityReficulGuardian
 extends EntityNPC {
-    private static ItemStack defaultHeldItem = new ItemStack((Item)Item.bow, 1);
+    private static ItemStack defaultHeldItem = new ItemStack(Items.bow, 1);
     private EntityPlayer player;
     private boolean playerPresence = true;
     private Random rand = new Random();
@@ -51,8 +52,6 @@ extends EntityNPC {
 
     protected boolean teleportTo(double d, double d1, double d2) {
         if (this.rand.nextInt(10) == 0) {
-            int k;
-            int j;
             double d3 = this.posX;
             double d4 = this.posY;
             double d5 = this.posZ;
@@ -60,12 +59,14 @@ extends EntityNPC {
             this.posY = d1;
             this.posZ = d2;
             boolean flag = false;
-            int i = MathHelper.floor_double((double)this.posX);
-            if (this.worldObj.blockExists(i, j = MathHelper.floor_double((double)this.posY), k = MathHelper.floor_double((double)this.posZ))) {
+            int i = MathHelper.floor_double(this.posX);
+            int j = MathHelper.floor_double(this.posY);
+            int k = MathHelper.floor_double(this.posZ);
+            if (this.worldObj.blockExists(i, j, k)) {
                 boolean flag1 = false;
                 while (!flag1 && j > 0) {
-                    int i1 = this.worldObj.getBlockId(i, j - 1, k);
-                    if (i1 == 0 || !Block.blocksList[i1].blockMaterial.isSolid()) {
+                    Block blockBelow = this.worldObj.getBlock(i, j - 1, k);
+                    if (blockBelow == Blocks.air || !blockBelow.getMaterial().isSolid()) {
                         this.posY -= 1.0;
                         --j;
                         continue;
@@ -74,7 +75,7 @@ extends EntityNPC {
                 }
                 if (flag1) {
                     this.setPosition(this.posX, this.posY, this.posZ);
-                    if (this.worldObj.getCollidingBoundingBoxes((Entity)this, this.boundingBox).size() == 0 && !this.worldObj.isAnyLiquid(this.boundingBox)) {
+                    if (this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).size() == 0 && !this.worldObj.isAnyLiquid(this.boundingBox)) {
                         flag = true;
                     }
                 }
@@ -152,10 +153,10 @@ extends EntityNPC {
             this.player = (EntityPlayer)entity;
         }
         if (this.player != null) {
-            if (this.player.getDistanceSqToEntity((Entity)this) <= 220.0 && this.worldObj.difficultySetting != 0) {
+            if (this.player.getDistanceSqToEntity(this) <= 220.0 && this.worldObj.difficultySetting.getDifficultyId() != 0) {
                 this.playerPresence = false;
                 if (this.rand.nextInt(6) == 0) {
-                    this.teleportToEntity((Entity)this.player);
+                    this.teleportToEntity(this.player);
                     if (this.rand.nextInt(10) == 0) {
                         for (int j = 0; j < 2; ++j) {
                             this.worldObj.spawnParticle("largesmoke", this.posX + (this.rand.nextDouble() - 0.5) * (double)this.width, this.posY + this.rand.nextDouble() * (double)this.height - 0.25, this.posZ + (this.rand.nextDouble() - 0.5) * (double)this.width, (this.rand.nextDouble() - 0.5) * 2.0, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5) * 2.0);
@@ -169,15 +170,15 @@ extends EntityNPC {
     }
 
     protected Entity findPlayerToAttack() {
-        EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity((Entity)this, 16.0);
-        if (entityplayer != null && this.canEntityBeSeen((Entity)entityplayer) && this.worldObj.difficultySetting != 0) {
+        EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity(this, 16.0);
+        if (entityplayer != null && this.canEntityBeSeen(entityplayer) && this.worldObj.difficultySetting.getDifficultyId() != 0) {
             return entityplayer;
         }
         return null;
     }
 
     public boolean attackEntityFrom(DamageSource damagesource, int i) {
-        if (!this.playerPresence && this.worldObj.difficultySetting != 0) {
+        if (!this.playerPresence && this.worldObj.difficultySetting.getDifficultyId() != 0) {
             if (super.attackEntityFrom(damagesource, (float)i)) {
                 Entity entity = damagesource.getSourceOfDamage();
                 if (this.riddenByEntity == entity || this.ridingEntity == entity) {
