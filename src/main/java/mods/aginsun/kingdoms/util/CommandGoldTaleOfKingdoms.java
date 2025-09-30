@@ -9,7 +9,7 @@ import mods.aginsun.kingdoms.handlers.WorthyKeeper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 
 public class CommandGoldTaleOfKingdoms
@@ -33,7 +33,7 @@ extends CommandBase {
     }
 
     public void sendMessage(ICommandSender sender, String message) {
-        sender.sendChatToPlayer(new ChatMessageComponent().addText(message));
+        sender.addChatMessage(new ChatComponentText(message));
     }
 
     public String getCommandUsage(ICommandSender icommandsender) {
