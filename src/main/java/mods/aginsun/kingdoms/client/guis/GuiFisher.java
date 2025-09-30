@@ -5,6 +5,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class GuiFisher
@@ -23,7 +24,7 @@ extends GuiScreen {
 
     public void actionPerformed(GuiButton guibutton) {
         if (guibutton.id == 1) {
-            this.player.dropItem(Item.fishingRod.itemID, 1);
+            this.player.dropItem(Items.fishing_rod, 1);
             ChatMessage.add(this.mc.thePlayer,"Here ya go, your new beautiful fishing rod!");
         }
         if (guibutton.id == 2) {
