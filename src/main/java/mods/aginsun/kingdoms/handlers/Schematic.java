@@ -1,11 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.nbt.CompressedStreamTools
- *  net.minecraft.nbt.NBTTagCompound
- *  net.minecraft.nbt.NBTTagList
- */
+
 package mods.aginsun.kingdoms.handlers;
 
 import java.io.IOException;

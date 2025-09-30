@@ -1,13 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.client.gui.inventory.GuiContainer
- *  net.minecraft.entity.player.InventoryPlayer
- *  net.minecraft.inventory.Container
- *  net.minecraft.util.ResourceLocation
- *  org.lwjgl.opengl.GL11
- */
+
 package mods.aginsun.kingdoms.client.guis;
 
 import mods.aginsun.kingdoms.entities.TileEntitySell;

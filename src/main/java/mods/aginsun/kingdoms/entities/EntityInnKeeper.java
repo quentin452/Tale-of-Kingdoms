@@ -1,13 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.client.Minecraft
- *  net.minecraft.client.gui.GuiScreen
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.src.ModLoader
- *  net.minecraft.world.World
- */
+
 package mods.aginsun.kingdoms.entities;
 
 import mods.aginsun.kingdoms.client.guis.GuiInnMenu;

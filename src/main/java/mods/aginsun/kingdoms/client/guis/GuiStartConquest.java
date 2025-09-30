@@ -1,12 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.client.Minecraft
- *  net.minecraft.client.gui.GuiButton
- *  net.minecraft.client.gui.GuiScreen
- *  net.minecraft.entity.player.EntityPlayer
- */
+
 package mods.aginsun.kingdoms.client.guis;
 
 import mods.aginsun.kingdoms.client.guis.GuiScreenToK;

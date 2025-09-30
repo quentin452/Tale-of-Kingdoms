@@ -1,16 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.client.FMLClientHandler
- *  cpw.mods.fml.common.FMLCommonHandler
- *  net.minecraft.client.entity.EntityClientPlayerMP
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.inventory.IInventory
- *  net.minecraft.item.Item
- *  net.minecraft.item.ItemStack
- *  net.minecraft.world.WorldServer
- */
+
 package mods.aginsun.kingdoms.entities;
 
 import cpw.mods.fml.client.FMLClientHandler;

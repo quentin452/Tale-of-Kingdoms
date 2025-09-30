@@ -1,14 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.common.ITickHandler
- *  cpw.mods.fml.common.network.IGuiHandler
- *  cpw.mods.fml.common.registry.TickRegistry
- *  cpw.mods.fml.relauncher.Side
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.world.World
- */
+
 package mods.aginsun.kingdoms.core;
 
 import cpw.mods.fml.common.ITickHandler;

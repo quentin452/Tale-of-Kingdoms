@@ -1,11 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.common.IPlayerTracker
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.nbt.NBTTagCompound
- */
+
 package mods.aginsun.kingdoms.handlers;
 
 import cpw.mods.fml.common.IPlayerTracker;

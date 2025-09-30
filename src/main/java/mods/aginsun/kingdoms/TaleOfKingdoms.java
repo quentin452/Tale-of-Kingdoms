@@ -1,28 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.common.IPickupNotifier
- *  cpw.mods.fml.common.IPlayerTracker
- *  cpw.mods.fml.common.Mod
- *  cpw.mods.fml.common.Mod$EventHandler
- *  cpw.mods.fml.common.Mod$Instance
- *  cpw.mods.fml.common.SidedProxy
- *  cpw.mods.fml.common.event.FMLInitializationEvent
- *  cpw.mods.fml.common.event.FMLPreInitializationEvent
- *  cpw.mods.fml.common.event.FMLServerStartedEvent
- *  cpw.mods.fml.common.event.FMLServerStartingEvent
- *  cpw.mods.fml.common.network.IGuiHandler
- *  cpw.mods.fml.common.network.NetworkMod
- *  cpw.mods.fml.common.network.NetworkRegistry
- *  cpw.mods.fml.common.registry.GameRegistry
- *  cpw.mods.fml.common.registry.LanguageRegistry
- *  net.minecraft.command.CommandHandler
- *  net.minecraft.command.ICommand
- *  net.minecraft.item.Item
- *  net.minecraftforge.common.Configuration
- *  net.minecraftforge.common.MinecraftForge
- */
 package mods.aginsun.kingdoms;
 
 import cpw.mods.fml.common.IPickupNotifier;

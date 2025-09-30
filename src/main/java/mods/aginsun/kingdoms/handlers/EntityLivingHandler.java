@@ -1,11 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraftforge.event.ForgeSubscribe
- *  net.minecraftforge.event.entity.living.LivingDeathEvent
- */
+
 package mods.aginsun.kingdoms.handlers;
 
 import mods.aginsun.kingdoms.handlers.ItemDropHelper;

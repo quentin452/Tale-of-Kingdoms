@@ -1,14 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.common.ITickHandler
- *  cpw.mods.fml.common.TickType
- *  net.minecraft.client.Minecraft
- *  net.minecraft.client.gui.GuiScreen
- *  net.minecraft.client.gui.ScaledResolution
- *  net.minecraft.client.gui.inventory.GuiInventory
- */
+
 package mods.aginsun.kingdoms.client.handlers;
 
 import cpw.mods.fml.common.ITickHandler;

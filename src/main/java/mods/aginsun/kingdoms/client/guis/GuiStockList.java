@@ -1,18 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.common.FMLCommonHandler
- *  net.minecraft.client.gui.GuiButton
- *  net.minecraft.entity.item.EntityItem
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.item.Item
- *  net.minecraft.item.ItemStack
- *  net.minecraft.util.ResourceLocation
- *  net.minecraft.util.StringTranslate
- *  net.minecraft.world.World
- *  org.lwjgl.opengl.GL11
- */
+
 package mods.aginsun.kingdoms.client.guis;
 
 import cpw.mods.fml.common.FMLCommonHandler;

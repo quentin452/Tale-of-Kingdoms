@@ -1,14 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.client.gui.GuiButton
- *  net.minecraft.entity.EntityCreature
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.util.ResourceLocation
- *  net.minecraft.world.World
- *  org.lwjgl.opengl.GL11
- */
+
 package mods.aginsun.kingdoms.client.guis;
 
 import mods.aginsun.kingdoms.client.guis.GuiPriceBar;

@@ -1,12 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.client.gui.GuiButton
- *  net.minecraft.client.gui.GuiScreen
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.item.Item
- */
 package mods.aginsun.kingdoms.client.guis;
 
 import java.awt.Color;

@@ -1,26 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.common.FMLCommonHandler
- *  net.minecraft.entity.EntityLivingBase
- *  net.minecraft.entity.boss.EntityDragon
- *  net.minecraft.entity.boss.EntityWither
- *  net.minecraft.entity.monster.EntityBlaze
- *  net.minecraft.entity.monster.EntityCaveSpider
- *  net.minecraft.entity.monster.EntityCreeper
- *  net.minecraft.entity.monster.EntityEnderman
- *  net.minecraft.entity.monster.EntityGhast
- *  net.minecraft.entity.monster.EntityMagmaCube
- *  net.minecraft.entity.monster.EntityPigZombie
- *  net.minecraft.entity.monster.EntitySilverfish
- *  net.minecraft.entity.monster.EntitySkeleton
- *  net.minecraft.entity.monster.EntitySpider
- *  net.minecraft.entity.monster.EntityWitch
- *  net.minecraft.entity.monster.EntityZombie
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.world.World
- */
+
 package mods.aginsun.kingdoms.handlers;
 
 import cpw.mods.fml.common.FMLCommonHandler;

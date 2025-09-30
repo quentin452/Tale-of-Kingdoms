@@ -1,11 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.client.Minecraft
- *  net.minecraft.client.gui.Gui
- *  org.lwjgl.opengl.GL11
- */
+
 package mods.aginsun.kingdoms.client.guis;
 
 import net.minecraft.client.Minecraft;

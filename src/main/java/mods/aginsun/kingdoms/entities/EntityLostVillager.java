@@ -1,16 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.client.Minecraft
- *  net.minecraft.client.entity.EntityClientPlayerMP
- *  net.minecraft.entity.Entity
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.pathfinding.PathEntity
- *  net.minecraft.src.ModLoader
- *  net.minecraft.util.MathHelper
- *  net.minecraft.world.World
- */
+
 package mods.aginsun.kingdoms.entities;
 
 import mods.aginsun.kingdoms.entities.EntityNPC;

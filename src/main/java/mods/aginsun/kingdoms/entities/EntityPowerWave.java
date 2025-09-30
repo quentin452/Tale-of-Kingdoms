@@ -1,18 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.entity.EntityLiving
- *  net.minecraft.entity.EntityLivingBase
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.entity.projectile.EntityThrowable
- *  net.minecraft.nbt.NBTTagCompound
- *  net.minecraft.util.AxisAlignedBB
- *  net.minecraft.util.DamageSource
- *  net.minecraft.util.MathHelper
- *  net.minecraft.util.MovingObjectPosition
- *  net.minecraft.world.World
- */
+
 package mods.aginsun.kingdoms.entities;
 
 import java.util.List;

@@ -1,9 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.client.gui.GuiScreen
- */
+
 package mods.aginsun.kingdoms.client.guis;
 
 import net.minecraft.client.gui.GuiScreen;

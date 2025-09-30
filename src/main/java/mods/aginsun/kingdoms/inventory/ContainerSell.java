@@ -1,14 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.entity.player.InventoryPlayer
- *  net.minecraft.inventory.Container
- *  net.minecraft.inventory.IInventory
- *  net.minecraft.inventory.Slot
- *  net.minecraft.item.ItemStack
- */
+
 package mods.aginsun.kingdoms.inventory;
 
 import mods.aginsun.kingdoms.entities.TileEntitySell;

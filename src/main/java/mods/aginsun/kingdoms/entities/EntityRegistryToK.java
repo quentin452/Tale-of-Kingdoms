@@ -1,10 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.common.registry.EntityRegistry
- *  net.minecraft.entity.Entity
- */
+
 package mods.aginsun.kingdoms.entities;
 
 import cpw.mods.fml.common.registry.EntityRegistry;

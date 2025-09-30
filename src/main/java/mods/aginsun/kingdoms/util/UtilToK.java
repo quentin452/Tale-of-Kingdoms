@@ -1,13 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.entity.Entity
- *  net.minecraft.entity.EntityList
- *  net.minecraft.entity.EntityLivingBase
- *  net.minecraft.util.ChunkCoordinates
- *  net.minecraft.world.World
- */
+
 package mods.aginsun.kingdoms.util;
 
 import net.minecraft.entity.Entity;

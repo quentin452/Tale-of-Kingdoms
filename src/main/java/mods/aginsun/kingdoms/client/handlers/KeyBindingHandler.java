@@ -1,14 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.client.FMLClientHandler
- *  cpw.mods.fml.client.registry.KeyBindingRegistry$KeyHandler
- *  cpw.mods.fml.common.FMLCommonHandler
- *  cpw.mods.fml.common.TickType
- *  net.minecraft.client.Minecraft
- *  net.minecraft.client.settings.KeyBinding
- */
+
 package mods.aginsun.kingdoms.client.handlers;
 
 import cpw.mods.fml.client.FMLClientHandler;

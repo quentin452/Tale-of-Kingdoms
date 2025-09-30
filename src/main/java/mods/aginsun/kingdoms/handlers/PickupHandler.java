@@ -1,12 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.common.IPickupNotifier
- *  net.minecraft.entity.item.EntityItem
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.item.ItemStack
- */
+
 package mods.aginsun.kingdoms.handlers;
 
 import cpw.mods.fml.common.IPickupNotifier;

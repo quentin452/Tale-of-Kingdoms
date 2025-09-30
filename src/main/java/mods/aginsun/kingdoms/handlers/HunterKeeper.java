@@ -1,6 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- */
+
 package mods.aginsun.kingdoms.handlers;
 
 public class HunterKeeper {

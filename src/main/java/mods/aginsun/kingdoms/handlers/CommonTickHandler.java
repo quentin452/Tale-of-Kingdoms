@@ -1,13 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.common.FMLCommonHandler
- *  cpw.mods.fml.common.ITickHandler
- *  cpw.mods.fml.common.TickType
- *  net.minecraft.world.World
- *  net.minecraft.world.WorldServer
- */
+
 package mods.aginsun.kingdoms.handlers;
 
 import cpw.mods.fml.common.FMLCommonHandler;

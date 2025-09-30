@@ -1,15 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.client.FMLClientHandler
- *  cpw.mods.fml.common.FMLCommonHandler
- *  net.minecraft.client.Minecraft
- *  net.minecraft.command.CommandBase
- *  net.minecraft.command.ICommandSender
- *  net.minecraft.util.ChatMessageComponent
- *  net.minecraft.world.World
- */
+
 package mods.aginsun.kingdoms.util;
 
 import cpw.mods.fml.client.FMLClientHandler;

@@ -1,16 +1,3 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  cpw.mods.fml.client.registry.KeyBindingRegistry
- *  cpw.mods.fml.client.registry.KeyBindingRegistry$KeyHandler
- *  cpw.mods.fml.client.registry.RenderingRegistry
- *  cpw.mods.fml.common.ITickHandler
- *  cpw.mods.fml.common.registry.TickRegistry
- *  cpw.mods.fml.relauncher.Side
- *  net.minecraft.client.model.ModelBiped
- *  net.minecraft.client.renderer.entity.Render
- */
 package mods.aginsun.kingdoms.client;
 
 import cpw.mods.fml.client.registry.KeyBindingRegistry;

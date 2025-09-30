@@ -1,15 +1,4 @@
-/*
- * Decompiled with CFR 0.152.
- * 
- * Could not load the following classes:
- *  net.minecraft.entity.Entity
- *  net.minecraft.entity.EntityList
- *  net.minecraft.entity.player.EntityPlayer
- *  net.minecraft.item.Item
- *  net.minecraft.item.ItemStack
- *  net.minecraft.util.AxisAlignedBB
- *  net.minecraft.world.World
- */
+
 package mods.aginsun.kingdoms.entities;
 
 import java.util.List;
