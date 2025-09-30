@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
@@ -33,11 +34,12 @@ extends EntityNPC {
 
     public boolean interact(EntityPlayer entityplayer) {
         ItemStack itemstack = entityplayer.inventory.getCurrentItem();
-        if (!(itemstack == null || this.hasAxe || itemstack.itemID != 271 && itemstack.itemID != 275 && itemstack.itemID != 258)) {
+        if(itemstack != null && !this.hasAxe && (itemstack.getItem() == Items.wooden_axe || itemstack.getItem() == Items.stone_axe || itemstack.getItem() == Items.iron_axe)) {
             entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, null);
             this.hasAxe = true;
         }
-        if (!(itemstack == null || this.hasPick || itemstack.itemID != 257 && itemstack.itemID != 270 && itemstack.itemID != 274)) {
+
+        if(itemstack != null && !this.hasPick && (itemstack.getItem() == Items.iron_pickaxe || itemstack.getItem() == Items.wooden_pickaxe || itemstack.getItem() == Items.stone_pickaxe)) {
             entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, null);
             this.hasPick = true;
         }
