@@ -61,97 +61,97 @@ extends GuiScreen {
     public void initGui() {
         this.buttonList.clear();
         if (this.item[1] != null) {
-            Item item1 = new ItemStack(this.item[1].intValue(), 1, 0).getItem();
+            Item item1 = Item.getItemById(this.item[1].intValue());
             String s = String.valueOf(item1.getUnlocalizedName()) + ".name";
             s = this.st.translateKey(s);
             this.buttonList.add(new GuiButtonShop(this.item[1], this, 0, this.width / 2 - 90, 40, 90, 20, s));
         }
         if (this.item[2] != null) {
-            Item item2 = new ItemStack(this.item[2].intValue(), 1, 0).getItem();
+            Item item2 = Item.getItemById(this.item[2].intValue());
             String s1 = String.valueOf(item2.getUnlocalizedName()) + ".name";
             s1 = this.st.translateKey(s1);
             this.buttonList.add(new GuiButtonShop(this.item[2], this, 1, this.width / 2 - 90, 60, 90, 20, s1));
         }
         if (this.item[3] != null) {
-            Item item3 = new ItemStack(this.item[3].intValue(), 1, 0).getItem();
+            Item item3 = Item.getItemById(this.item[3].intValue());
             String s2 = String.valueOf(item3.getUnlocalizedName()) + ".name";
             s2 = this.st.translateKey(s2);
             this.buttonList.add(new GuiButtonShop(this.item[3], this, 2, this.width / 2 - 90, 80, 90, 20, s2));
         }
         if (this.item[4] != null) {
-            Item item4 = new ItemStack(this.item[4].intValue(), 1, 0).getItem();
+            Item item4 = Item.getItemById(this.item[4].intValue());
             String s3 = String.valueOf(item4.getUnlocalizedName()) + ".name";
             s3 = this.st.translateKey(s3);
             this.buttonList.add(new GuiButtonShop(this.item[4], this, 3, this.width / 2 - 90, 100, 90, 20, s3));
         }
         if (this.item[5] != null) {
-            Item item5 = new ItemStack(this.item[5].intValue(), 1, 0).getItem();
+            Item item5 = Item.getItemById(this.item[5].intValue());
             String s4 = String.valueOf(item5.getUnlocalizedName()) + ".name";
             s4 = this.st.translateKey(s4);
             this.buttonList.add(new GuiButtonShop(this.item[5], this, 4, this.width / 2 - 90, 120, 90, 20, s4));
         }
         if (this.item[6] != null) {
-            Item item6 = new ItemStack(this.item[6].intValue(), 1, 0).getItem();
+            Item item6 = Item.getItemById(this.item[6].intValue());
             String s5 = String.valueOf(item6.getUnlocalizedName()) + ".name";
             s5 = this.st.translateKey(s5);
             this.buttonList.add(new GuiButtonShop(this.item[6], this, 5, this.width / 2 - 90, 140, 90, 20, s5));
         }
         if (this.item[7] != null) {
-            Item item7 = new ItemStack(this.item[7].intValue(), 1, 0).getItem();
+            Item item7 = Item.getItemById(this.item[7].intValue());
             String s6 = String.valueOf(item7.getUnlocalizedName()) + ".name";
             s6 = this.st.translateKey(s6);
             this.buttonList.add(new GuiButtonShop(this.item[7], this, 6, this.width / 2 - 90, 160, 90, 20, s6));
         }
         if (this.item[8] != null) {
-            Item item8 = new ItemStack(this.item[8].intValue(), 1, 0).getItem();
+            Item item8 = Item.getItemById(this.item[8].intValue());
             String s7 = String.valueOf(item8.getUnlocalizedName()) + ".name";
             s7 = this.st.translateKey(s7);
             this.buttonList.add(new GuiButtonShop(this.item[8], this, 7, this.width / 2 - 90, 180, 90, 20, s7));
         }
         if (this.item[9] != null) {
-            Item item9 = new ItemStack(this.item[9].intValue(), 1, 0).getItem();
+            Item item9 = Item.getItemById(this.item[9].intValue());
             String s8 = String.valueOf(item9.getUnlocalizedName()) + ".name";
             s8 = this.st.translateKey(s8);
             this.buttonList.add(new GuiButtonShop(this.item[9], this, 8, this.width / 2 + 20, 40, 90, 20, s8));
         }
         if (this.item[10] != null) {
-            Item item10 = new ItemStack(this.item[10].intValue(), 1, 0).getItem();
+            Item item10 = Item.getItemById(this.item[10].intValue());
             String s9 = String.valueOf(item10.getUnlocalizedName()) + ".name";
             s9 = this.st.translateKey(s9);
             this.buttonList.add(new GuiButtonShop(this.item[10], this, 9, this.width / 2 + 20, 60, 90, 20, s9));
         }
         if (this.item[11] != null) {
-            Item item11 = new ItemStack(this.item[11].intValue(), 1, 0).getItem();
+            Item item11 = Item.getItemById(this.item[11].intValue());
             String s10 = String.valueOf(item11.getUnlocalizedName()) + ".name";
             s10 = this.st.translateKey(s10);
             this.buttonList.add(new GuiButtonShop(this.item[11], this, 10, this.width / 2 + 20, 80, 90, 20, s10));
         }
         if (this.item[12] != null) {
-            Item item12 = new ItemStack(this.item[12].intValue(), 1, 0).getItem();
+            Item item12 = Item.getItemById(this.item[12].intValue());
             String s11 = String.valueOf(item12.getUnlocalizedName()) + ".name";
             s11 = this.st.translateKey(s11);
             this.buttonList.add(new GuiButtonShop(this.item[12], this, 11, this.width / 2 + 20, 100, 90, 20, s11));
         }
         if (this.item[13] != null) {
-            Item item13 = new ItemStack(this.item[13].intValue(), 1, 0).getItem();
+            Item item13 = Item.getItemById(this.item[13].intValue());
             String s12 = String.valueOf(item13.getUnlocalizedName()) + ".name";
             s12 = this.st.translateKey(s12);
             this.buttonList.add(new GuiButtonShop(this.item[13], this, 12, this.width / 2 + 20, 120, 90, 20, s12));
         }
         if (this.item[14] != null) {
-            Item item14 = new ItemStack(this.item[14].intValue(), 1, 0).getItem();
+            Item item14 = Item.getItemById(this.item[14].intValue());
             String s13 = String.valueOf(item14.getUnlocalizedName()) + ".name";
             s13 = this.st.translateKey(s13);
             this.buttonList.add(new GuiButtonShop(this.item[14], this, 13, this.width / 2 + 20, 140, 90, 20, s13));
         }
         if (this.item[15] != null) {
-            Item item15 = new ItemStack(this.item[15].intValue(), 1, 0).getItem();
+            Item item15 = Item.getItemById(this.item[15].intValue());
             String s14 = String.valueOf(item15.getUnlocalizedName()) + ".name";
             s14 = this.st.translateKey(s14);
             this.buttonList.add(new GuiButtonShop(this.item[15], this, 14, this.width / 2 + 20, 160, 90, 20, s14));
         }
         if (this.item[16] != null) {
-            Item item16 = new ItemStack(this.item[16].intValue(), 1, 0).getItem();
+            Item item16 = Item.getItemById(this.item[16].intValue());
             String s15 = String.valueOf(item16.getUnlocalizedName()) + ".name";
             s15 = this.st.translateKey(s15);
             this.buttonList.add(new GuiButtonShop(this.item[16], this, 15, this.width / 2 + 20, 180, 90, 20, s15));
@@ -179,7 +179,7 @@ extends GuiScreen {
             this.itemSelected = this.item[1];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item1 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item1 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item1.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -195,7 +195,7 @@ extends GuiScreen {
             this.itemSelected = this.item[2];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item2 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item2 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item2.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -211,7 +211,7 @@ extends GuiScreen {
             this.itemSelected = this.item[3];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item3 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item3 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item3.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -227,7 +227,7 @@ extends GuiScreen {
             this.itemSelected = this.item[4];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item4 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item4 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item4.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -243,7 +243,7 @@ extends GuiScreen {
             this.itemSelected = this.item[5];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item5 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item5 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item5.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -259,7 +259,7 @@ extends GuiScreen {
             this.itemSelected = this.item[6];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item6 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item6 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item6.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -275,7 +275,7 @@ extends GuiScreen {
             this.itemSelected = this.item[7];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item7 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item7 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item7.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -291,7 +291,7 @@ extends GuiScreen {
             this.itemSelected = this.item[8];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item8 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item8 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item8.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -307,7 +307,7 @@ extends GuiScreen {
             this.itemSelected = this.item[9];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item9 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item9 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item9.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -323,7 +323,7 @@ extends GuiScreen {
             this.itemSelected = this.item[10];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item10 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item10 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item10.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -339,7 +339,7 @@ extends GuiScreen {
             this.itemSelected = this.item[11];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item11 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item11 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item11.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -355,7 +355,7 @@ extends GuiScreen {
             this.itemSelected = this.item[12];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item12 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item12 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item12.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -371,7 +371,7 @@ extends GuiScreen {
             this.itemSelected = this.item[13];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item13 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item13 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item13.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -387,7 +387,7 @@ extends GuiScreen {
             this.itemSelected = this.item[14];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item14 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item14 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item14.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -403,7 +403,7 @@ extends GuiScreen {
             this.itemSelected = this.item[15];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item15 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item15 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item15.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -419,7 +419,7 @@ extends GuiScreen {
             this.itemSelected = this.item[16];
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item16 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item16 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item16.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -438,7 +438,7 @@ extends GuiScreen {
             this.setItemList();
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item17 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item17 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item17.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -457,7 +457,7 @@ extends GuiScreen {
             this.setItemList();
             this.goldchecker = false;
             if (this.itemSelected != null) {
-                Item item18 = new ItemStack(this.itemSelected.intValue(), 1, 0).getItem();
+                Item item18 = Item.getItemById(this.itemSelected.intValue());
                 this.stringGet = String.valueOf(item18.getUnlocalizedName()) + ".name";
                 if (this.stringGet != null) {
                     this.stringoutput = this.st.translateKey(this.stringGet);
@@ -470,7 +470,7 @@ extends GuiScreen {
             }
         }
         if (guibutton.id == 18) {
-            ItemStack itemstack = new ItemStack(this.itemSelected.intValue(), 1, 0);
+            ItemStack itemstack = new ItemStack(Item.getItemById(this.itemSelected.intValue()), 1, 0);
             Item item19 = itemstack.getItem();
             String s = item19.getUnlocalizedName();
             int i = GoldKeeper.priceItem(s);
@@ -487,7 +487,7 @@ extends GuiScreen {
             }
         }
         if (guibutton.id == 21 && this.shopcounter >= 16) {
-            ItemStack itemstack1 = new ItemStack(this.itemSelected.intValue(), 1, 0);
+            ItemStack itemstack1 = new ItemStack(Item.getItemById(this.itemSelected.intValue()), 1, 0);
             Item item20 = itemstack1.getItem();
             String s1 = item20.getUnlocalizedName();
             int j = GoldKeeper.priceItem(s1);
@@ -514,7 +514,7 @@ extends GuiScreen {
 
     public void drawScreen(int i, int j, float f) {
         if (this.shopcounter < 16) {
-            ItemStack itemstack = new ItemStack(this.itemSelected.intValue(), 1, 0);
+            ItemStack itemstack = new ItemStack(Item.getItemById(this.itemSelected.intValue()), 1, 0);
             Item item1 = itemstack.getItem();
             String s = item1.getUnlocalizedName();
             int i1 = GoldKeeper.priceItem(s);
@@ -556,7 +556,7 @@ extends GuiScreen {
     }
 
     protected void keyTyped(char par1, int par2) {
-        if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode) {
+        if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
             this.mc.thePlayer.closeScreen();
         }
     }
