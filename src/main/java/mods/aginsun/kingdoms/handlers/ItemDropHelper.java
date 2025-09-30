@@ -30,32 +30,9 @@ public class ItemDropHelper {
 
     public static void dropCoins(EntityPlayer player, EntityLivingBase entityLiving) {
         if (ItemDropHelper.isHostileEntity(entityLiving) && !ItemDropHelper.world.isRemote) {
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
-            entityLiving.dropItem(TaleOfKingdoms.coins.itemID, 1);
+            for (int i = 0; i < 26; i++) {
+                entityLiving.dropItem(TaleOfKingdoms.coins, 1);
+            }
         }
     }
 }
