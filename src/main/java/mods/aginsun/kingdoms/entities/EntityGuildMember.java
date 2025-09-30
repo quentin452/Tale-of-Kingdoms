@@ -54,8 +54,8 @@ extends EntityNPC {
         if (UtilToK.guildFightEnded) {
             ItemStack itemstack = entityplayer.inventory.getCurrentItem();
             if (itemstack != null) {
-                if (itemstack.itemID == 268) {
-                    defaultHeldItem = new ItemStack(Item.swordWood, 1);
+                if (itemstack.getItem() == net.minecraft.init.Items.wooden_sword) {
+                    defaultHeldItem = new ItemStack(net.minecraft.init.Items.wooden_sword, 1);
                     entityplayer.inventory.setInventorySlotContents(entityplayer.inventory.currentItem, null);
                     if (!this.worldObj.isRemote) {
                         ChatMessage.add(entityplayer,"Guild Member: Get Ready.");
@@ -117,7 +117,7 @@ extends EntityNPC {
             if (entity instanceof EntityCreeper) {
                 entity.setDead();
             } else if (entity instanceof EntityMob || entity instanceof EntityReficulSoldier || entity instanceof EntityReficulGuardian || entity instanceof EntityReficulMage) {
-                defaultHeldItem = new ItemStack(Item.swordIron, 1);
+                defaultHeldItem = new ItemStack(net.minecraft.init.Items.iron_sword, 1);
                 this.entityToAttack = entity;
             }
         }
