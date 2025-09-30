@@ -7,6 +7,7 @@ import mods.aginsun.kingdoms.handlers.GoldKeeper;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.WorldServer;
@@ -29,28 +30,28 @@ implements IInventory {
                 String s = item.getUnlocalizedName();
                 j = GoldKeeper.priceItem(s);
                 float f = 0.0f;
-                if (item.itemID == Item.flint.itemID) {
+                if (item == Items.flint) {
                     f = GoldKeeper.flint;
                 }
-                if (item.itemID == Item.clay.itemID) {
+                if (item == Items.clay_ball) {
                     f = GoldKeeper.clay;
                 }
-                if (item.itemID == Item.ingotIron.itemID) {
+                if (item == Items.iron_ingot) {
                     f = GoldKeeper.iron;
                 }
-                if (item.itemID == Item.diamond.itemID) {
+                if (item == Items.diamond) {
                     f = GoldKeeper.diamond;
                 }
-                if (item.itemID == Item.fishRaw.itemID) {
+                if (item == Items.fish) {
                     f = GoldKeeper.fish;
                 }
-                if (item.itemID == Item.appleRed.itemID) {
+                if (item == Items.apple) {
                     f = GoldKeeper.apple;
                 }
-                if (item.itemID == Item.silk.itemID) {
+                if (item == Items.string) {
                     f = GoldKeeper.string;
                 }
-                if (item.itemID == Item.feather.itemID) {
+                if (item == Items.feather) {
                     f = GoldKeeper.feather;
                 }
                 j = (int)((float)j + (float)j * (f /= 100.0f));
@@ -95,10 +96,13 @@ implements IInventory {
         return 64;
     }
 
-    public void openChest() {
+    @Override
+    public void openInventory() {
+        // No action needed for opening inventory
     }
 
-    public void closeChest() {
+    @Override
+    public void closeInventory() {
         WorldServer world = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
         EntityClientPlayerMP entityplayer = FMLClientHandler.instance().getClient().thePlayer;
         if (!world.isRemote) {
@@ -106,12 +110,19 @@ implements IInventory {
         }
     }
 
-    public String getInvName() {
+    @Override
+    public String getInventoryName() {
         return "TeSell";
     }
 
-    public boolean isInvNameLocalized() {
+    @Override
+    public boolean hasCustomInventoryName() {
         return false;
+    }
+
+    @Override
+    public void markDirty() {
+        // No action needed for this inventory
     }
 
     public boolean isItemValidForSlot(int i, ItemStack itemstack) {
