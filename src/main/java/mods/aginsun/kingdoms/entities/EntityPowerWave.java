@@ -56,8 +56,7 @@ extends EntityThrowable {
             int j = MathHelper.floor_double((double)this.posY);
             int k = MathHelper.floor_double((double)this.posZ);
             for (int l = j; l > 1; --l) {
-                int i1 = this.worldObj.getBlockId(i, l, k);
-                if (i1 == 0) continue;
+                if (this.worldObj.getBlock(i, l, k) == net.minecraft.init.Blocks.air) continue;
                 j = l;
                 break;
             }
