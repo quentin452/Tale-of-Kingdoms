@@ -84,7 +84,7 @@ extends EntityNPC {
                         if (!this.worldObj.isRemote) {
                             ChatMessage.add(this.player,"Guild Master: My apprentice! The guild is under attack, and I came here to ask for your help. Please let us hurry back to the guild!");
                         }
-                        ItemStack itemstack = new ItemStack(267, 1, 0);
+                        ItemStack itemstack = new ItemStack(Items.iron_sword, 1);
                         EntityItem entityitem = new EntityItem(this.worldObj, this.player.posX, this.player.posY, this.player.posZ, itemstack);
                         this.player.joinEntityItemWithWorld(entityitem);
                     } else if (this.talk > 2 && this.talk < 5 && !this.worldObj.isRemote) {
@@ -96,10 +96,10 @@ extends EntityNPC {
                 } else {
                     this.get = true;
                     InventoryPlayer inventoryplayer = entityplayer.inventory;
-                    if (inventoryplayer.hasItem(17)) {
+                    if (inventoryplayer.hasItem(Item.getItemFromBlock(net.minecraft.init.Blocks.log))) {
                         for (int i2 = 0; i2 < inventoryplayer.mainInventory.length; ++i2) {
                             ItemStack itemstack1;
-                            if (inventoryplayer.mainInventory[i2] == null || inventoryplayer.mainInventory[i2].itemID != 17 || itemstack1.stackSize != (itemstack1 = inventoryplayer.getStackInSlot(i2)).getMaxStackSize() || !this.get) continue;
+                            if (inventoryplayer.mainInventory[i2] == null || inventoryplayer.mainInventory[i2].getItem() != Item.getItemFromBlock(net.minecraft.init.Blocks.log) || (itemstack1 = inventoryplayer.getStackInSlot(i2)).stackSize != itemstack1.getMaxStackSize() || !this.get) continue;
                             this.get = false;
                             inventoryplayer.setInventorySlotContents(i2, null);
                         }
@@ -169,7 +169,8 @@ extends EntityNPC {
             int k = MathHelper.floor_double((double)entity.boundingBox.minY);
             for (int l = 0; l <= 4; ++l) {
                 for (int i1 = 0; i1 <= 4; ++i1) {
-                    if (l >= 1 && i1 >= 1 && l <= 3 && i1 <= 3 || !this.worldObj.isBlockNormalCube(i + l, k - 1, j + i1) || this.worldObj.isBlockNormalCube(i + l, k, j + i1) || this.worldObj.isBlockNormalCube(i + l, k + 1, j + i1)) continue;
+                    if (l >= 1 && i1 >= 1 && l <= 3 && i1 <= 3) continue;
+                    if (!this.worldObj.getBlock(i + l, k - 1, j + i1).isNormalCube() || this.worldObj.getBlock(i + l, k, j + i1).isNormalCube() || this.worldObj.getBlock(i + l, k + 1, j + i1).isNormalCube()) continue;
                     this.setLocationAndAngles((float)(i + l) + 0.5f, k, (float)(j + i1) + 0.5f, this.rotationYaw, this.rotationPitch);
                     return;
                 }
@@ -180,7 +181,7 @@ extends EntityNPC {
     }
 
     protected void attackEntity(Entity entity, float f) {
-        if (new ItemStack((Item)Item.swordIron, (int)1).itemID == 267 && this.attackTime <= 0 && f < 2.0f && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY) {
+        if (new ItemStack(Items.iron_sword, 1).getItem() == Items.iron_sword && this.attackTime <= 0 && f < 2.0f && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY) {
             this.swingItem();
             this.attackTime = 20;
             this.attackEntityAsMob(entity);
