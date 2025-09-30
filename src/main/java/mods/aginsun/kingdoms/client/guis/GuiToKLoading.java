@@ -22,7 +22,7 @@ extends GuiScreenToK {
         if (guibutton.id == 1) {
             // Cancel any ongoing building process when exit is pressed
             if (!SchematicHandler.getInstance().getBuildingList().isEmpty()) {
-                SchematicHandler.getInstance().cancelCurrentBuilding(this.mc.theWorld);
+                SchematicHandler.getInstance().cancelCurrentBuilding();
                 // Reset the conquest state since the guild building was cancelled
                 Buildings.createGuild = false;
                 Buildings.setBuildingState(false, 0);
