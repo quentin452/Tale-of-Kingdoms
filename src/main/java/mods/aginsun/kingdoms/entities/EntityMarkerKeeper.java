@@ -7,7 +7,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.src.ModLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 
 public class EntityMarkerKeeper
@@ -20,7 +20,7 @@ extends Entity {
         super(world1);
         this.world = world1;
         this.setSize(5.0E-6f, 5.0E-6f);
-        Minecraft minecraft = ModLoader.getMinecraftInstance();
+        Minecraft minecraft = Minecraft.getMinecraft();
         this.player = minecraft.thePlayer;
     }
 

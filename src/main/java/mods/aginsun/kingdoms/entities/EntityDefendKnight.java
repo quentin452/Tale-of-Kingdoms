@@ -22,7 +22,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.potion.Potion;
-import net.minecraft.src.ModLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -65,7 +65,7 @@ extends EntityNPC {
 
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        Minecraft minecraft = ModLoader.getMinecraftInstance();
+        Minecraft minecraft = Minecraft.getMinecraft();
         EntityClientPlayerMP entityplayersp = minecraft.thePlayer;
         if (this.follow) {
             if (entityplayersp != null) {

@@ -10,7 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.src.ModLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 import mods.aginsun.kingdoms.util.ChatMessage;
 
@@ -54,7 +54,7 @@ extends EntityNPC {
     public boolean interact(EntityPlayer entityplayer) {
         if (this.canInteractWith(entityplayer)) {
             this.heal(100.0f);
-            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            Minecraft minecraft = Minecraft.getMinecraft();
             if (!this.worldObj.isRemote) {
                 ChatMessage.add(entityplayer,"Head Mage: Welcome to the mage hall, hero.");
             }

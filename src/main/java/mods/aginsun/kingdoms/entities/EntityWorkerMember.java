@@ -14,7 +14,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathEntity;
-import net.minecraft.src.ModLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -48,7 +48,7 @@ extends EntityNPC {
         this.marker2 = null;
         this.worldObj = world;
         this.isImmuneToFire = false;
-        Minecraft minecraft = ModLoader.getMinecraftInstance();
+        Minecraft minecraft = Minecraft.getMinecraft();
         this.player = minecraft.thePlayer;
     }
 
@@ -60,7 +60,7 @@ extends EntityNPC {
     public boolean interact(EntityPlayer entityplayer) {
         boolean flag = false;
         if (this.worktype == 0) {
-            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            Minecraft minecraft = Minecraft.getMinecraft();
             minecraft.displayGuiScreen((GuiScreen)new GuiWorker(entityplayer, this.worldObj, this));
         }
         if (!this.worldObj.loadedEntityList.isEmpty()) {
@@ -228,7 +228,7 @@ extends EntityNPC {
             defaultHeldItem = null;
             this.follow = false;
             this.worktype = 0;
-            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            Minecraft minecraft = Minecraft.getMinecraft();
             minecraft.displayGuiScreen((GuiScreen)new GuiWorker((EntityPlayer)entity, this.worldObj, this));
         }
         return true;

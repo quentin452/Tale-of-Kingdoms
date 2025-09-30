@@ -7,7 +7,7 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathEntity;
-import net.minecraft.src.ModLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import mods.aginsun.kingdoms.util.ChatMessage;
@@ -51,7 +51,7 @@ extends EntityNPC {
     public void onLivingUpdate() {
         super.onLivingUpdate();
         if (!this.follow) {
-            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            Minecraft minecraft = Minecraft.getMinecraft();
             EntityClientPlayerMP entityplayersp = minecraft.thePlayer;
             if (entityplayersp != null) {
                 float f = entityplayersp.getDistanceToEntity((Entity)this);

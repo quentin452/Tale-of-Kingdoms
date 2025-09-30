@@ -9,7 +9,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.src.ModLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 
 public class EntityFarmerKeeper
@@ -33,7 +33,7 @@ extends EntityNPC {
     }
 
     public boolean interact(EntityPlayer entityplayer) {
-        Minecraft minecraft = ModLoader.getMinecraftInstance();
+        Minecraft minecraft = Minecraft.getMinecraft();
         if (this.canInteractWith(entityplayer)) {
             minecraft.displayGuiScreen((GuiScreen)new GuiFoodKeeper(entityplayer, this.worldObj));
         }

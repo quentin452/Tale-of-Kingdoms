@@ -14,7 +14,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
-import net.minecraft.src.ModLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.StringTranslate;
 import net.minecraft.world.World;
 
@@ -59,7 +59,7 @@ extends EntityNPC {
     public boolean interact(EntityPlayer entityplayer) {
         if (this.canInteractWith(entityplayer)) {
             this.heal(100.0f);
-            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            Minecraft minecraft = Minecraft.getMinecraft();
             int i = 0;
             int j = 0;
             String s = "";

@@ -6,7 +6,7 @@ import mods.aginsun.kingdoms.entities.EntityNPC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.src.ModLoader;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 import mods.aginsun.kingdoms.util.ChatMessage;
 
@@ -35,7 +35,7 @@ extends EntityNPC {
             ChatMessage.add(entityplayer,"One-Eyed Gambler: Feeling a bit lucky eh?");
         }
         if (this.canInteractWith(entityplayer)) {
-            Minecraft minecraft = ModLoader.getMinecraftInstance();
+            Minecraft minecraft = Minecraft.getMinecraft();
             minecraft.displayGuiScreen((GuiScreen)new GuiTavernGame(entityplayer, this.worldObj));
         }
         return true;
