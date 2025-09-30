@@ -29,7 +29,7 @@ extends GuiScreenToK {
     protected void actionPerformed(GuiButton guibutton) {
         if (guibutton.id == 1) {
             this.player = this.mc.thePlayer;
-            Schematic schematic = new Schematic("/mods/aginsun/kingdoms/schematics/GuildCastle").setPosition((int)this.player.posX, (int)this.player.posY, (int)this.player.posZ).setSpeed(75);
+            Schematic schematic = new Schematic("GuildCastle").setPosition((int)this.player.posX, (int)this.player.posY, (int)this.player.posZ).setSpeed(75);
             SchematicHandler.getInstance().addBuilding(schematic);
             Buildings.setBuildingTrue(0);
             this.mc.displayGuiScreen(null);

@@ -25,28 +25,50 @@ public class Schematic {
     public int speed;
 
     public Schematic(String s) {
-        InputStream entityData = TaleOfKingdoms.class.getResourceAsStream(s + ".dat");
-        InputStream schematicData = TaleOfKingdoms.class.getResourceAsStream(s + ".schematic");
+        InputStream entityData = TaleOfKingdoms.class.getResourceAsStream("/assets/taleofkingdoms/schematics/" + s + ".dat");
+        InputStream schematicData = TaleOfKingdoms.class.getResourceAsStream("/assets/taleofkingdoms/schematics/" + s + ".schematic");
         NBTTagCompound nbtSchematic = null;
         NBTTagCompound nbtEntities = null;
+        
+        // Check if resources exist before trying to read them
+        if (schematicData == null) {
+            System.err.println("Could not find schematic resource: /assets/taleofkingdoms/schematics/" + s + ".schematic");
+            return;
+        }
+        if (entityData == null) {
+            System.err.println("Could not find entity data resource: /assets/taleofkingdoms/schematics/" + s + ".dat");
+            return;
+        }
+        
         try {
-            nbtSchematic = CompressedStreamTools.readCompressed((InputStream)schematicData);
-            nbtEntities = CompressedStreamTools.readCompressed((InputStream)entityData);
+            nbtSchematic = CompressedStreamTools.readCompressed(schematicData);
+            nbtEntities = CompressedStreamTools.readCompressed(entityData);
         }
         catch (IOException e) {
+            System.err.println("Error reading schematic files for: " + s);
             e.printStackTrace();
+            return;
         }
-        this.writeSchematic(nbtSchematic);
-        if (s.contains("Tier4")) {
-            this.writeEntitiesTier4(nbtEntities);
-        } else if (s.contains("Tier3")) {
-            this.writeEntitiesTier3(nbtEntities);
-        } else {
-            this.writeEntities(nbtEntities);
+        if (nbtSchematic != null) {
+            this.writeSchematic(nbtSchematic);
+        }
+        
+        if (nbtEntities != null) {
+            if (s.contains("Tier4")) {
+                this.writeEntitiesTier4(nbtEntities);
+            } else if (s.contains("Tier3")) {
+                this.writeEntitiesTier3(nbtEntities);
+            } else {
+                this.writeEntities(nbtEntities);
+            }
         }
     }
 
     private void writeSchematic(NBTTagCompound nbt) {
+        if (nbt == null) {
+            System.err.println("NBT data is null, cannot write schematic");
+            return;
+        }
         this.height = nbt.getShort("Height");
         this.length = nbt.getShort("Length");
         this.width = nbt.getShort("Width");
@@ -73,6 +95,10 @@ public class Schematic {
     }
 
     private void writeEntities(NBTTagCompound nbt) {
+        if (nbt == null) {
+            System.err.println("NBT entity data is null, cannot write entities");
+            return;
+        }
         NBTTagList list = nbt.getTagList("Entities", 10); // 10 = NBTTagCompound
         for (int i = 0; i < list.tagCount(); ++i) {
             NBTTagCompound nbt1 = list.getCompoundTagAt(i);
@@ -85,6 +111,10 @@ public class Schematic {
     }
 
     private void writeEntitiesTier4(NBTTagCompound nbt) {
+        if (nbt == null) {
+            System.err.println("NBT entity data is null, cannot write Tier4 entities");
+            return;
+        }
         NBTTagList list = nbt.getTagList("Entities", 10);
         for (int i = 0; i < list.tagCount(); ++i) {
             NBTTagCompound nbt1 = list.getCompoundTagAt(i);
@@ -97,6 +127,10 @@ public class Schematic {
     }
 
     private void writeEntitiesTier3(NBTTagCompound nbt) {
+        if (nbt == null) {
+            System.err.println("NBT entity data is null, cannot write Tier3 entities");
+            return;
+        }
         NBTTagList list = nbt.getTagList("Entities", 10);
         for (int i = 0; i < list.tagCount(); ++i) {
             NBTTagCompound nbt1 = list.getCompoundTagAt(i);
