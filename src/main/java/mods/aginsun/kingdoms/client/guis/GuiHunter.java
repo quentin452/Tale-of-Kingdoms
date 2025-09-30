@@ -77,10 +77,10 @@ extends GuiScreenToK {
         if (guibutton.id == 4) {
             InventoryPlayer inventoryplayer = this.player.inventory;
             boolean flag = false;
-            if (inventoryplayer.hasItem(17)) {
+            if (inventoryplayer.hasItem(net.minecraft.init.Items.stone_shovel)) {
                 for (int j = 0; j < inventoryplayer.mainInventory.length; ++j) {
                     ItemStack itemstack;
-                    if (inventoryplayer.mainInventory[j] == null || inventoryplayer.mainInventory[j].itemID != 17 || itemstack.stackSize != (itemstack = inventoryplayer.getStackInSlot(j)).getMaxStackSize() || flag) continue;
+                    if (inventoryplayer.mainInventory[j] == null || inventoryplayer.mainInventory[j].getItem() != net.minecraft.init.Items.stone_shovel || (itemstack = inventoryplayer.getStackInSlot(j)).stackSize != itemstack.getMaxStackSize() || flag) continue;
                     inventoryplayer.setInventorySlotContents(j, null);
                     flag = true;
                 }
