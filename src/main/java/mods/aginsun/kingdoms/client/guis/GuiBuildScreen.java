@@ -176,14 +176,14 @@ extends GuiScreenToK {
         if (guibutton.id == 1) {
             this.mc.displayGuiScreen(null);
         } else if (guibutton.id == 2) {
-            int j = this.mc.thePlayer.inventory.getInventorySlotContainItem(Block.wood.blockID);
-            if (j >= 0 && this.mc.thePlayer.inventory.getStackInSlot((int)j).stackSize == 64) {
+            int j = this.findFullStackSlot(this.mc.thePlayer, net.minecraft.item.Item.getItemFromBlock(net.minecraft.init.Blocks.log));
+            if (j >= 0) {
                 this.mc.thePlayer.inventory.setInventorySlotContents(j, null);
                 ResourceHandler.getInstance().addwoodResource(64);
             }
         } else if (guibutton.id == 3) {
-            int j = this.mc.thePlayer.inventory.getInventorySlotContainItem(Block.cobblestone.blockID);
-            if (j >= 0 && this.mc.thePlayer.inventory.getStackInSlot((int)j).stackSize == 64) {
+            int j = this.findFullStackSlot(this.mc.thePlayer, net.minecraft.item.Item.getItemFromBlock(net.minecraft.init.Blocks.cobblestone));
+            if (j >= 0) {
                 this.mc.thePlayer.inventory.setInventorySlotContents(j, null);
                 ResourceHandler.getInstance().addcobbleResource(64);
             }
@@ -451,6 +451,17 @@ extends GuiScreenToK {
         this.drawString(this.fontRendererObj, "0       160      320 ", this.width / 2 - 100, 30, 0xFFFFFF);
         this.drawString(this.fontRendererObj, "logs Resource", this.width / 2, 40, 0xFFCC00);
         this.drawString(this.fontRendererObj, "CobbleStone Resource", this.width / 2, 60, 0xFFCC00);
+    }
+
+    // Helper method to find a slot with a full stack of the given item
+    private int findFullStackSlot(EntityPlayer player, net.minecraft.item.Item item) {
+        for (int i = 0; i < player.inventory.mainInventory.length; i++) {
+            net.minecraft.item.ItemStack stack = player.inventory.mainInventory[i];
+            if (stack != null && stack.getItem() == item && stack.stackSize == 64) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
 
