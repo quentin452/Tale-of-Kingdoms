@@ -8,12 +8,13 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
 import net.minecraft.world.World;
 
 public class EntityStableMaster
 extends EntityNPC {
     public EntityStableMaster(World par1World) {
-        super(par1World, new ItemStack(Item.leash), 40.0f);
+        super(par1World, new ItemStack(Items.lead), 40.0f);
     }
 
     @Override

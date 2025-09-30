@@ -9,12 +9,13 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public class EntityKingdomWorker
 extends EntityNPC {
-    public static ItemStack defaultHeldItem = new ItemStack(Item.axeIron, 1);
+    public static ItemStack defaultHeldItem = new ItemStack(Items.iron_axe, 1);
     public Entity marker2 = null;
     private World worldObj;
     private int counter = 0;

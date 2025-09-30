@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -18,7 +19,7 @@ import net.minecraft.world.World;
 
 public class EntityReficulSoldier
 extends EntityNPC {
-    private static ItemStack defaultHeldItem = new ItemStack(Item.swordIron, 1);
+    private static ItemStack defaultHeldItem = new ItemStack(Items.iron_sword, 1);
     private EntityPlayer player;
     private boolean playerPresence = true;
     private Random rand = new Random();

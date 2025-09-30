@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
@@ -16,7 +17,7 @@ import net.minecraft.world.World;
 
 public class EntityReficulMage
 extends EntityNPC {
-    private static ItemStack defaultHeldItem = new ItemStack(Item.stick, 1);
+    private static ItemStack defaultHeldItem = new ItemStack(Items.stick, 1);
     private EntityPlayer player;
     private boolean playerPresence = true;
     private Random rand = new Random();

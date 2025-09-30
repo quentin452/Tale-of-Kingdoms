@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.AxisAlignedBB;
@@ -38,7 +39,7 @@ extends EntityNPC {
     protected int attackStrength;
 
     public EntityGuildMaster(World world) {
-        super(world, new ItemStack(Item.swordIron, 1), 100.0f);
+        super(world, new ItemStack(Items.iron_sword, 1), 100.0f);
         this.rand = new Random();
         this.talk = 0;
         this.counterHeal = 0;

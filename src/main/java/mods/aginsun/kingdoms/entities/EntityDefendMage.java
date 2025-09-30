@@ -23,6 +23,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.potion.Potion;
 import net.minecraft.client.Minecraft;
@@ -44,7 +45,7 @@ extends EntityNPC {
     public EntityDefendMage(World world) {
         super(world, defaultHeldItem, 40.0f);
         this.player = FMLClientHandler.instance().getClient().thePlayer;
-        defaultHeldItem = new ItemStack(Item.stick, 1);
+        defaultHeldItem = new ItemStack(Items.stick, 1);
         this.follow = false;
         this.checkPlayer = true;
         this.worldObj = world;

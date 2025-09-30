@@ -21,6 +21,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.AxisAlignedBB;
@@ -32,7 +33,7 @@ public class EntityDefendPriest
 extends EntityNPC {
     private World worldObj = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
     private EntityPlayer player;
-    private static ItemStack defaultHeldItem = new ItemStack(Item.stick, 1);
+    private static ItemStack defaultHeldItem = new ItemStack(Items.stick, 1);
     private boolean follow;
     private boolean checkPlayer;
     private int healCounter;

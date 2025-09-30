@@ -26,6 +26,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.AxisAlignedBB;
@@ -37,7 +38,7 @@ import mods.aginsun.kingdoms.util.ChatMessage;
 public class EntityDefendBandit
 extends EntityNPC {
     private EntityPlayer player;
-    private static ItemStack defaultHeldItem = new ItemStack((Item)Item.bow, 1);
+    private static ItemStack defaultHeldItem = new ItemStack(Items.bow, 1);
     private boolean follow;
     private boolean checkPlayer;
     private boolean createdMarker;

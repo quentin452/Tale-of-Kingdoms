@@ -9,12 +9,13 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 
 public class EntityFarmerKeeper
 extends EntityNPC {
-    private static ItemStack defaultHeldItem = new ItemStack(Item.hoeIron, 1);
+    private static ItemStack defaultHeldItem = new ItemStack(Items.iron_hoe, 1);
     public static GoldKeeper gold;
 
     public EntityFarmerKeeper(World world) {

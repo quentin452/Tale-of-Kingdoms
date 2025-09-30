@@ -8,12 +8,13 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
 import net.minecraft.world.World;
 
 public class EntityFisher
 extends EntityNPC {
     public EntityFisher(World par1World) {
-        super(par1World, new ItemStack((Item)Item.fishingRod), 40.0f);
+        super(par1World, new ItemStack(Items.fishing_rod), 40.0f);
     }
 
     @Override
