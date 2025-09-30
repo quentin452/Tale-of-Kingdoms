@@ -76,7 +76,7 @@ extends EntityNPC {
         this.marker2 = EntityList.createEntityByName((String)"Marker2", (World)this.worldObj);
         this.marker2.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0f, 0.0f);
         this.worldObj.spawnEntityInWorld(this.marker2);
-        defaultHeldItem = new ItemStack(Item.pickaxeIron, 1);
+        defaultHeldItem = new ItemStack(Items.iron_pickaxe, 1);
         System.out.println("marker");
     }
 }
