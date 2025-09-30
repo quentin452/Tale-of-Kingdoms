@@ -25,10 +25,14 @@ extends CommandBase {
 
     public void processCommand(ICommandSender sender, String[] args) {
         if (args.length > 0 && args[0].equals("worthy")) {
+            float oldWorthy = WorthyKeeper.getInstance().getWorthy();
             WorthyKeeper.getInstance().addWorthy(10000.0f);
+            float newWorthy = WorthyKeeper.getInstance().getWorthy();
+            sendMessage(sender, "Added 10000 worthy points! Worthy: " + oldWorthy + " -> " + newWorthy);
         } else if (args.length > 0) {
             ResourceHandler.getInstance().addcobbleResource(2400);
             ResourceHandler.getInstance().addwoodResource(2400);
+            sendMessage(sender, "Added 2400 cobble and 2400 wood resources!");
         } else {
             sendMessage(sender, "Usage: /tok worthy or /tok <anything else>");
         }
@@ -39,7 +43,17 @@ extends CommandBase {
     }
 
     public String getCommandUsage(ICommandSender icommandsender) {
-        return null;
+        return "/tok [worthy] - Tale of Kingdoms commands";
+    }
+
+    @Override
+    public int getRequiredPermissionLevel() {
+        return 2; // OP level 2 required
+    }
+
+    @Override
+    public boolean canCommandSenderUseCommand(ICommandSender sender) {
+        return sender.canCommandSenderUseCommand(this.getRequiredPermissionLevel(), this.getCommandName());
     }
 }
 
