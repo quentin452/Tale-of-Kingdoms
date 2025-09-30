@@ -1,20 +1,29 @@
 
 package mods.aginsun.kingdoms.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.util.IIcon;
 
-public class Itemcoins
-extends Item {
-    public Itemcoins(int i) {
-        super(i);
+public class Itemcoins extends Item {
+    private IIcon icon;
+
+    public Itemcoins() {
+        super();
         this.maxStackSize = 1;
         this.setCreativeTab(CreativeTabs.tabMaterials);
+        this.setUnlocalizedName("coins");
     }
 
-    public void registerIcons(IconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon("taleofkingdoms:coins");
+    @Override
+    public void registerIcons(IIconRegister reg) {
+        this.icon = reg.registerIcon("taleofkingdoms:coins");
+    }
+
+    @Override
+    public IIcon getIconFromDamage(int meta) {
+        return this.icon;
     }
 }
 
