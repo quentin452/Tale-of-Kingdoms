@@ -67,8 +67,8 @@ extends EntityNPC {
             if (this.worldObj.blockExists(i, j = MathHelper.floor_double((double)this.posY), k = MathHelper.floor_double((double)this.posZ))) {
                 boolean flag1 = false;
                 while (!flag1 && j > 0) {
-                    int i1 = this.worldObj.getBlockId(i, j - 1, k);
-                    if (i1 == 0 || !Block.blocksList[i1].blockMaterial.isSolid()) {
+                    net.minecraft.block.Block blockBelow = this.worldObj.getBlock(i, j - 1, k);
+                    if (blockBelow.isAir(this.worldObj, i, j - 1, k) || !blockBelow.getMaterial().isSolid()) {
                         this.posY -= 1.0;
                         --j;
                         continue;
@@ -174,6 +174,7 @@ extends EntityNPC {
         }
         if (this.player != null) {
             if (this.player.getDistanceSqToEntity((Entity)this) <= 220.0 && this.worldObj.difficultySetting != 0) {
+            if (this.player.getDistanceSqToEntity((Entity)this) <= 220.0 && this.worldObj.difficultySetting != net.minecraft.world.EnumDifficulty.PEACEFUL) {
                 this.playerPresence = false;
                 if (this.rand.nextInt(6) == 0) {
                     this.teleportToEntity((Entity)this.player);
@@ -191,14 +192,14 @@ extends EntityNPC {
 
     protected Entity findPlayerToAttack() {
         EntityPlayer entityplayer = this.worldObj.getClosestPlayerToEntity((Entity)this, 16.0);
-        if (entityplayer != null && this.canEntityBeSeen((Entity)entityplayer) && this.worldObj.difficultySetting != 0) {
+        if (entityplayer != null && this.canEntityBeSeen((Entity)entityplayer) && this.worldObj.difficultySetting != net.minecraft.world.EnumDifficulty.PEACEFUL) {
             return entityplayer;
         }
         return null;
     }
 
     public boolean attackEntityFrom(DamageSource damagesource, int i) {
-        if (!this.playerPresence && this.worldObj.difficultySetting != 0) {
+        if (!this.playerPresence && this.worldObj.difficultySetting != net.minecraft.world.EnumDifficulty.PEACEFUL) {
             if (super.attackEntityFrom(damagesource, (float)i)) {
                 Entity entity = damagesource.getSourceOfDamage();
                 if (this.riddenByEntity == entity || this.ridingEntity == entity) {
