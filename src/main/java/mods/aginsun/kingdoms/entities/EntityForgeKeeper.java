@@ -4,6 +4,8 @@ import mods.aginsun.kingdoms.client.guis.GuiShopList;
 import mods.aginsun.kingdoms.entities.EntityNPC;
 import mods.aginsun.kingdoms.handlers.GoldKeeper;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,21 +38,32 @@ extends EntityNPC {
             this.heal(100.0f);
             Minecraft minecraft = Minecraft.getMinecraft();
             int i = 0;
-            for (int j = 0; j < 256; ++j) {
-                String s2;
-                String s1;
-                Item item;
-                ItemStack itemstack;
-                if (Block.blocksList[j] == null || (itemstack = new ItemStack(Block.blocksList[j].blockID, 1, 0)) == null || (item = itemstack.getItem()) == null || (s1 = item.getUnlocalizedName()) == null) continue;
+            for (Object obj : Block.blockRegistry) {
+                Block block = (Block) obj;
+                if (block == null) continue;
+                Item item = Item.getItemFromBlock(block);
+                if (item == null) continue;
+                String s1 = item.getUnlocalizedName();
+                if (s1 == null) continue;
                 int k = GoldKeeper.priceItem(s1);
-                if (itemstack == null || (s2 = String.valueOf(item.getUnlocalizedName()) + ".name") == null) continue;
+                String s2 = String.valueOf(item.getUnlocalizedName()) + ".name";
                 String s3 = this.st.translateKey(s2);
-                int l = itemstack.itemID;
-                if (l == 26 || l == 34 || l == 36 || l == 43 || l == 51 || l == 52 || l == 55 || l == 59 || l == 60 || l == 62 || l == 63 || l == 64 || l == 68 || l == 71 || l == 74 || l == 75 || l == 78 || l == 90 || l == 93 || l == 94 || l == 97 || l == 99 || l == 100 || l == 104 || l == 105 || l == 110 || l == 92 || l == Item.clay.itemID || l == Item.ingotIron.itemID || l == Item.diamond.itemID || l == Item.fishRaw.itemID || l == Item.appleRed.itemID || l == Item.silk.itemID || l == Item.feather.itemID) {
+                int l = Item.getIdFromItem(item);
+                if (item == Items.mushroom_stew || item == Items.wooden_hoe || item == Items.iron_hoe || 
+                    item == Items.leather_chestplate || item == Items.spawn_egg || 
+                    item == Items.redstone || item == Items.wheat_seeds || item == Items.wheat || 
+                    item == Items.bread || item == Items.wooden_door || item == Items.iron_door || 
+                    item == Items.snowball || item == Items.fishing_rod || 
+                    item == Items.cooked_fished || item == Items.fish || item == Items.sugar || 
+                    item == Items.bed || item == Items.repeater || item == Items.cake || 
+                    item == Items.pumpkin_seeds || item == Items.melon_seeds || item == Items.cooked_chicken || 
+                    item == Items.glowstone_dust || item == Items.clay_ball || item == Items.iron_ingot || 
+                    item == Items.diamond || item == Items.apple || 
+                    item == Items.string || item == Items.feather) {
                     k = 0;
                 }
                 if (k <= 0 || s2.equals("null.name") || s2.equals(s3)) continue;
-                this.itemget[i] = itemstack.itemID;
+                this.itemget[i] = l;
                 ++i;
             }
             minecraft.displayGuiScreen((GuiScreen)new GuiShopList(entityplayer, this.worldObj, this.itemget));
