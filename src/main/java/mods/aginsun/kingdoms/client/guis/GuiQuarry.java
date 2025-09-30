@@ -13,6 +13,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import mods.aginsun.kingdoms.util.ChatMessage;
 
@@ -38,7 +39,7 @@ extends GuiScreenToK {
 
     protected void actionPerformed(GuiButton guibutton) {
         if (guibutton.id == 1 && ResourceHandler.getInstance().getCobblePool() >= 64) {
-            ItemStack itemstack = new ItemStack(4, 64, 0);
+            ItemStack itemstack = new ItemStack(Blocks.cobblestone, 64, 0);
             EntityItem entityitem = new EntityItem(this.worldObj, this.entityplayer.posX, this.entityplayer.posY, this.entityplayer.posZ, itemstack);
             this.worldObj.spawnEntityInWorld((Entity)entityitem);
             this.goldchecker = false;
