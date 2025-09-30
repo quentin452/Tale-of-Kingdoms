@@ -11,6 +11,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -19,7 +20,7 @@ import mods.aginsun.kingdoms.util.ChatMessage;
 public class EntityLoneTraveller
 extends EntityNPC {
     private World worldObj = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
-    private static ItemStack defaultHeldItem = new ItemStack(Item.swordIron, 1);
+    private static ItemStack defaultHeldItem = new ItemStack(Items.iron_sword, 1);
 
     public EntityLoneTraveller(World world) {
         super(world, defaultHeldItem, 20.0f);
