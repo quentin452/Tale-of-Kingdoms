@@ -52,20 +52,30 @@ public class Schematic {
         this.width = nbt.getShort("Width");
         this.blocksArray = nbt.getByteArray("Blocks");
         this.dataArray = nbt.getByteArray("Data");
+        byte[] addBlocks = nbt.hasKey("AddBlocks") ? nbt.getByteArray("AddBlocks") : null;
         for (int y = 0; y < this.height; ++y) {
             for (int x = 0; x < this.width; ++x) {
                 for (int z = 0; z < this.length; ++z) {
                     int index = y * this.width * this.length + z * this.width + x;
-                    this.blockList.add(new FakeBlock(this.blocksArray[index], this.dataArray[index], x, y, z));
+                    int blockId = this.blocksArray[index] & 0xFF;
+                    if (addBlocks != null) {
+                        int halfIndex = index >> 1;
+                        if ((index & 1) == 0) {
+                            blockId |= (addBlocks[halfIndex] & 0x0F) << 8;
+                        } else {
+                            blockId |= (addBlocks[halfIndex] & 0xF0) << 4;
+                        }
+                    }
+                    this.blockList.add(new FakeBlock(blockId, this.dataArray[index], x, y, z));
                 }
             }
         }
     }
 
     private void writeEntities(NBTTagCompound nbt) {
-        NBTTagList list = nbt.getTagList("Entities");
+        NBTTagList list = nbt.getTagList("Entities", 10); // 10 = NBTTagCompound
         for (int i = 0; i < list.tagCount(); ++i) {
-            NBTTagCompound nbt1 = (NBTTagCompound)list.tagAt(i);
+            NBTTagCompound nbt1 = list.getCompoundTagAt(i);
             String s = nbt1.getString("EntityName");
             double posX = nbt1.getDouble("posX");
             double posY = nbt1.getDouble("posY");
@@ -75,9 +85,9 @@ public class Schematic {
     }
 
     private void writeEntitiesTier4(NBTTagCompound nbt) {
-        NBTTagList list = nbt.getTagList("Entities");
+        NBTTagList list = nbt.getTagList("Entities", 10);
         for (int i = 0; i < list.tagCount(); ++i) {
-            NBTTagCompound nbt1 = (NBTTagCompound)list.tagAt(i);
+            NBTTagCompound nbt1 = list.getCompoundTagAt(i);
             String s = nbt1.getString("EntityName");
             double posX = nbt1.getDouble("posX");
             double posY = nbt1.getDouble("posY");
@@ -87,9 +97,9 @@ public class Schematic {
     }
 
     private void writeEntitiesTier3(NBTTagCompound nbt) {
-        NBTTagList list = nbt.getTagList("Entities");
+        NBTTagList list = nbt.getTagList("Entities", 10);
         for (int i = 0; i < list.tagCount(); ++i) {
-            NBTTagCompound nbt1 = (NBTTagCompound)list.tagAt(i);
+            NBTTagCompound nbt1 = list.getCompoundTagAt(i);
             String s = nbt1.getString("EntityName");
             double posX = nbt1.getDouble("posX");
             double posY = nbt1.getDouble("posY");
