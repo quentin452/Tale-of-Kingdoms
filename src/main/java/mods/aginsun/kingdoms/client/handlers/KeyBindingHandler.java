@@ -26,7 +26,7 @@ extends KeyBindingRegistry.KeyHandler {
     }
 
     public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {
-        if (FMLClientHandler.instance().getClient().currentScreen == null && kb.keyCode == KeyBindingHandler.key.keyCode && !Buildings.getBuilding(0)) {
+        if (FMLClientHandler.instance().getClient().currentScreen == null && kb.getKeyCode() == KeyBindingHandler.key.getKeyCode() && !Buildings.getBuilding(0)) {
             FMLCommonHandler.instance().showGuiScreen((Object)new GuiStartConquest(Minecraft.getMinecraft()));
         }
     }
