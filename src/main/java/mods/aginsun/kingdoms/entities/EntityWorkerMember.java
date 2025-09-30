@@ -13,6 +13,8 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
+import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.AxisAlignedBB;
@@ -83,12 +85,12 @@ extends EntityNPC {
                     for (int l = 0; l < 10; ++l) {
                         int i1 = (int)this.posZ - 5;
                         while ((double)i1 < this.posZ + 5.0) {
-                            if (this.worldObj.getBlockId(k, j, i1) == 17 && !flag) {
+                            if (this.worldObj.getBlock(k, j, i1) == Blocks.log && !flag) {
                                 for (int j1 = k - 5; j1 <= k + 5; ++j1) {
                                     for (int k1 = j - 5; k1 <= j + 5; ++k1) {
                                         for (int l1 = i1 - 5; l1 <= i1 + 5; ++l1) {
-                                            if (this.worldObj.getBlockId(j1, k1, l1) != 18) continue;
-                                            this.worldObj.setBlock(j1, k1, l1, 0);
+                                            if (this.worldObj.getBlock(j1, k1, l1) != Blocks.leaves) continue;
+                                            this.worldObj.setBlock(j1, k1, l1, Blocks.air);
                                         }
                                     }
                                 }
@@ -173,8 +175,8 @@ extends EntityNPC {
             for (int j = (int)this.posX - 3; j <= 3; ++j) {
                 for (int k = (int)this.posY - 3; k <= 3; ++k) {
                     for (int l = (int)this.posZ - 3; l <= 3; ++l) {
-                        if (this.worldObj.getBlockId(j, k, l) != 18) continue;
-                        this.worldObj.setBlock(j, k, l, 0);
+                        if (this.worldObj.getBlock(j, k, l) != Blocks.leaves) continue;
+                        this.worldObj.setBlock(j, k, l, Blocks.air);
                     }
                 }
             }
@@ -204,7 +206,7 @@ extends EntityNPC {
             this.swingItem();
             this.freeze = true;
             if (this.player != null && this.player.getDistanceSqToEntity((Entity)this) <= 3000.0 && this.hit3 > 8) {
-                ItemStack itemstack = new ItemStack(4, 1, 0);
+                ItemStack itemstack = new ItemStack(Item.getItemFromBlock(Blocks.cobblestone), 1, 0);
                 EntityItem entityitem = new EntityItem(this.worldObj, this.player.posX, this.player.posY, this.player.posZ, itemstack);
                 this.player.joinEntityItemWithWorld(entityitem);
                 this.hit3 = 0;
@@ -241,67 +243,67 @@ extends EntityNPC {
         for (int l = 0; l < 5; ++l) {
             for (int j1 = 0; j1 < 3; ++j1) {
                 for (int l1 = 1; l1 < 5; ++l1) {
-                    this.worldObj.setBlock(i + l, j + j1, k + l1, 0);
+                    this.worldObj.setBlock(i + l, j + j1, k + l1, Blocks.air);
                 }
             }
         }
         for (int i1 = 1; i1 < 5; ++i1) {
             for (int k1 = 1; k1 < 7; ++k1) {
-                this.worldObj.setBlock(i + i1, j - 2, k + k1, 1);
-                this.worldObj.setBlock(i + i1, j - 1, k + k1, 13);
+                this.worldObj.setBlock(i + i1, j - 2, k + k1, Blocks.stone);
+                this.worldObj.setBlock(i + i1, j - 1, k + k1, Blocks.gravel);
             }
         }
-        this.worldObj.setBlock(i + 1, j + 0, k + 1, 1);
-        this.worldObj.setBlock(i + 1, j + 0, k + 2, 85);
-        this.worldObj.setBlock(i + 1, j + 0, k + 5, 85);
-        this.worldObj.setBlock(i + 1, j + 0, k + 6, 4);
-        this.worldObj.setBlock(i + 1, j + 1, k + 1, 4);
-        this.worldObj.setBlock(i + 1, j + 1, k + 2, 85);
-        this.worldObj.setBlock(i + 1, j + 1, k + 5, 85);
-        this.worldObj.setBlock(i + 1, j + 1, k + 6, 1);
-        this.worldObj.setBlock(i + 1, j + 2, k + 1, 1);
-        this.worldObj.setBlock(i + 1, j + 2, k + 2, 5);
-        this.worldObj.setBlock(i + 1, j + 2, k + 3, 5);
-        this.worldObj.setBlock(i + 1, j + 2, k + 4, 5);
-        this.worldObj.setBlock(i + 1, j + 2, k + 5, 5);
-        this.worldObj.setBlock(i + 1, j + 2, k + 6, 1);
-        this.worldObj.setBlock(i + 1, j + 3, k + 2, 4);
-        this.worldObj.setBlock(i + 1, j + 3, k + 3, 4);
-        this.worldObj.setBlock(i + 1, j + 3, k + 4, 1);
-        this.worldObj.setBlock(i + 1, j + 3, k + 5, 4);
-        this.worldObj.setBlock(i + 2, j + 0, k + 1, 4);
-        this.worldObj.setBlock(i + 2, j + 0, k + 2, 58);
-        this.worldObj.setBlock(i + 2, j + 0, k + 6, 4);
-        this.worldObj.setBlock(i + 2, j + 1, k + 1, 1);
-        this.worldObj.setBlock(i + 2, j + 1, k + 6, 1);
-        this.worldObj.setBlock(i + 2, j + 2, k + 1, 4);
-        this.worldObj.setBlock(i + 2, j + 2, k + 6, 4);
-        this.worldObj.setBlock(i + 2, j + 3, k + 2, 4);
-        this.worldObj.setBlock(i + 2, j + 3, k + 3, 1);
-        this.worldObj.setBlock(i + 2, j + 3, k + 4, 4);
-        this.worldObj.setBlock(i + 2, j + 3, k + 5, 4);
-        this.worldObj.setBlock(i + 3, j + 0, k + 1, 1);
-        this.worldObj.setBlock(i + 3, j + 0, k + 5, 4);
-        this.worldObj.setBlock(i + 3, j + 0, k + 6, 1);
-        this.worldObj.setBlock(i + 3, j + 1, k + 1, 4);
-        this.worldObj.setBlock(i + 3, j + 1, k + 6, 4);
-        this.worldObj.setBlock(i + 3, j + 2, k + 1, 1);
-        this.worldObj.setBlock(i + 3, j + 2, k + 6, 1);
-        this.worldObj.setBlock(i + 3, j + 3, k + 2, 1);
-        this.worldObj.setBlock(i + 3, j + 3, k + 3, 4);
-        this.worldObj.setBlock(i + 3, j + 3, k + 4, 4);
-        this.worldObj.setBlock(i + 3, j + 3, k + 5, 1);
-        this.worldObj.setBlock(i + 4, j + 0, k + 1, 1);
-        this.worldObj.setBlock(i + 4, j + 0, k + 2, 4);
-        this.worldObj.setBlock(i + 4, j + 0, k + 6, 1);
-        this.worldObj.setBlock(i + 4, j + 1, k + 1, 4);
-        this.worldObj.setBlock(i + 4, j + 1, k + 6, 1);
-        this.worldObj.setBlock(i + 4, j + 2, k + 1, 1);
-        this.worldObj.setBlock(i + 4, j + 2, k + 6, 4);
-        this.worldObj.setBlock(i + 4, j + 3, k + 2, 1);
-        this.worldObj.setBlock(i + 4, j + 3, k + 3, 1);
-        this.worldObj.setBlock(i + 4, j + 3, k + 4, 4);
-        this.worldObj.setBlock(i + 4, j + 3, k + 5, 1);
+        this.worldObj.setBlock(i + 1, j + 0, k + 1, Blocks.stone);
+        this.worldObj.setBlock(i + 1, j + 0, k + 2, Blocks.fence);
+        this.worldObj.setBlock(i + 1, j + 0, k + 5, Blocks.fence);
+        this.worldObj.setBlock(i + 1, j + 0, k + 6, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 1, j + 1, k + 1, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 1, j + 1, k + 2, Blocks.fence);
+        this.worldObj.setBlock(i + 1, j + 1, k + 5, Blocks.fence);
+        this.worldObj.setBlock(i + 1, j + 1, k + 6, Blocks.stone);
+        this.worldObj.setBlock(i + 1, j + 2, k + 1, Blocks.stone);
+        this.worldObj.setBlock(i + 1, j + 2, k + 2, Blocks.planks);
+        this.worldObj.setBlock(i + 1, j + 2, k + 3, Blocks.planks);
+        this.worldObj.setBlock(i + 1, j + 2, k + 4, Blocks.planks);
+        this.worldObj.setBlock(i + 1, j + 2, k + 5, Blocks.planks);
+        this.worldObj.setBlock(i + 1, j + 2, k + 6, Blocks.stone);
+        this.worldObj.setBlock(i + 1, j + 3, k + 2, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 1, j + 3, k + 3, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 1, j + 3, k + 4, Blocks.stone);
+        this.worldObj.setBlock(i + 1, j + 3, k + 5, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 2, j + 0, k + 1, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 2, j + 0, k + 2, Blocks.crafting_table);
+        this.worldObj.setBlock(i + 2, j + 0, k + 6, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 2, j + 1, k + 1, Blocks.stone);
+        this.worldObj.setBlock(i + 2, j + 1, k + 6, Blocks.stone);
+        this.worldObj.setBlock(i + 2, j + 2, k + 1, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 2, j + 2, k + 6, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 2, j + 3, k + 2, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 2, j + 3, k + 3, Blocks.stone);
+        this.worldObj.setBlock(i + 2, j + 3, k + 4, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 2, j + 3, k + 5, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 3, j + 0, k + 1, Blocks.stone);
+        this.worldObj.setBlock(i + 3, j + 0, k + 5, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 3, j + 0, k + 6, Blocks.stone);
+        this.worldObj.setBlock(i + 3, j + 1, k + 1, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 3, j + 1, k + 6, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 3, j + 2, k + 1, Blocks.stone);
+        this.worldObj.setBlock(i + 3, j + 2, k + 6, Blocks.stone);
+        this.worldObj.setBlock(i + 3, j + 3, k + 2, Blocks.stone);
+        this.worldObj.setBlock(i + 3, j + 3, k + 3, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 3, j + 3, k + 4, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 3, j + 3, k + 5, Blocks.stone);
+        this.worldObj.setBlock(i + 4, j + 0, k + 1, Blocks.stone);
+        this.worldObj.setBlock(i + 4, j + 0, k + 2, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 4, j + 0, k + 6, Blocks.stone);
+        this.worldObj.setBlock(i + 4, j + 1, k + 1, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 4, j + 1, k + 6, Blocks.stone);
+        this.worldObj.setBlock(i + 4, j + 2, k + 1, Blocks.stone);
+        this.worldObj.setBlock(i + 4, j + 2, k + 6, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 4, j + 3, k + 2, Blocks.stone);
+        this.worldObj.setBlock(i + 4, j + 3, k + 3, Blocks.stone);
+        this.worldObj.setBlock(i + 4, j + 3, k + 4, Blocks.cobblestone);
+        this.worldObj.setBlock(i + 4, j + 3, k + 5, Blocks.stone);
         this.worldObj.setBlockMetadataWithNotify(i + 3, j + 2, k + 2, 50, 3);
         this.marker2 = EntityList.createEntityByName((String)"Marker2", (World)this.worldObj);
         this.marker2.setLocationAndAngles((double)(i + 4), (double)(j + 1), (double)(k + 3), 0.0f, 0.0f);
