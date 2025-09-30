@@ -31,6 +31,14 @@ public class SchematicHandler {
         return this.buildingList;
     }
 
+    public void cancelCurrentBuilding() {
+        // Clear all ongoing building processes
+        this.buildingList.clear();
+        this.torchList.clear();
+        this.index = 0;
+        System.out.println("BUILDING CANCELLED - All building processes cleared");
+    }
+
     public void update(World world) {
         if (!this.buildingList.isEmpty()) {
             Schematic x = this.buildingList.get(0);

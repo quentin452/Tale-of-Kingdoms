@@ -5,6 +5,7 @@ import java.awt.Color;
 import mods.aginsun.kingdoms.client.guis.GuiPriceBar;
 import mods.aginsun.kingdoms.client.guis.GuiScreenToK;
 import mods.aginsun.kingdoms.handlers.SchematicHandler;
+import mods.aginsun.kingdoms.util.Buildings;
 import net.minecraft.client.gui.GuiButton;
 
 public class GuiToKLoading
@@ -14,11 +15,18 @@ extends GuiScreenToK {
 
     public void initGui() {
         this.bar = new GuiPriceBar(1, this.width / 2 - 100, this.height / 2 - 10, 200, 20, 1.0f, "red");
-        this.buttonList.add(new GuiButton(1, this.width / 2 - 60, this.height / 2 + 25, 120, 20, "Exit"));
+        this.buttonList.add(new GuiButton(1, this.width / 2 - 60, this.height / 2 + 25, 120, 20, "Cancel Building"));
     }
 
     protected void actionPerformed(GuiButton guibutton) {
         if (guibutton.id == 1) {
+            // Cancel any ongoing building process when exit is pressed
+            if (!SchematicHandler.getInstance().getBuildingList().isEmpty()) {
+                SchematicHandler.getInstance().cancelCurrentBuilding(this.mc.theWorld);
+                // Reset the conquest state since the guild building was cancelled
+                Buildings.createGuild = false;
+                Buildings.setBuildingState(false, 0);
+            }
             this.mc.displayGuiScreen(null);
         }
     }

@@ -20,6 +20,14 @@ public class SaveHandlerToK {
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         this.getData(event.player);
         Buildings.registerBuildings();
+        
+        // Reset conquest state for new worlds if no conquest data exists
+        // This ensures the conquest GUI can be opened in new worlds
+        if (event.player.getEntityData().getCompoundTag("PlayerPersisted") == null || 
+            !event.player.getEntityData().getCompoundTag("PlayerPersisted").hasKey("GuildCreated")) {
+            Buildings.createGuild = false;
+            Buildings.setBuildingState(false, 0);
+        }
     }
 
     @SubscribeEvent
