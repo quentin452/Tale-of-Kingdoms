@@ -10,6 +10,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StringTranslate;
@@ -31,21 +32,21 @@ extends GuiScreenToK {
     public int shopcounter = 20;
 
     public GuiStockList(EntityPlayer entityplayer1, World world) {
-        this.entityplayer = entityplayer1;
-        this.worldObj = world;
-        this.setItemList();
-        this.itemSelected = new ItemStack(Item.flint.itemID, 1, 0).getItem();
+    this.entityplayer = entityplayer1;
+    this.worldObj = world;
+    this.setItemList();
+    this.itemSelected = Items.flint;
     }
 
     public void setItemList() {
-        this.item[1] = new ItemStack(Item.flint.itemID, 1, 0).getItem();
-        this.item[2] = new ItemStack(Item.clay.itemID, 1, 0).getItem();
-        this.item[3] = new ItemStack(Item.ingotIron.itemID, 1, 0).getItem();
-        this.item[4] = new ItemStack(Item.diamond.itemID, 1, 0).getItem();
-        this.item[5] = new ItemStack(Item.fishRaw.itemID, 1, 0).getItem();
-        this.item[6] = new ItemStack(Item.appleRed.itemID, 1, 0).getItem();
-        this.item[7] = new ItemStack(Item.silk.itemID, 1, 0).getItem();
-        this.item[8] = new ItemStack(Item.feather.itemID, 1, 0).getItem();
+    this.item[1] = Items.flint;
+    this.item[2] = Items.clay_ball;
+    this.item[3] = Items.iron_ingot;
+    this.item[4] = Items.diamond;
+    this.item[5] = Items.fish;
+    this.item[6] = Items.apple;
+    this.item[7] = Items.string;
+    this.item[8] = Items.feather;
         this.initGui();
     }
 
@@ -157,33 +158,32 @@ extends GuiScreenToK {
             this.goldchecker = false;
         }
         if (guibutton.id == 18) {
-            ItemStack itemstack = new ItemStack(this.itemSelected.itemID, 1, 0);
-            Item item1 = itemstack.getItem();
-            String s = item1.getUnlocalizedName();
+            ItemStack itemstack = new ItemStack(this.itemSelected, 1, 0);
+            String s = this.itemSelected.getUnlocalizedName();
             int i = GoldKeeper.priceItem(s);
             float f = 0.0f;
-            if (this.itemSelected.itemID == Item.flint.itemID) {
+            if (this.itemSelected == Items.flint) {
                 f = GoldKeeper.flint;
             }
-            if (this.itemSelected.itemID == Item.clay.itemID) {
+            if (this.itemSelected == Items.clay_ball) {
                 f = GoldKeeper.clay;
             }
-            if (this.itemSelected.itemID == Item.ingotIron.itemID) {
+            if (this.itemSelected == Items.iron_ingot) {
                 f = GoldKeeper.iron;
             }
-            if (this.itemSelected.itemID == Item.diamond.itemID) {
+            if (this.itemSelected == Items.diamond) {
                 f = GoldKeeper.diamond;
             }
-            if (this.itemSelected.itemID == Item.fishRaw.itemID) {
+            if (this.itemSelected == Items.fish) {
                 f = GoldKeeper.fish;
             }
-            if (this.itemSelected.itemID == Item.appleRed.itemID) {
+            if (this.itemSelected == Items.apple) {
                 f = GoldKeeper.apple;
             }
-            if (this.itemSelected.itemID == Item.silk.itemID) {
+            if (this.itemSelected == Items.string) {
                 f = GoldKeeper.string;
             }
-            if (this.itemSelected.itemID == Item.feather.itemID) {
+            if (this.itemSelected == Items.feather) {
                 f = GoldKeeper.feather;
             }
             if ((i = (int)((float)i + (float)i * (f /= 100.0f))) <= GoldKeeper.getGoldTotal()) {
@@ -197,33 +197,32 @@ extends GuiScreenToK {
             }
         }
         if (guibutton.id == 21 && this.shopcounter >= 16) {
-            ItemStack itemstack1 = new ItemStack(this.itemSelected.itemID, 1, 0);
-            Item item2 = itemstack1.getItem();
-            String s1 = item2.getUnlocalizedName();
+            ItemStack itemstack1 = new ItemStack(this.itemSelected, 1, 0);
+            String s1 = this.itemSelected.getUnlocalizedName();
             int j = GoldKeeper.priceItem(s1);
             float f1 = 0.0f;
-            if (this.itemSelected.itemID == Item.flint.itemID) {
+            if (this.itemSelected == Items.flint) {
                 f1 = GoldKeeper.flint;
             }
-            if (this.itemSelected.itemID == Item.clay.itemID) {
+            if (this.itemSelected == Items.clay_ball) {
                 f1 = GoldKeeper.clay;
             }
-            if (this.itemSelected.itemID == Item.ingotIron.itemID) {
+            if (this.itemSelected == Items.iron_ingot) {
                 f1 = GoldKeeper.iron;
             }
-            if (this.itemSelected.itemID == Item.diamond.itemID) {
+            if (this.itemSelected == Items.diamond) {
                 f1 = GoldKeeper.diamond;
             }
-            if (this.itemSelected.itemID == Item.fishRaw.itemID) {
+            if (this.itemSelected == Items.fish) {
                 f1 = GoldKeeper.fish;
             }
-            if (this.itemSelected.itemID == Item.appleRed.itemID) {
+            if (this.itemSelected == Items.apple) {
                 f1 = GoldKeeper.apple;
             }
-            if (this.itemSelected.itemID == Item.silk.itemID) {
+            if (this.itemSelected == Items.string) {
                 f1 = GoldKeeper.string;
             }
-            if (this.itemSelected.itemID == Item.feather.itemID) {
+            if (this.itemSelected == Items.feather) {
                 f1 = GoldKeeper.feather;
             }
             if ((j = (int)((float)j + (float)j * (f1 /= 100.0f))) * 16 <= GoldKeeper.getGoldTotal()) {
@@ -243,33 +242,32 @@ extends GuiScreenToK {
 
     public void drawScreen(int i, int j, float f) {
         if (this.shopcounter < 16) {
-            ItemStack itemstack = new ItemStack(this.itemSelected.itemID, 1, 0);
-            Item item1 = itemstack.getItem();
-            String s2 = item1.getUnlocalizedName();
+            ItemStack itemstack = new ItemStack(this.itemSelected, 1, 0);
+            String s2 = this.itemSelected.getUnlocalizedName();
             int j1 = GoldKeeper.priceItem(s2);
             float f2 = 0.0f;
-            if (this.itemSelected.itemID == Item.flint.itemID) {
+            if (this.itemSelected == Items.flint) {
                 f2 = GoldKeeper.flint;
             }
-            if (this.itemSelected.itemID == Item.clay.itemID) {
+            if (this.itemSelected == Items.clay_ball) {
                 f2 = GoldKeeper.clay;
             }
-            if (this.itemSelected.itemID == Item.ingotIron.itemID) {
+            if (this.itemSelected == Items.iron_ingot) {
                 f2 = GoldKeeper.iron;
             }
-            if (this.itemSelected.itemID == Item.diamond.itemID) {
+            if (this.itemSelected == Items.diamond) {
                 f2 = GoldKeeper.diamond;
             }
-            if (this.itemSelected.itemID == Item.fishRaw.itemID) {
+            if (this.itemSelected == Items.fish) {
                 f2 = GoldKeeper.fish;
             }
-            if (this.itemSelected.itemID == Item.appleRed.itemID) {
+            if (this.itemSelected == Items.apple) {
                 f2 = GoldKeeper.apple;
             }
-            if (this.itemSelected.itemID == Item.silk.itemID) {
+            if (this.itemSelected == Items.string) {
                 f2 = GoldKeeper.string;
             }
-            if (this.itemSelected.itemID == Item.feather.itemID) {
+            if (this.itemSelected == Items.feather) {
                 f2 = GoldKeeper.feather;
             }
             if ((j1 = (int)((float)j1 + (float)j1 * (f2 /= 100.0f))) <= GoldKeeper.getGoldTotal()) {
@@ -301,28 +299,28 @@ extends GuiScreenToK {
         String s1 = this.st.translateKey(s);
         int i1 = GoldKeeper.priceItem(String.valueOf(this.itemSelected.getUnlocalizedName()));
         float f1 = 0.0f;
-        if (this.itemSelected.itemID == Item.flint.itemID) {
+        if (this.itemSelected == net.minecraft.init.Items.flint) {
             f1 = GoldKeeper.flint;
         }
-        if (this.itemSelected.itemID == Item.clay.itemID) {
+        if (this.itemSelected == net.minecraft.init.Items.clay_ball) {
             f1 = GoldKeeper.clay;
         }
-        if (this.itemSelected.itemID == Item.ingotIron.itemID) {
+        if (this.itemSelected == net.minecraft.init.Items.iron_ingot) {
             f1 = GoldKeeper.iron;
         }
-        if (this.itemSelected.itemID == Item.diamond.itemID) {
+        if (this.itemSelected == net.minecraft.init.Items.diamond) {
             f1 = GoldKeeper.diamond;
         }
-        if (this.itemSelected.itemID == Item.fishRaw.itemID) {
+        if (this.itemSelected == net.minecraft.init.Items.fish) {
             f1 = GoldKeeper.fish;
         }
-        if (this.itemSelected.itemID == Item.appleRed.itemID) {
+        if (this.itemSelected == net.minecraft.init.Items.apple) {
             f1 = GoldKeeper.apple;
         }
-        if (this.itemSelected.itemID == Item.silk.itemID) {
+        if (this.itemSelected == net.minecraft.init.Items.string) {
             f1 = GoldKeeper.string;
         }
-        if (this.itemSelected.itemID == Item.feather.itemID) {
+        if (this.itemSelected == net.minecraft.init.Items.feather) {
             f1 = GoldKeeper.feather;
         }
         i1 = (int)((float)i1 + (float)i1 * (f1 /= 100.0f));
