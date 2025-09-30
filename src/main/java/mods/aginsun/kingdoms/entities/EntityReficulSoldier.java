@@ -173,7 +173,6 @@ extends EntityNPC {
             this.player = (EntityPlayer)entity;
         }
         if (this.player != null) {
-            if (this.player.getDistanceSqToEntity((Entity)this) <= 220.0 && this.worldObj.difficultySetting != 0) {
             if (this.player.getDistanceSqToEntity((Entity)this) <= 220.0 && this.worldObj.difficultySetting != net.minecraft.world.EnumDifficulty.PEACEFUL) {
                 this.playerPresence = false;
                 if (this.rand.nextInt(6) == 0) {
