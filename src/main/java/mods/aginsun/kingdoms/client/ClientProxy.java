@@ -1,10 +1,7 @@
 package mods.aginsun.kingdoms.client;
 
-import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.ITickHandler;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.common.FMLCommonHandler;
 import mods.aginsun.kingdoms.client.handlers.ClientTickHandler;
 import mods.aginsun.kingdoms.client.handlers.KeyBindingHandler;
 import mods.aginsun.kingdoms.client.render.RenderBipedToK;
@@ -55,10 +52,11 @@ import net.minecraft.client.renderer.entity.Render;
 
 public class ClientProxy
 extends CommonProxy {
-    @Override
+        @Override
     public void registerRenderers() {
-        TickRegistry.registerTickHandler((ITickHandler)new ClientTickHandler(), (Side)Side.CLIENT);
-        KeyBindingRegistry.registerKeyBinding((KeyBindingRegistry.KeyHandler)new KeyBindingHandler());
+        FMLCommonHandler.instance().bus().register(new ClientTickHandler());
+        KeyBindingHandler.registerKeyBindings();
+        FMLCommonHandler.instance().bus().register(new KeyBindingHandler());
         RenderingRegistry.registerEntityRenderingHandler(EntityGuildMaster.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "head"));
         RenderingRegistry.registerEntityRenderingHandler(EntityInnKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "inn"));
         RenderingRegistry.registerEntityRenderingHandler(EntityBuilderKeeper.class, (Render)new RenderBipedToK(new ModelBiped(), 0.4f, "builder"));

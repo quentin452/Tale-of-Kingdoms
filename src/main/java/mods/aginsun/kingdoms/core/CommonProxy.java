@@ -1,10 +1,8 @@
 
 package mods.aginsun.kingdoms.core;
 
-import cpw.mods.fml.common.ITickHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
 import mods.aginsun.kingdoms.client.guis.GuiSell;
 import mods.aginsun.kingdoms.entities.TileEntitySell;
 import mods.aginsun.kingdoms.handlers.CommonTickHandler;
@@ -21,7 +19,7 @@ implements IGuiHandler {
     }
 
     public void Init() {
-        TickRegistry.registerTickHandler((ITickHandler)new CommonTickHandler(), (Side)Side.SERVER);
+        FMLCommonHandler.instance().bus().register(new CommonTickHandler());
     }
 
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {

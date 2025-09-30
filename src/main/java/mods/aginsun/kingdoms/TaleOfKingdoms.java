@@ -1,7 +1,6 @@
 package mods.aginsun.kingdoms;
 
-import cpw.mods.fml.common.IPickupNotifier;
-import cpw.mods.fml.common.IPlayerTracker;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -9,7 +8,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -23,11 +21,10 @@ import mods.aginsun.kingdoms.util.CommandGoldTaleOfKingdoms;
 import net.minecraft.command.CommandHandler;
 import net.minecraft.command.ICommand;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid="taleofkingdoms", name="Tale of Kingdoms", version="1.5-Pre Release")
-@NetworkMod(clientSideRequired=true, serverSideRequired=false)
 public class TaleOfKingdoms {
     @Mod.Instance(value="taleofkingdoms")
     public static TaleOfKingdoms instance = new TaleOfKingdoms();
@@ -50,9 +47,10 @@ public class TaleOfKingdoms {
         proxy.Init();
         EntityRegistryToK.registerEntities();
         MinecraftForge.EVENT_BUS.register((Object)new EntityLivingHandler());
-        NetworkRegistry.instance().registerGuiHandler((Object)instance, (IGuiHandler)proxy);
-        coins = new Itemcoins(coinID).setUnlocalizedName("Coins");
-        LanguageRegistry.addName((Object)coins, (String)"Coins");
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
+        coins = new Itemcoins();
+        GameRegistry.registerItem(coins, "coins");
+        LanguageRegistry.addName(coins, "Coins");
     }
 
     @Mod.EventHandler
@@ -63,8 +61,8 @@ public class TaleOfKingdoms {
 
     @Mod.EventHandler
     public void serverStarted(FMLServerStartedEvent event) {
-        GameRegistry.registerPlayerTracker((IPlayerTracker)new SaveHandlerToK());
-        GameRegistry.registerPickupHandler((IPickupNotifier)new PickupHandler());
+        FMLCommonHandler.instance().bus().register(new SaveHandlerToK());
+        MinecraftForge.EVENT_BUS.register(new PickupHandler());
     }
 }
 

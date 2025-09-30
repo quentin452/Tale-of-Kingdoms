@@ -41,14 +41,18 @@ public class SchematicHandler {
                     for (int i = 0; i < x.speed; ++i) {
                         if (this.index < arrayList.size()) {
                             FakeBlock block = arrayList.get(this.index);
-                            if (block != null && world.getBlockId(x.x + block.posX, x.y + block.posY, x.z + block.posZ) != block.blockID) {
+                            Block currentBlock = world.getBlock(x.x + block.posX, x.y + block.posY, x.z + block.posZ);
+                            Block targetBlock = Block.getBlockById(block.blockID);
+                            
+                            if (block != null && currentBlock != targetBlock) {
                                 if (block.blockID == 0) {
                                     world.setBlockToAir(x.x + block.posX, x.y + block.posY, x.z + block.posZ);
                                 }
-                                if (block.blockID == Block.torchWood.blockID || block.blockID == Block.doorWood.blockID || block.blockID == Block.ladder.blockID || block.blockID == Block.trapdoor.blockID) {
+                                if (targetBlock == Block.getBlockFromName("torch") || targetBlock == Block.getBlockFromName("wooden_door") || 
+                                    targetBlock == Block.getBlockFromName("ladder") || targetBlock == Block.getBlockFromName("trapdoor")) {
                                     this.torchList.add(block);
                                 } else {
-                                    world.setBlock(x.x + block.posX, x.y + block.posY, x.z + block.posZ, block.blockID, block.metadata, 3);
+                                    world.setBlock(x.x + block.posX, x.y + block.posY, x.z + block.posZ, targetBlock, block.metadata, 3);
                                 }
                             }
                             ++this.index;
@@ -71,7 +75,8 @@ public class SchematicHandler {
                             continue;
                         }
                         for (FakeBlock block : this.torchList) {
-                            world.setBlock(x.x + block.posX, x.y + block.posY, x.z + block.posZ, block.blockID, block.metadata, 3);
+                            Block targetBlock = Block.getBlockById(block.blockID);
+                            world.setBlock(x.x + block.posX, x.y + block.posY, x.z + block.posZ, targetBlock, block.metadata, 3);
                         }
                         this.index = 0;
                         if (!this.buildingList.isEmpty()) {

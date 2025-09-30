@@ -1,7 +1,8 @@
 
 package mods.aginsun.kingdoms.handlers;
 
-import cpw.mods.fml.common.IPlayerTracker;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 import mods.aginsun.kingdoms.handlers.GoldKeeper;
 import mods.aginsun.kingdoms.handlers.HunterKeeper;
 import mods.aginsun.kingdoms.handlers.ResourceHandler;
@@ -12,17 +13,28 @@ import mods.aginsun.kingdoms.util.UtilToK;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class SaveHandlerToK
-implements IPlayerTracker {
+public class SaveHandlerToK {
     private NBTTagCompound nbt;
 
-    public void onPlayerLogin(EntityPlayer player) {
-        this.getData(player);
+    @SubscribeEvent
+    public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+        this.getData(event.player);
         Buildings.registerBuildings();
     }
 
-    public void onPlayerLogout(EntityPlayer player) {
-        this.setData(player);
+    @SubscribeEvent
+    public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+        this.setData(event.player);
+    }
+
+    @SubscribeEvent
+    public void onPlayerChangedDimension(PlayerEvent.PlayerChangedDimensionEvent event) {
+        // Handle dimension change if needed
+    }
+
+    @SubscribeEvent
+    public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        // Handle respawn if needed
     }
 
     public void getData(EntityPlayer player) {
@@ -164,7 +176,7 @@ implements IPlayerTracker {
                 this.nbt.setInteger("woodPool", ResourceHandler.getInstance().getWoodPool());
                 this.nbt.setInteger("cobblePool", ResourceHandler.getInstance().getCobblePool());
                 this.nbt.setString("Version", "1.5-Pre Release");
-                player.getEntityData().setCompoundTag("PlayerPersisted", this.nbt);
+                player.getEntityData().setTag("PlayerPersisted", this.nbt);
             }
         }
     }
@@ -221,12 +233,6 @@ implements IPlayerTracker {
         float f = this.nbt.getFloat(name);
         this.nbt.removeTag(name);
         this.nbt.setInteger(name, Math.round(f));
-    }
-
-    public void onPlayerChangedDimension(EntityPlayer player) {
-    }
-
-    public void onPlayerRespawn(EntityPlayer player) {
     }
 }
 

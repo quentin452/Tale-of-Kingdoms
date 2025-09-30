@@ -1,41 +1,30 @@
 
 package mods.aginsun.kingdoms.client.handlers;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.KeyBindingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.TickType;
-import java.util.EnumSet;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.InputEvent;
 import mods.aginsun.kingdoms.client.guis.GuiStartConquest;
 import mods.aginsun.kingdoms.util.Buildings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 
-public class KeyBindingHandler
-extends KeyBindingRegistry.KeyHandler {
-    private static KeyBinding key = new KeyBinding("Start Conquest", 21);
-    private static KeyBinding[] keybindings = new KeyBinding[]{key};
-    private static boolean[] booleans = new boolean[]{false};
+public class KeyBindingHandler {
+    public static KeyBinding keyStartConquest = new KeyBinding("Start Conquest", 21, "Tale of Kingdoms");
 
-    public KeyBindingHandler() {
-        super(keybindings, booleans);
+    public static void registerKeyBindings() {
+        ClientRegistry.registerKeyBinding(keyStartConquest);
     }
 
-    public String getLabel() {
-        return "Start Conquest";
-    }
-
-    public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {
-        if (FMLClientHandler.instance().getClient().currentScreen == null && kb.getKeyCode() == KeyBindingHandler.key.getKeyCode() && !Buildings.getBuilding(0)) {
-            FMLCommonHandler.instance().showGuiScreen((Object)new GuiStartConquest(Minecraft.getMinecraft()));
+    @SubscribeEvent
+    public void onKeyInput(InputEvent.KeyInputEvent event) {
+        Minecraft mc = Minecraft.getMinecraft();
+        
+        if (keyStartConquest.isPressed()) {
+            if (mc.currentScreen == null && !Buildings.getBuilding(0)) {
+                mc.displayGuiScreen(new GuiStartConquest(mc));
+            }
         }
-    }
-
-    public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd) {
-    }
-
-    public EnumSet<TickType> ticks() {
-        return EnumSet.of(TickType.CLIENT);
     }
 }
 
