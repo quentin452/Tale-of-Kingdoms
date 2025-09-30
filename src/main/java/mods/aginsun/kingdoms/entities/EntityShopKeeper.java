@@ -66,9 +66,8 @@ extends EntityNPC {
             for (int k = 256; k < 32000; ++k) {
                 boolean flag2 = false;
                 boolean flag3 = false;
-                if (Item.itemsList[k] == null) continue;
-                ItemStack itemstack = new ItemStack(Item.itemsList[k].itemID, 1, 0);
-                Item item = itemstack.getItem();
+                Item item = Item.getItemById(k);
+                if (item == null) continue;
                 if (item instanceof ItemFood) {
                     flag2 = true;
                 }
@@ -89,12 +88,48 @@ extends EntityNPC {
                 }
                 String s1 = String.valueOf(item.getUnlocalizedName()) + ".name";
                 String s2 = this.st.translateKey(s1);
-                int l = itemstack.itemID;
-                if (l == 26 || l == 34 || l == 36 || l == 43 || l == 51 || l == 52 || l == 55 || l == 59 || l == 60 || l == 62 || l == 63 || l == 64 || l == 68 || l == 71 || l == 74 || l == 75 || l == 78 || l == 90 || l == 93 || l == 94 || l == 97 || l == 99 || l == 100 || l == 104 || l == 261 || l == 262 || l == 105 || l == 110 || l == 92 || l == 354 || l == Item.flint.itemID || l == Item.clay.itemID || l == Item.ingotIron.itemID || l == Item.diamond.itemID || l == Item.fishRaw.itemID || l == Item.appleRed.itemID || l == Item.silk.itemID || l == Item.feather.itemID || flag2 || flag3) {
+                if (item == net.minecraft.init.Items.mushroom_stew || 
+                    item == net.minecraft.init.Items.wooden_hoe ||
+                    item == net.minecraft.init.Items.iron_hoe || 
+                    item == net.minecraft.init.Items.leather_chestplate || 
+                    item == net.minecraft.init.Items.iron_chestplate ||
+                    item == net.minecraft.init.Items.iron_leggings || 
+                    item == net.minecraft.init.Items.diamond_chestplate || 
+                    item == net.minecraft.init.Items.golden_chestplate ||
+                    item == net.minecraft.init.Items.golden_leggings || 
+                    item == net.minecraft.init.Items.flint || 
+                    item == net.minecraft.init.Items.porkchop || 
+                    item == net.minecraft.init.Items.cooked_porkchop || 
+                    item == net.minecraft.init.Items.wooden_door || 
+                    item == net.minecraft.init.Items.lava_bucket ||
+                    item == net.minecraft.init.Items.iron_door || 
+                    item == net.minecraft.init.Items.redstone || 
+                    item == net.minecraft.init.Items.leather || 
+                    item == net.minecraft.init.Items.fishing_rod || 
+                    item == net.minecraft.init.Items.fish ||
+                    item == net.minecraft.init.Items.cooked_fished || 
+                    item == net.minecraft.init.Items.sugar || 
+                    item == net.minecraft.init.Items.bed || 
+                    item == net.minecraft.init.Items.repeater || 
+                    item == net.minecraft.init.Items.melon || 
+                    item == net.minecraft.init.Items.bow || 
+                    item == net.minecraft.init.Items.arrow ||
+                    item == net.minecraft.init.Items.pumpkin_seeds || 
+                    item == net.minecraft.init.Items.cooked_chicken ||
+                    item == net.minecraft.init.Items.glowstone_dust || 
+                    item == net.minecraft.init.Items.cake || 
+                    item == net.minecraft.init.Items.flint || 
+                    item == net.minecraft.init.Items.clay_ball || 
+                    item == net.minecraft.init.Items.iron_ingot || 
+                    item == net.minecraft.init.Items.diamond || 
+                    item == net.minecraft.init.Items.apple || 
+                    item == net.minecraft.init.Items.string || 
+                    item == net.minecraft.init.Items.feather || 
+                    flag2 || flag3) {
                     j = 0;
                 }
                 if (j <= 0 || s1.equals("null.name") || s1.equals(s2)) continue;
-                this.itemget[i] = itemstack.itemID;
+                this.itemget[i] = k;
                 ++i;
             }
             minecraft.displayGuiScreen((GuiScreen)new GuiShopList(entityplayer, this.worldObj, this.itemget));
