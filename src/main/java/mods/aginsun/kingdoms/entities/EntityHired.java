@@ -54,13 +54,13 @@ extends EntityNPC {
 
     public boolean interact(EntityPlayer entityplayer) {
         this.player = entityplayer;
-        if (EntityHired.defaultHeldItem.itemID == 267) {
-            defaultHeldItem = new ItemStack(Items.bow, 1);
+        if (EntityHired.defaultHeldItem.getItem() == net.minecraft.init.Items.iron_sword) {
+            defaultHeldItem = new ItemStack(net.minecraft.init.Items.bow, 1);
             if (!this.worldObj.isRemote) {
                 ChatMessage.add(this.player,"Hunter: I shall use my bow.");
             }
         } else {
-            defaultHeldItem = new ItemStack(Items.iron_sword, 1);
+            defaultHeldItem = new ItemStack(net.minecraft.init.Items.iron_sword, 1);
             if (!this.worldObj.isRemote) {
                 ChatMessage.add(this.player,"Hunter: I shall use my sword.");
             }
@@ -105,7 +105,8 @@ extends EntityNPC {
             int k = MathHelper.floor_double((double)entity.boundingBox.minY);
             for (int l = 0; l <= 4; ++l) {
                 for (int i1 = 0; i1 <= 4; ++i1) {
-                    if (l >= 1 && i1 >= 1 && l <= 3 && i1 <= 3 || !this.worldObj.isBlockNormalCube(i + l, k - 1, j + i1) || this.worldObj.isBlockNormalCube(i + l, k, j + i1) || this.worldObj.isBlockNormalCube(i + l, k + 1, j + i1)) continue;
+                    if (l >= 1 && i1 >= 1 && l <= 3 && i1 <= 3) continue;
+                    if (!this.worldObj.getBlock(i + l, k - 1, j + i1).isNormalCube() || this.worldObj.getBlock(i + l, k, j + i1).isNormalCube() || this.worldObj.getBlock(i + l, k + 1, j + i1).isNormalCube()) continue;
                     this.setLocationAndAngles((float)(i + l) + 0.5f, k, (float)(j + i1) + 0.5f, this.rotationYaw, this.rotationPitch);
                     return;
                 }
@@ -127,7 +128,7 @@ extends EntityNPC {
     }
 
     protected void attackEntity(Entity entity, float f) {
-        if (EntityHired.defaultHeldItem.itemID == 267) {
+        if (EntityHired.defaultHeldItem.getItem() == net.minecraft.init.Items.iron_sword) {
             if (this.attackTime <= 0 && f < 2.0f && entity.boundingBox.maxY > this.boundingBox.minY && entity.boundingBox.minY < this.boundingBox.maxY) {
                 this.swingItem();
                 this.attackTime = 20;
