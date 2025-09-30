@@ -7,8 +7,8 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
+import net.minecraft.init.Blocks;
 
 public class EntityMarkerKeeper
 extends Entity {
@@ -38,23 +38,23 @@ extends Entity {
         int i = (int)this.posY;
         int j = (int)this.posY - 1;
         if (this.treelife == 0) {
-            while (this.worldObj.getBlockId((int)this.posX, i, (int)this.posZ) == 17 && this.player != null) {
-                this.worldObj.setBlock((int)this.posX, i, (int)this.posZ, 0);
-                ItemStack itemstack = new ItemStack(17, 1, 0);
+            while (this.worldObj.getBlock((int)this.posX, i, (int)this.posZ) == Blocks.log && this.player != null) {
+                this.worldObj.setBlock((int)this.posX, i, (int)this.posZ, Blocks.air);
+                ItemStack itemstack = new ItemStack(net.minecraft.item.Item.getItemById(17), 1, 0);
                 EntityItem entityitem = new EntityItem(this.worldObj, this.player.posX, this.player.posY, this.player.posZ, itemstack);
                 this.world.spawnEntityInWorld((Entity)entityitem);
-                itemstack = new ItemStack(17, 1, 0);
+                itemstack = new ItemStack(net.minecraft.item.Item.getItemById(17), 1, 0);
                 entityitem = new EntityItem(this.worldObj, this.player.posX, this.player.posY, this.player.posZ, itemstack);
                 this.world.spawnEntityInWorld((Entity)entityitem);
                 ++i;
             }
             int k = j;
-            while (this.worldObj.getBlockId((int)this.posX, k, (int)this.posZ) == 17 && this.player != null) {
-                this.worldObj.setBlock((int)this.posX, k, (int)this.posZ, 0);
-                ItemStack itemstack1 = new ItemStack(17, 1, 0);
+            while (this.worldObj.getBlock((int)this.posX, k, (int)this.posZ) == Blocks.log && this.player != null) {
+                this.worldObj.setBlock((int)this.posX, k, (int)this.posZ, Blocks.air);
+                ItemStack itemstack1 = new ItemStack(net.minecraft.item.Item.getItemById(17), 1, 0);
                 EntityItem entityitem1 = new EntityItem(this.worldObj, this.player.posX, this.player.posY, this.player.posZ, itemstack1);
                 this.world.spawnEntityInWorld((Entity)entityitem1);
-                itemstack1 = new ItemStack(17, 1, 0);
+                itemstack1 = new ItemStack(net.minecraft.item.Item.getItemById(17), 1, 0);
                 entityitem1 = new EntityItem(this.worldObj, this.player.posX, this.player.posY, this.player.posZ, itemstack1);
                 this.world.spawnEntityInWorld((Entity)entityitem1);
                 --k;
