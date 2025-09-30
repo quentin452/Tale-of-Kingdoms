@@ -26,10 +26,9 @@ extends GuiButton {
 
     public GuiButtonShop(Integer integer, GuiShopList guishoplist, int i, int j, int k, int l, int i1, String s) {
         super(i, j, k, 200, 20, s);
-        Item item1;
         this.gui = guishoplist;
         this.itemID = integer;
-        this.item = item1 = new ItemStack(integer.intValue(), 1, 0).getItem();
+        this.item = Item.getItemById(integer.intValue());
         this.width = 200;
         this.height = 20;
         this.enabled = true;
@@ -58,7 +57,8 @@ extends GuiButton {
         this.displayString = s;
     }
 
-    protected int getHoverState(boolean flag) {
+    @Override
+    public int getHoverState(boolean flag) {
         int byte0 = 1;
         if (!this.enabled) {
             byte0 = 0;
