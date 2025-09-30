@@ -71,7 +71,30 @@ extends EntityNPC {
                 }
                 String s1 = String.valueOf(item.getUnlocalizedName()) + ".name";
                 String s2 = this.st.translateKey(s1);
-                if (item == Items.flint || 
+                                
+                if (item == Items.mushroom_stew || 
+                    item == Items.wooden_hoe ||
+                    item == Items.stone_hoe ||
+                    item == Items.iron_hoe || 
+                    item == Items.diamond_hoe ||
+                    item == Items.golden_hoe ||
+                    item == Items.wooden_door || 
+                    item == Items.iron_door || 
+                    item == Items.lava_bucket ||
+                    item == Items.redstone || 
+                    item == Items.leather || 
+                    item == Items.fishing_rod || 
+                    item == Items.fish ||
+                    item == Items.cooked_fished || 
+                    item == Items.sugar || 
+                    item == Items.bed || 
+                    item == Items.repeater || 
+                    item == Items.melon || 
+                    item == Items.pumpkin_seeds || 
+                    item == Items.cooked_chicken ||
+                    item == Items.glowstone_dust || 
+                    item == Items.cake || 
+                    item == Items.flint || 
                     item == Items.clay_ball || 
                     item == Items.iron_ingot || 
                     item == Items.diamond || 
