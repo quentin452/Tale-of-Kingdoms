@@ -18,6 +18,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraft.init.Blocks;
 
 public class EntityLightningBoltAttack
 extends EntityLightningBolt {
@@ -31,18 +32,18 @@ extends EntityLightningBolt {
         this.lightningState = 2;
         this.boltVertex = this.rand.nextLong();
         this.boltLivingTime = this.rand.nextInt(3) + 1;
-        if (world.difficultySetting >= 2 && world.doChunksNearChunkExist(MathHelper.floor_double((double)d), MathHelper.floor_double((double)d1), MathHelper.floor_double((double)d2), 10)) {
-            int k;
-            int j;
+        if (world.difficultySetting.getDifficultyId() >= 2 && world.doChunksNearChunkExist(MathHelper.floor_double((double)d), MathHelper.floor_double((double)d1), MathHelper.floor_double((double)d2), 10)) {
             int i = MathHelper.floor_double((double)d);
-            if (world.getBlockId(i, j = MathHelper.floor_double((double)d1), k = MathHelper.floor_double((double)d2)) == 0) {
+            int j = MathHelper.floor_double((double)d1);
+            int k = MathHelper.floor_double((double)d2);
+            if (world.getBlock(i, j, k) == Blocks.air) {
                 // empty if block
             }
             for (int l = 0; l < 4; ++l) {
-                int k1;
-                int j1;
                 int i1 = MathHelper.floor_double((double)d) + this.rand.nextInt(3) - 1;
-                if (world.getBlockId(i1, j1 = MathHelper.floor_double((double)d1) + this.rand.nextInt(3) - 1, k1 = MathHelper.floor_double((double)d2) + this.rand.nextInt(3) - 1) != 0) continue;
+                int j1 = MathHelper.floor_double((double)d1) + this.rand.nextInt(3) - 1;
+                int k1 = MathHelper.floor_double((double)d2) + this.rand.nextInt(3) - 1;
+                if (world.getBlock(i1, j1, k1) != Blocks.air) continue;
             }
         }
     }
@@ -57,23 +58,23 @@ extends EntityLightningBolt {
             if (this.boltLivingTime == 0) {
                 this.setDead();
             } else if (this.lightningState < -this.rand.nextInt(10)) {
-                int k;
-                int j;
-                int i;
                 --this.boltLivingTime;
                 this.lightningState = 1;
                 this.boltVertex = this.rand.nextLong();
-                if (!this.worldObj.doChunksNearChunkExist(MathHelper.floor_double((double)this.posX), MathHelper.floor_double((double)this.posY), MathHelper.floor_double((double)this.posZ), 10) || this.worldObj.getBlockId(i = MathHelper.floor_double((double)this.posX), j = MathHelper.floor_double((double)this.posY), k = MathHelper.floor_double((double)this.posZ)) == 0) {
+                int i = MathHelper.floor_double((double)this.posX);
+                int j = MathHelper.floor_double((double)this.posY);
+                int k = MathHelper.floor_double((double)this.posZ);
+                if (!this.worldObj.doChunksNearChunkExist(i, j, k, 10) || this.worldObj.getBlock(i, j, k) == Blocks.air) {
                     // empty if block
                 }
             }
         }
         if (this.lightningState >= 0) {
             double d = 3.0;
-            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, AxisAlignedBB.getBoundingBox((double)(this.posX - d), (double)(this.posY - d), (double)(this.posZ - d), (double)(this.posX + d), (double)(this.posY + 6.0 + d), (double)(this.posZ + d)));
+            List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity((Entity)this, AxisAlignedBB.getBoundingBox((double)(this.posX - d), (double)(this.posY - d), (double)(this.posZ - d), (double)(this.posX + d), (double)(this.posY + 6.0 + d), (double)(this.posZ + d)));
             for (int l = 0; l < list.size(); ++l) {
                 boolean flag = true;
-                Entity entity = (Entity)list.get(l);
+                Entity entity = list.get(l);
                 if (entity instanceof EntityDefendBandit || entity instanceof EntityDefendMage || entity instanceof EntityDefendKnight || entity instanceof EntityDefendPaladin || entity instanceof EntityDefendWarrior || entity instanceof EntityDefendArcher || entity instanceof EntityHired || entity instanceof EntityPlayer || entity instanceof EntityPlayerSP) {
                     flag = false;
                 }
