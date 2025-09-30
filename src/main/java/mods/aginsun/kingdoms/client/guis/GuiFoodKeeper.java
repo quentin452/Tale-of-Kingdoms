@@ -39,7 +39,7 @@ extends GuiScreenToK {
                 if (!this.worldObj.isRemote) {
                     ChatMessage.add(this.entityplayer, "Farmer: Here, take a bread!");
                 }
-                ItemStack itemstack = new ItemStack(297, 1, 0);
+                ItemStack itemstack = new ItemStack(net.minecraft.init.Items.bread, 1, 0);
                 EntityItem entityitem = new EntityItem(this.worldObj, this.entityplayer.posX, this.entityplayer.posY, this.entityplayer.posZ, itemstack);
                 this.worldObj.spawnEntityInWorld((Entity)entityitem);
                 this.freebread = false;
