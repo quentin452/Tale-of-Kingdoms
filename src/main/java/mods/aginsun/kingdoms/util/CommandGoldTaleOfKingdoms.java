@@ -24,11 +24,13 @@ extends CommandBase {
     }
 
     public void processCommand(ICommandSender sender, String[] args) {
-        if (args[0].equals("worthy")) {
+        if (args.length > 0 && args[0].equals("worthy")) {
             WorthyKeeper.getInstance().addWorthy(10000.0f);
-        } else {
+        } else if (args.length > 0) {
             ResourceHandler.getInstance().addcobbleResource(2400);
             ResourceHandler.getInstance().addwoodResource(2400);
+        } else {
+            sendMessage(sender, "Usage: /tok worthy or /tok <anything else>");
         }
     }
 
