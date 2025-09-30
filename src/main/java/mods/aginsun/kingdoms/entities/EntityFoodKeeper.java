@@ -2,24 +2,18 @@
 package mods.aginsun.kingdoms.entities;
 
 import mods.aginsun.kingdoms.client.guis.GuiShopList;
-import mods.aginsun.kingdoms.entities.EntityNPC;
 import mods.aginsun.kingdoms.handlers.GoldKeeper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.StringTranslate;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+import net.minecraft.init.Items;
 
-public class EntityFoodKeeper
-extends EntityNPC {
+public class EntityFoodKeeper extends EntityNPC {
     private World worldObj;
     private Integer[] itemget = new Integer[200];
-    private GoldKeeper gold;
-    private StringTranslate st = new StringTranslate();
 
     public EntityFoodKeeper(World world) {
         super(world, null, 100.0f);
@@ -32,6 +26,7 @@ extends EntityNPC {
         return false;
     }
 
+    @Override
     public boolean interact(EntityPlayer entityplayer) {
         if (this.canInteractWith(entityplayer)) {
             this.heal(100.0f);
@@ -39,34 +34,48 @@ extends EntityNPC {
             int i = 0;
             int j = 0;
             String s = "";
-            for (int k = 256; k < 32000; ++k) {
+            for (Object obj : Item.itemRegistry) {
+                if (!(obj instanceof Item)) continue;
+                Item item = (Item) obj;
                 boolean flag1 = false;
-                if (Item.itemsList[k] == null) continue;
-                ItemStack itemstack = new ItemStack(Item.itemsList[k].itemID, 1, 0);
-                Item item = itemstack.getItem();
                 if (item instanceof ItemFood) {
                     flag1 = true;
                 }
                 if (item != null) {
                     s = item.getUnlocalizedName();
                 }
-                if (item.itemID == 354) {
+                if (Item.getIdFromItem(item) == Item.getIdFromItem(Items.cake)) {
                     flag1 = true;
                 }
                 if (s != null) {
                     j = GoldKeeper.priceItem(s);
                 }
-                String s1 = String.valueOf(item.getUnlocalizedName()) + ".name";
-                String s2 = this.st.translateKey(s1);
-                int l = itemstack.itemID;
-                if (l == 26 || l == 34 || l == 36 || l == 43 || l == 51 || l == 52 || l == 55 || l == 59 || l == 60 || l == 62 || l == 63 || l == 64 || l == 68 || l == 71 || l == 74 || l == 75 || l == 78 || l == 90 || l == 93 || l == 94 || l == 97 || l == 99 || l == 100 || l == 104 || l == 105 || l == 110 || !flag1 || l == Item.clay.itemID || l == Item.ingotIron.itemID || l == Item.diamond.itemID || l == Item.fishRaw.itemID || l == Item.appleRed.itemID || l == Item.silk.itemID || l == Item.feather.itemID) {
+                String s1 = item.getUnlocalizedName() + ".name";
+                String s2 = StatCollector.translateToLocal(s1);
+                int l = Item.getIdFromItem(item);
+                if (l == Item.getIdFromItem(Items.mushroom_stew) || l == Item.getIdFromItem(Items.wooden_hoe) || l == Item.getIdFromItem(Items.iron_hoe) 
+                        || l == Item.getIdFromItem(Items.leather_chestplate) || l == Item.getIdFromItem(Items.iron_chestplate) || l == Item.getIdFromItem(Items.iron_leggings) 
+                        || l == Item.getIdFromItem(Items.diamond_chestplate) || l == Item.getIdFromItem(Items.golden_chestplate) || l == Item.getIdFromItem(Items.golden_leggings) 
+                        || l == Item.getIdFromItem(Items.flint) || l == Item.getIdFromItem(Items.porkchop) || l == Item.getIdFromItem(Items.cooked_porkchop) 
+                        || l == Item.getIdFromItem(Items.wooden_door) || l == Item.getIdFromItem(Items.iron_door) || l == Item.getIdFromItem(Items.redstone) 
+                        || l == Item.getIdFromItem(Items.snowball) || l == Item.getIdFromItem(Items.leather) || l == Item.getIdFromItem(Items.fishing_rod) 
+                        || l == Item.getIdFromItem(Items.fish) || l == Item.getIdFromItem(Items.cooked_fished) || l == Item.getIdFromItem(Items.sugar) 
+                        || l == Item.getIdFromItem(Items.cake) || l == Item.getIdFromItem(Items.bed) || l == Item.getIdFromItem(Items.melon) 
+                        || l == Item.getIdFromItem(Items.pumpkin_seeds) || l == Item.getIdFromItem(Items.cooked_chicken) || !flag1
+                        || l == Item.getIdFromItem(Item.getItemFromBlock(net.minecraft.init.Blocks.clay))
+                        || l == Item.getIdFromItem(Items.iron_ingot)
+                        || l == Item.getIdFromItem(Items.diamond)
+                        || l == Item.getIdFromItem(Items.fish)
+                        || l == Item.getIdFromItem(Items.apple)
+                        || l == Item.getIdFromItem(Items.string)
+                        || l == Item.getIdFromItem(Items.feather)) {
                     j = 0;
                 }
                 if (j <= 0 || s1.equals("null.name") || s1.equals(s2)) continue;
-                this.itemget[i] = itemstack.itemID;
+                this.itemget[i] = l;
                 ++i;
             }
-            minecraft.displayGuiScreen((GuiScreen)new GuiShopList(entityplayer, this.worldObj, this.itemget));
+            minecraft.displayGuiScreen(new GuiShopList(entityplayer, this.worldObj, this.itemget));
         }
         return true;
     }
