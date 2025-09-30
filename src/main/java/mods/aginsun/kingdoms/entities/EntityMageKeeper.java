@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 import mods.aginsun.kingdoms.util.ChatMessage;
@@ -19,7 +20,7 @@ extends EntityNPC {
     private World worldObj = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(0);
 
     public EntityMageKeeper(World world) {
-        super(world, new ItemStack(Item.stick), 100.0f);
+        super(world, new ItemStack(Items.stick), 100.0f);
         this.worldObj = world;
         this.isImmuneToFire = false;
     }
