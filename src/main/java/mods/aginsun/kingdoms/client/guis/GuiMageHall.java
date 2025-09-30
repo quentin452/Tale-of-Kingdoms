@@ -64,7 +64,8 @@ extends GuiScreenToK {
                 int k = random.nextInt(3);
                 List list1 = EnchantmentHelper.buildEnchantmentList((Random)random, (ItemStack)itemstack, (int)ai[k]);
                 if (list1 != null) {
-                    for (EnchantmentData enchantmentdata : list1) {
+                    for (Object obj : list1) {
+                        EnchantmentData enchantmentdata = (EnchantmentData) obj;
                         itemstack.addEnchantment(enchantmentdata.enchantmentobj, enchantmentdata.enchantmentLevel);
                     }
                     GoldKeeper.decreaseGold(500);
