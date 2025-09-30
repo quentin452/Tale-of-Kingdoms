@@ -65,8 +65,8 @@ extends EntityNPC {
             if (this.worldObj.blockExists(i, j = MathHelper.floor_double((double)this.posY), k = MathHelper.floor_double((double)this.posZ))) {
                 boolean flag1 = false;
                 while (!flag1 && j > 0) {
-                    int i1 = this.worldObj.getBlockId(i, j - 1, k);
-                    if (i1 == 0 || !Block.blocksList[i1].blockMaterial.isSolid()) {
+                    net.minecraft.block.Block blockBelow = this.worldObj.getBlock(i, j - 1, k);
+                    if (blockBelow.isAir(this.worldObj, i, j - 1, k) || !blockBelow.getMaterial().isSolid()) {
                         this.posY -= 1.0;
                         --j;
                         continue;
@@ -114,7 +114,7 @@ extends EntityNPC {
         if (f < 6.0f) {
             if (this.attackTime == 0) {
                 this.swingItem();
-                this.worldObj.setBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ, 51);
+                this.worldObj.setBlock((int)entity.posX, (int)entity.posY - 1, (int)entity.posZ, net.minecraft.init.Blocks.fire);
                 this.attackTime = 40;
                 for (int i = 0; i < 8; ++i) {
                     this.worldObj.spawnParticle("portal", entity.posX - 1.0 + (this.rand.nextDouble() - 0.5) * (double)this.width, entity.posY - 1.0 + this.rand.nextDouble() * (double)this.height - 0.25, entity.posZ + 1.0 + (this.rand.nextDouble() - 0.5) * (double)this.width, (this.rand.nextDouble() - 0.5) * 2.0, -this.rand.nextDouble(), (this.rand.nextDouble() - 0.5) * 2.0);
@@ -173,7 +173,7 @@ extends EntityNPC {
             this.player = (EntityPlayer)entity;
         }
         if (this.player != null) {
-            if (this.player.getDistanceSqToEntity((Entity)this) <= 220.0 && this.worldObj.difficultySetting != 0 && this.worldObj.difficultySetting != 0) {
+            if (this.player.getDistanceSqToEntity((Entity)this) <= 220.0 && this.worldObj.difficultySetting != net.minecraft.world.EnumDifficulty.PEACEFUL && this.worldObj.difficultySetting != net.minecraft.world.EnumDifficulty.PEACEFUL) {
                 this.playerPresence = false;
                 if (this.rand.nextInt(6) == 0) {
                     this.teleportToEntity((Entity)this.player);
@@ -198,7 +198,7 @@ extends EntityNPC {
     }
 
     public boolean attackEntityFrom(DamageSource damagesource, int i) {
-        if (!this.playerPresence && this.worldObj.difficultySetting != 0) {
+        if (!this.playerPresence && this.worldObj.difficultySetting != net.minecraft.world.EnumDifficulty.PEACEFUL) {
             if (super.attackEntityFrom(damagesource, (float)i)) {
                 Entity entity = damagesource.getSourceOfDamage();
                 if (this.riddenByEntity == entity || this.ridingEntity == entity) {
