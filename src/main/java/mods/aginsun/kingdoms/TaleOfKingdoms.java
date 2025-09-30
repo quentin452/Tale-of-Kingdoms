@@ -24,7 +24,7 @@ import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid="taleofkingdoms", name="Tale of Kingdoms", version="1.5-Pre Release")
+@Mod(modid="taleofkingdoms", name="Tale of Kingdoms", version="1.0.0")
 public class TaleOfKingdoms {
     @Mod.Instance(value="taleofkingdoms")
     public static TaleOfKingdoms instance = new TaleOfKingdoms();
