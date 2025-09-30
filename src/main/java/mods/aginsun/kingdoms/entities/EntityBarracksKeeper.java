@@ -6,14 +6,14 @@ import mods.aginsun.kingdoms.entities.EntityNPC;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import mods.aginsun.kingdoms.util.ChatMessage;
 
 public class EntityBarracksKeeper
 extends EntityNPC {
-    private static ItemStack defaultHeldItem = new ItemStack(Item.swordIron, 1);
+    private static ItemStack defaultHeldItem = new ItemStack(Items.iron_sword, 1);
 
     public EntityBarracksKeeper(World world) {
         super(world, defaultHeldItem, 20.0f);
