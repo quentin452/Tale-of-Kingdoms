@@ -1,0 +1,16 @@
+[
+{
+  "modid": "taleofkingdoms",
+  "name": "Tale of Kingdoms",
+  "description": "Just a port of the mod for 1.7.10",
+  "version": "1.0.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": [""],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
